@@ -7,9 +7,13 @@ export const Header: React.FC = () => {
   return (
     <header className="w-full backdrop-blur-md bg-black/20 border-b border-white/10">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Logo />
+        {/* Logo - Left side */}
+        <div className="flex-shrink-0">
+          <Logo />
+        </div>
 
-        <div className="hidden lg:flex items-center gap-8">
+        {/* Navigation Items - Centered */}
+        <div className="hidden lg:flex items-center justify-center flex-1 gap-12">
           {NAVIGATION_ITEMS.map((item) => (
             <NavigationButton
               key={item.label}
@@ -21,7 +25,8 @@ export const Header: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        {/* CTA Buttons - Right side */}
+        <div className="flex items-center gap-4 flex-shrink-0">
           <NavigationButton href="/contact" variant="secondary">
             Get in touch
           </NavigationButton>
