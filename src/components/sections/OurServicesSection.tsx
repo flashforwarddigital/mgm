@@ -5,66 +5,31 @@ interface ServiceCardProps {
   title: string;
   description: string;
   delay?: number;
-  variant?: 'left' | 'right' | 'center';
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, delay = 0, variant = 'center' }) => {
-  // Different layouts for visual variety
-  const getCardLayout = () => {
-    switch (variant) {
-      case 'left':
-        return 'text-left pl-6 pr-4 border-l-2 border-[#22282a]/20';
-      case 'right':
-        return 'text-right pr-6 pl-4 border-r-2 border-[#22282a]/20';
-      default:
-        return 'text-center border-b-2 border-[#22282a]/20 pb-6';
-    }
-  };
-
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, delay = 0 }) => {
   return (
     <div 
       className={`
-        group relative bg-white/60 backdrop-blur-sm rounded-2xl p-6 
-        border border-[#22282a]/10 hover:border-[#22282a]/30 
-        hover:bg-white/80 transition-all duration-500 ease-out
-        hover:shadow-lg hover:-translate-y-1
-        animate-fade-in-up min-h-[180px] flex flex-col justify-center
-        ${getCardLayout()}
+        bg-white/80 backdrop-blur-sm rounded-xl p-6 
+        border border-gray-200 hover:border-gray-300 
+        hover:shadow-md transition-all duration-300
+        animate-fade-in-up
       `}
       style={{
         animationDelay: `${delay}ms`,
         animationFillMode: 'forwards'
       }}
     >
-      {/* Title - Tighter spacing, better hierarchy */}
-      <h3 
-        className="font-semibold mb-3 lowercase leading-tight"
-        style={{ 
-          fontSize: '1.1rem',
-          color: colors.text.primary,
-          fontFamily: typography.families.sans,
-          letterSpacing: '-0.02em'
-        }}
-      >
+      {/* Title */}
+      <h3 className="text-lg font-semibold text-gray-900 mb-3 capitalize">
         {title}
       </h3>
 
-      {/* Description - Closer line spacing, better readability */}
-      <p 
-        className="font-normal leading-snug"
-        style={{ 
-          fontSize: '0.9rem',
-          color: colors.text.secondary,
-          lineHeight: '1.4', // Tighter line spacing
-          fontFamily: typography.families.sans,
-          letterSpacing: '-0.01em'
-        }}
-      >
+      {/* Description */}
+      <p className="text-gray-700 text-sm leading-relaxed">
         {description}
       </p>
-
-      {/* Subtle accent line that appears on hover */}
-      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#66E8FA] group-hover:w-full transition-all duration-500 ease-out"></div>
     </div>
   );
 };
@@ -72,34 +37,28 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, delay = 0
 export const OurServicesSection: React.FC = () => {
   const services = [
     {
-      title: "planning & budgeting",
-      description: "Realistic plans, goal alignment, everyday budgeting systems",
-      variant: 'left' as const
+      title: "Planning & Budgeting",
+      description: "Realistic plans, goal alignment, everyday budgeting systems"
     },
     {
-      title: "cash flow & performance", 
-      description: "Business insights, efficiency, profitability",
-      variant: 'center' as const
+      title: "Cash Flow & Performance", 
+      description: "Business insights, efficiency, profitability"
     },
     {
-      title: "strategy & structuring",
-      description: "Right setup, legal/accountant alignment, tax optimisation",
-      variant: 'right' as const
+      title: "Strategy & Structuring",
+      description: "Right setup, legal/accountant alignment, tax optimisation"
     },
     {
-      title: "lending & finance",
-      description: "Tailored loans, refinancing, equity access, full bank support",
-      variant: 'right' as const
+      title: "Lending & Finance",
+      description: "Tailored loans, refinancing, equity access, full bank support"
     },
     {
-      title: "investments",
-      description: "Portfolio reviews, property strategy, tax-aware performance", 
-      variant: 'center' as const
+      title: "Investments",
+      description: "Portfolio reviews, property strategy, tax-aware performance"
     },
     {
-      title: "ongoing advisory",
-      description: "Trusted advice, plain-English breakdowns, continuous support",
-      variant: 'left' as const
+      title: "Ongoing Advisory",
+      description: "Trusted advice, plain-English breakdowns, continuous support"
     }
   ];
 
@@ -112,37 +71,39 @@ export const OurServicesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
-          {/* Title - ALL LOWERCASE, DARK COLOR */}
+          {/* Title */}
           <h2 
-            className="font-extrabold leading-tight mb-8 lowercase"
+            className="font-extrabold leading-tight mb-8 text-gray-900"
             style={{
-              fontSize: typography.sizes.hero,
-              letterSpacing: typography.tracking.widest,
-              color: colors.text.primary,
-              fontFamily: typography.families.sans
+              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              letterSpacing: '-0.02em'
             }}
           >
-            practical financial solutions that work
+            Our Services
           </h2>
+          
+          {/* Subtitle */}
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            Comprehensive financial solutions tailored for your success
+          </p>
         </div>
 
-        {/* Services Grid - Asymmetrical layout with varied card styles */}
+        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
               title={service.title}
               description={service.description}
-              variant={service.variant}
               delay={index * 100}
             />
           ))}
         </div>
 
-        {/* Learn More Button - Same style as hero section */}
+        {/* Learn More Button */}
         <div className="flex justify-center mt-16">
-          <button className="border-[#22282a] bg-[#22282a] text-[#66E8FA] hover:bg-[#394247] hover:scale-105 justify-center items-center flex min-h-[55px] gap-[13px] overflow-hidden px-[22px] py-[17px] rounded-[13.79px] text-[21px] font-normal whitespace-nowrap uppercase tracking-[-0.62px] leading-none transition-all duration-300">
-            <span className="pb-px">learn more</span>
+          <button className="bg-gray-900 text-white hover:bg-gray-800 px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:scale-105">
+            Learn More About Our Services
           </button>
         </div>
       </div>
