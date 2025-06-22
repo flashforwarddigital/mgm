@@ -21,19 +21,19 @@ export const HeroSection: React.FC = () => {
         />
       </div>
 
-      {/* Main Content - Raised higher with FIXED sizing */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-16">
+      {/* Main Content - Positioned higher with more space between text and button */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center px-4">
         <div className="max-w-7xl mx-auto text-center w-full">
-          {/* Main Title with Morphing Effect - FIXED: Just slightly larger than original */}
-          <div className="mb-16 px-4 -mt-16">
+          {/* Main Title with Morphing Effect - MOVED HIGHER */}
+          <div className="mb-32 px-4 -mt-32">
             <MorphingText
               texts={hero.rotatingTitles}
               className="text-white font-extrabold !text-4xl sm:!text-5xl md:!text-6xl lg:!text-7xl"
             />
           </div>
 
-          {/* Watch Video Button */}
-          <div className="flex justify-center">
+          {/* Watch Video Button - MOVED LOWER with more spacing */}
+          <div className="flex justify-center mt-16">
             <button className="group relative flex items-center gap-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-8 py-4 hover:bg-white/20 transition-all duration-300">
               {/* Play Icon */}
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
