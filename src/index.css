@@ -107,8 +107,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 
-/* Logo Carousel Animation - ULTRA SLOW infinite seamless loop */
-@keyframes carousel-scroll-ultra-slow {
+/* Logo Carousel Animation - EXTREMELY SLOW infinite seamless loop */
+@keyframes carousel-scroll-extremely-slow {
   0% {
     transform: translateX(0);
   }
@@ -117,12 +117,14 @@
   }
 }
 
-/* Carousel animation class - configurable via CSS variables */
+/* Carousel animation class - configurable via CSS variables with FORCED slow speed */
 .carousel-animate {
-  animation: carousel-scroll-ultra-slow var(--carousel-duration, 180s) var(--carousel-timing, linear) var(--carousel-iteration, infinite);
+  animation: carousel-scroll-extremely-slow var(--carousel-duration, 300s) var(--carousel-timing, linear) var(--carousel-iteration, infinite);
   display: flex;
   width: fit-content;
   will-change: transform; /* Optimize for smooth animation */
+  /* Force the animation to be extremely slow */
+  animation-duration: 300s !important; /* 5 minutes - FORCED */
 }
 
 /* Pause animation on hover for better UX */
@@ -135,36 +137,68 @@
   font-family: var(--carousel-font-family, 'Barlow Condensed', 'Roboto Condensed', 'Oswald', sans-serif);
   font-weight: var(--carousel-font-weight, 100); /* Ultra-light weight - thinnest possible */
   font-stretch: ultra-condensed;
-  letter-spacing: var(--carousel-letter-spacing, 0.25em); /* Maximum letter spacing */
-  font-size: var(--carousel-font-size, 1.8rem);
+  letter-spacing: var(--carousel-letter-spacing, 0.3em); /* Maximum letter spacing - FORCED */
+  font-size: var(--carousel-font-size, 2rem); /* Larger size - FORCED */
   color: var(--carousel-color, #66E8FA);
   text-transform: var(--carousel-text-transform, uppercase);
   opacity: 1;
   transition: opacity 0.3s ease;
+  /* Force the spacing */
+  letter-spacing: 0.3em !important;
+  font-size: 2rem !important;
 }
 
 .carousel-text:hover {
   opacity: 0.8;
 }
 
-/* Carousel container positioning */
+/* Carousel container positioning - FORCED to bottom with more padding */
 .carousel-container {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: var(--carousel-height, 80px);
+  height: var(--carousel-height, 100px);
   display: flex;
-  align-items: var(--carousel-align, flex-end); /* Default to bottom alignment */
+  align-items: var(--carousel-align, flex-end); /* FORCED to bottom alignment */
+  padding-bottom: 4rem !important; /* FORCED bottom padding */
+  margin-bottom: 2rem !important; /* Additional bottom margin */
 }
 
-/* Word spacing in carousel */
+/* Word spacing in carousel - FORCED maximum spacing */
 .carousel-word {
   flex-shrink: 0;
-  margin-left: var(--carousel-word-spacing, 3rem);
-  margin-right: var(--carousel-word-spacing, 3rem);
-  min-width: var(--carousel-min-width, 220px);
+  margin-left: var(--carousel-word-spacing, 4rem);
+  margin-right: var(--carousel-word-spacing, 4rem);
+  min-width: var(--carousel-min-width, 280px);
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+  /* Force the spacing */
+  margin-left: 4rem !important;
+  margin-right: 4rem !important;
+  min-width: 280px !important;
+}
+
+/* Sticky header styles */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  background: rgba(34, 40, 42, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure content doesn't hide behind sticky header */
+.content-with-sticky-header {
+  padding-top: 88px; /* Height of header */
 }
