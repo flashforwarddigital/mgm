@@ -13,13 +13,11 @@ import { Footer } from '../components/Footer';
 const Index: React.FC = () => {
   return (
     <div className="min-h-screen w-full">
-      {/* Hero Section with Header */}
-      <div className="relative w-full">
-        <HeroSection />
-        <div className="absolute top-0 left-0 right-0 z-50">
-          <Header />
-        </div>
-      </div>
+      {/* Sticky Header - Now positioned at the top level */}
+      <Header />
+
+      {/* Hero Section - No longer contains header */}
+      <HeroSection />
 
       {/* Logo Carousel - Bridge between hero and next section - POSITIONED AT BOTTOM */}
       <LogoCarousel />

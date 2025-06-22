@@ -39,7 +39,7 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="w-full backdrop-blur-md bg-black/20 border-b border-white/10 relative z-50">
+    <header className="sticky top-0 w-full backdrop-blur-md bg-black/20 border-b border-white/10 z-50">
       <nav className="w-full px-4 py-4 flex items-center justify-between">
         {/* Logo - Flush to left edge */}
         <div className="flex-shrink-0">
