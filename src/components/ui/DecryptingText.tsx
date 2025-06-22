@@ -10,7 +10,7 @@ interface DecryptingTextProps {
 const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const ANIMATION_SPEED = 80; // Slower: 80ms per frame (was 30ms)
 const TITLE_DISPLAY_TIME = 6000; // 6 seconds to display each title
-const TRANSITION_TIME = 3000; // 3 seconds for transition animation (slower)
+const TRANSITION_TIME = 1500; // Reduced to 1.5 seconds for transition animation (was 3 seconds)
 
 export const DecryptingText: React.FC<DecryptingTextProps> = ({ 
   titles, 
@@ -91,11 +91,11 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
     
     let revealedCount = 0;
     const totalFrames = Math.ceil(TRANSITION_TIME / ANIMATION_SPEED);
-    // Reveal fewer characters per frame for smoother animation
-    const charactersPerFrame = Math.max(1, Math.ceil(characterPositions.length / (totalFrames * 1.5)));
+    // Reveal more characters per frame since we have less time
+    const charactersPerFrame = Math.max(2, Math.ceil(characterPositions.length / totalFrames));
 
     const animate = () => {
-      // Reveal characters more gradually
+      // Reveal characters more quickly due to shorter transition time
       const charactersToReveal = Math.min(
         charactersPerFrame,
         characterPositions.length - revealedCount
