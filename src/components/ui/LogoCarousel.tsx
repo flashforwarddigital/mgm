@@ -4,7 +4,7 @@ interface LogoCarouselProps {
   className?: string;
 }
 
-// Financial services related words for GMG - now in UPPERCASE with Schabo X Condensed style
+// Financial services related words for GMG - now in UPPERCASE with DIN Condensed style
 const CAROUSEL_WORDS = [
   'BUDGETING',
   'CASH FLOW', 
@@ -38,20 +38,20 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
         <div className="max-w-6xl mx-auto px-8 py-16">
           {/* Carousel container */}
           <div className="relative overflow-hidden">
-            {/* Scrolling words with Schabo X Condensed font - Updated styling */}
+            {/* Scrolling words with DIN Condensed font - Updated styling */}
             <div className="flex animate-scroll">
               {/* First set of words */}
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex-shrink-0 mx-8 flex items-center justify-center"
-                  style={{ minWidth: '220px', height: '80px' }}
+                  className="flex-shrink-0 mx-6 flex items-center justify-center"
+                  style={{ minWidth: '180px', height: '60px' }}
                 >
                   <span 
-                    className="font-schabo whitespace-nowrap opacity-80 hover:opacity-100 transition-opacity duration-300 uppercase"
+                    className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
                     style={{
-                      color: '#66E8FA', // Blue color instead of white
-                      fontSize: '2.5rem', // Smaller size - reduced from text-5xl (3rem) to 2.5rem
+                      color: '#66E8FA', // Blue color
+                      fontSize: '1.8rem', // Even smaller size - reduced from 2.5rem to 1.8rem
                     }}
                   >
                     {word}
@@ -62,14 +62,14 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`second-${index}`}
-                  className="flex-shrink-0 mx-8 flex items-center justify-center"
-                  style={{ minWidth: '220px', height: '80px' }}
+                  className="flex-shrink-0 mx-6 flex items-center justify-center"
+                  style={{ minWidth: '180px', height: '60px' }}
                 >
                   <span 
-                    className="font-schabo whitespace-nowrap opacity-80 hover:opacity-100 transition-opacity duration-300 uppercase"
+                    className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
                     style={{
-                      color: '#66E8FA', // Blue color instead of white
-                      fontSize: '2.5rem', // Smaller size - reduced from text-5xl (3rem) to 2.5rem
+                      color: '#66E8FA', // Blue color
+                      fontSize: '1.8rem', // Even smaller size - reduced from 2.5rem to 1.8rem
                     }}
                   >
                     {word}

@@ -102,8 +102,8 @@
   }
 }
 
-/* Schabo X Condensed Font Import */
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
+/* DIN Condensed Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
 /* Logo Carousel Animation */
 @keyframes scroll {
@@ -125,10 +125,11 @@
   animation-play-state: paused;
 }
 
-/* Schabo X Condensed Font Class - Updated for tighter, smaller, thinner blue text */
-.font-schabo {
+/* DIN Condensed Font Class - Updated for smaller, tighter, full opacity blue text */
+.font-din-condensed {
   font-family: 'Oswald', sans-serif;
-  font-weight: 400; /* Thinner weight - reduced from 600 to 400 */
+  font-weight: 300; /* Even thinner weight - reduced from 400 to 300 */
   font-stretch: condensed;
-  letter-spacing: -0.08em; /* Much tighter letter spacing - reduced from 0.05em to -0.08em */
+  letter-spacing: -0.08em; /* Keep tight letter spacing */
+  opacity: 1; /* Full opacity instead of 0.8 */
 }
