@@ -13,9 +13,9 @@ export const AboutGMGSection: React.FC = () => {
   });
   
   // FIXED: Transform scroll progress to parallax movement (upward movement when scrolling down)
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]); // Moves up as you scroll down
-  const rotate = useTransform(scrollYProgress, [0, 1], [5, -5]); // Subtle rotation
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 1.1]); // Scale effect
+  const y = useTransform(scrollYProgress, [0, 1], [150, -150]); // Stronger upward movement
+  const rotate = useTransform(scrollYProgress, [0, 1], [8, -8]); // More noticeable rotation
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 1.15]); // More dramatic scale
 
   return (
     <section 

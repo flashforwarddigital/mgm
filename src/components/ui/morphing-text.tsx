@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-
 import { cn } from "@/lib/utils";
 
 const morphTime = 1.5;
@@ -64,7 +63,6 @@ const useMorphingText = (texts: string[]) => {
     }
   }, []);
 
-  // Initialize with first text immediately
   const initialize = useCallback(() => {
     if (!initializedRef.current && text1Ref.current && text2Ref.current && texts.length > 0) {
       text1Ref.current.innerHTML = texts[0];
@@ -80,7 +78,6 @@ const useMorphingText = (texts: string[]) => {
   }, [texts]);
 
   useEffect(() => {
-    // Initialize immediately
     initialize();
     
     let animationFrameId: number;
@@ -88,7 +85,6 @@ const useMorphingText = (texts: string[]) => {
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      // Ensure initialization happens
       if (!initializedRef.current) {
         initialize();
         return;
@@ -158,12 +154,12 @@ const MorphingText: React.FC<MorphingTextProps> = ({ texts, className }) => (
   <div
     className={cn(
       "relative mx-auto w-full max-w-6xl text-center font-sans font-bold leading-none [filter:url(#threshold)_blur(0.6px)]",
-      // FIXED: Just a little larger than original - much more reasonable sizing
-      "h-16 text-2xl py-2", // Mobile - just slightly larger
-      "sm:h-20 sm:text-3xl sm:py-3", // Small screens - modest increase
-      "md:h-24 md:text-4xl md:py-3", // Medium screens - reasonable size
-      "lg:h-28 lg:text-5xl lg:py-4", // Large screens - just a bit larger
-      "xl:h-32 xl:text-6xl xl:py-4", // Extra large - not too big
+      // FIXED: Just slightly larger than original - reasonable sizing
+      "h-20 text-3xl py-3", // Mobile - just a bit larger
+      "sm:h-24 sm:text-4xl sm:py-4", // Small screens - modest increase
+      "md:h-28 md:text-5xl md:py-4", // Medium screens - reasonable size
+      "lg:h-32 lg:text-6xl lg:py-5", // Large screens - just a bit larger
+      "xl:h-36 xl:text-7xl xl:py-6", // Extra large - not massive
       className,
     )}
   >
