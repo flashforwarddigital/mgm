@@ -107,7 +107,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 
-/* Logo Carousel Animation - Much slower infinite seamless loop */
+/* Logo Carousel Animation - Ultra slow infinite seamless loop */
 @keyframes scroll-infinite {
   0% {
     transform: translateX(0);
@@ -118,7 +118,7 @@
 }
 
 .animate-scroll-infinite {
-  animation: scroll-infinite 60s linear infinite; /* Much slower - 60s instead of 40s */
+  animation: scroll-infinite 90s linear infinite; /* Ultra slow - 90s instead of 60s */
   display: flex;
   width: fit-content;
 }
@@ -128,11 +128,11 @@
   animation-play-state: paused;
 }
 
-/* Ultra-thin condensed font class - Thinnest possible option */
+/* Ultra-thin condensed font class - Thinnest possible option with maximum spacing */
 .font-din-condensed {
   font-family: 'Barlow Condensed', 'Roboto Condensed', 'Oswald', sans-serif; /* Barlow Condensed is thinnest */
   font-weight: 200; /* Ultra-light weight - thinner than 300 */
   font-stretch: ultra-condensed;
-  letter-spacing: 0.15em; /* More letter spacing - increased from 0.1em */
+  letter-spacing: 0.2em; /* Maximum letter spacing - increased from 0.15em to 0.2em */
   opacity: 1; /* Full opacity */
 }

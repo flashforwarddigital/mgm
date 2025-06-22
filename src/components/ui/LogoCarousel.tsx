@@ -38,14 +38,14 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
         <div className="max-w-6xl mx-auto px-8 py-16">
           {/* Carousel container - positioned at the very bottom of the section */}
           <div className="relative overflow-hidden mt-16 mb-0">
-            {/* Scrolling words with ultra-thin condensed font - Much slower infinite seamless loop */}
+            {/* Scrolling words with ultra-thin condensed font - Ultra slow infinite seamless loop */}
             <div className="animate-scroll-infinite">
-              {/* First set of words - even more spacing between words */}
+              {/* First set of words - maximum spacing between words */}
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex-shrink-0 mx-8 flex items-center justify-center" /* Increased mx from 6 to 8 for more word spacing */
-                  style={{ minWidth: '180px', height: '60px' }} /* Increased minWidth from 160px to 180px */
+                  className="flex-shrink-0 mx-10 flex items-center justify-center" /* Increased mx from 8 to 10 for maximum word spacing */
+                  style={{ minWidth: '200px', height: '60px' }} /* Increased minWidth from 180px to 200px */
                 >
                   <span 
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
@@ -62,8 +62,8 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`second-${index}`}
-                  className="flex-shrink-0 mx-8 flex items-center justify-center" /* Increased mx from 6 to 8 for more word spacing */
-                  style={{ minWidth: '180px', height: '60px' }} /* Increased minWidth from 160px to 180px */
+                  className="flex-shrink-0 mx-10 flex items-center justify-center" /* Increased mx from 8 to 10 for maximum word spacing */
+                  style={{ minWidth: '200px', height: '60px' }} /* Increased minWidth from 180px to 200px */
                 >
                   <span 
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
@@ -80,8 +80,8 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`third-${index}`}
-                  className="flex-shrink-0 mx-8 flex items-center justify-center" /* Increased mx from 6 to 8 for more word spacing */
-                  style={{ minWidth: '180px', height: '60px' }} /* Increased minWidth from 160px to 180px */
+                  className="flex-shrink-0 mx-10 flex items-center justify-center" /* Increased mx from 8 to 10 for maximum word spacing */
+                  style={{ minWidth: '200px', height: '60px' }} /* Increased minWidth from 180px to 200px */
                 >
                   <span 
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
