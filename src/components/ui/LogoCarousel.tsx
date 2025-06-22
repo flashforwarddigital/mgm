@@ -36,9 +36,9 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
         }}
       >
         <div className="max-w-6xl mx-auto px-8 py-16">
-          {/* Carousel container - positioned lower in the section */}
-          <div className="relative overflow-hidden mt-8">
-            {/* Scrolling words with DIN Condensed font - Infinite seamless loop */}
+          {/* Carousel container - positioned at the very bottom of the section */}
+          <div className="relative overflow-hidden mt-16 mb-0">
+            {/* Scrolling words with DIN Condensed Light font - Infinite seamless loop */}
             <div className="animate-scroll-infinite">
               {/* First set of words - closer spacing */}
               {CAROUSEL_WORDS.map((word, index) => (
@@ -51,14 +51,14 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
                     style={{
                       color: '#66E8FA', // Blue color
-                      fontSize: '1.6rem', // Slightly smaller - reduced from 1.8rem to 1.6rem
+                      fontSize: '1.6rem', // Slightly smaller size
                     }}
                   >
                     {word}
                   </span>
                 </div>
               ))}
-              {/* Duplicate set for seamless infinite loop */}
+              {/* Duplicate set for seamless infinite loop - ensures no blank spaces */}
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`second-${index}`}
@@ -69,7 +69,25 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
                     style={{
                       color: '#66E8FA', // Blue color
-                      fontSize: '1.6rem', // Slightly smaller - reduced from 1.8rem to 1.6rem
+                      fontSize: '1.6rem', // Slightly smaller size
+                    }}
+                  >
+                    {word}
+                  </span>
+                </div>
+              ))}
+              {/* Third set for extra seamless connection - eliminates any gaps */}
+              {CAROUSEL_WORDS.map((word, index) => (
+                <div
+                  key={`third-${index}`}
+                  className="flex-shrink-0 mx-3 flex items-center justify-center"
+                  style={{ minWidth: '140px', height: '60px' }}
+                >
+                  <span 
+                    className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
+                    style={{
+                      color: '#66E8FA', // Blue color
+                      fontSize: '1.6rem', // Slightly smaller size
                     }}
                   >
                     {word}
