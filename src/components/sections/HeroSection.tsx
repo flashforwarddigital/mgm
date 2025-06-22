@@ -3,12 +3,13 @@ import { colors, typography } from '../../config/design-system';
 import { siteContent } from '../../config/content';
 import { MorphingText } from '../ui/morphing-text';
 
+// Enhanced titles with HTML for highlighted words
 const ROTATING_TITLES = [
-  "Real Advice for Real Life Goals",
-  "Take Control of Your Financial Future", 
-  "Confident Financial Decisions Start Here",
-  "Your Trusted Partner in Financial Clarity",
-  "Strategic Advice. Lasting Results"
+  'Real Advice for <span style="color: #66E8FA;">Real Life</span> Goals',
+  'Take Control of Your <span style="color: #66E8FA;">Financial Future</span>', 
+  'Confident <span style="color: #66E8FA;">Financial Decisions</span> Start Here',
+  'Your Trusted Partner in <span style="color: #66E8FA;">Financial Clarity</span>',
+  'Strategic Advice. <span style="color: #66E8FA;">Lasting Results</span>'
 ];
 
 export const HeroSection: React.FC = () => {

@@ -5,12 +5,12 @@ import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 const morphTime = 1.5;
-const cooldownTime = 5.0; // Changed from 0.5 to 5.0 seconds
+const cooldownTime = 5.0;
 
 const useMorphingText = (texts: string[]) => {
   const textIndexRef = useRef(0);
   const morphRef = useRef(0);
-  const cooldownRef = useRef(cooldownTime); // Start with cooldown
+  const cooldownRef = useRef(cooldownTime);
   const timeRef = useRef(new Date());
 
   const text1Ref = useRef<HTMLSpanElement>(null);
@@ -28,8 +28,8 @@ const useMorphingText = (texts: string[]) => {
       current1.style.filter = `blur(${Math.min(8 / invertedFraction - 8, 100)}px)`;
       current1.style.opacity = `${Math.pow(invertedFraction, 0.4) * 100}%`;
 
-      current1.textContent = texts[textIndexRef.current % texts.length];
-      current2.textContent = texts[(textIndexRef.current + 1) % texts.length];
+      current1.innerHTML = texts[textIndexRef.current % texts.length];
+      current2.innerHTML = texts[(textIndexRef.current + 1) % texts.length];
     },
     [texts],
   );
@@ -130,11 +130,12 @@ const MorphingText: React.FC<MorphingTextProps> = ({ texts, className }) => (
   <div
     className={cn(
       "relative mx-auto w-full max-w-6xl text-center font-sans font-bold leading-none [filter:url(#threshold)_blur(0.6px)]",
-      "h-16 text-2xl", // Mobile
-      "sm:h-20 sm:text-3xl", // Small screens
-      "md:h-24 md:text-4xl", // Medium screens
-      "lg:h-28 lg:text-5xl", // Large screens
-      "xl:h-32 xl:text-6xl", // Extra large screens
+      // Increased heights and added padding to prevent cutoff
+      "h-20 text-2xl py-2", // Mobile - added padding
+      "sm:h-24 sm:text-3xl sm:py-3", // Small screens
+      "md:h-28 md:text-4xl md:py-4", // Medium screens
+      "lg:h-32 lg:text-5xl lg:py-5", // Large screens
+      "xl:h-36 xl:text-6xl xl:py-6", // Extra large screens - increased height
       className,
     )}
   >
