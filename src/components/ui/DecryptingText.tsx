@@ -7,9 +7,10 @@ interface DecryptingTextProps {
 }
 
 const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
-const ANIMATION_SPEED = 50; // milliseconds per frame
-const REVEAL_SPEED = 3; // characters revealed per frame
-const TITLE_DISPLAY_TIME = 3500; // time to display each title
+const ANIMATION_SPEED = 30; // milliseconds per frame (faster)
+const REVEAL_SPEED = 4; // characters revealed per frame (faster reveal)
+const TITLE_DISPLAY_TIME = 5000; // 5 seconds to display each title
+const TRANSITION_TIME = 2000; // 2 seconds for transition animation
 
 export const DecryptingText: React.FC<DecryptingTextProps> = ({ 
   titles, 
@@ -43,14 +44,19 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
     setIsAnimating(true);
     let revealedCount = 0;
     let frameCount = 0;
+    
+    // Calculate how many frames the transition should take
+    const totalFrames = Math.ceil(TRANSITION_TIME / ANIMATION_SPEED);
+    const revealRate = Math.ceil(targetTitle.length / totalFrames);
 
     const animate = () => {
       frameCount++;
       
-      // Reveal characters gradually
-      if (frameCount % Math.ceil(ANIMATION_SPEED / REVEAL_SPEED) === 0) {
-        revealedCount = Math.min(revealedCount + 1, targetTitle.length);
-      }
+      // Reveal characters more aggressively to fit within 2 seconds
+      revealedCount = Math.min(
+        revealedCount + revealRate, 
+        targetTitle.length
+      );
 
       const scrambled = scrambleText(targetTitle, revealedCount);
       setDisplayText(scrambled);
@@ -59,7 +65,7 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
         animationRef.current = setTimeout(animate, ANIMATION_SPEED);
       } else {
         setIsAnimating(false);
-        // Schedule next title change
+        // Schedule next title change after 5 seconds
         titleTimeoutRef.current = setTimeout(() => {
           setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
         }, TITLE_DISPLAY_TIME);
