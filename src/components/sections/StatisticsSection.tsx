@@ -36,6 +36,7 @@ export const StatisticsSection: React.FC = () => {
 
   return (
     <section 
+      id="statistics"
       className="w-full py-32 px-4"
       style={{ backgroundColor: colors.sections.statistics }}
     >

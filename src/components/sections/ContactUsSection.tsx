@@ -7,6 +7,7 @@ export const ContactUsSection: React.FC = () => {
 
   return (
     <section 
+      id="contact-us"
       className="w-full py-32 px-4"
       style={{ backgroundColor: colors.sections.contactUs }}
     >

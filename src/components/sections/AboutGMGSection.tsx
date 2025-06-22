@@ -7,6 +7,7 @@ export const AboutGMGSection: React.FC = () => {
 
   return (
     <section 
+      id="about-gmg"
       className="w-full py-32 px-4"
       style={{ backgroundColor: colors.sections.aboutGMG }}
     >

@@ -7,6 +7,7 @@ export const FinancialHealthCheckSection: React.FC = () => {
 
   return (
     <section 
+      id="financial-health-check"
       className="w-full py-32 px-4"
       style={{ backgroundColor: colors.sections.financialHealthCheck }}
     >
