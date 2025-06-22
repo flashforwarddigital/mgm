@@ -8,9 +8,9 @@ interface DecryptingTextProps {
 
 // Only letters for smoother, cleaner animation
 const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const ANIMATION_SPEED = 80; // Slower: 80ms per frame (was 30ms)
+const ANIMATION_SPEED = 80; // 80ms per frame
 const TITLE_DISPLAY_TIME = 6000; // 6 seconds to display each title
-const TRANSITION_TIME = 1500; // Reduced to 1.5 seconds for transition animation (was 3 seconds)
+const TRANSITION_TIME = 1500; // 1.5 seconds for transition animation
 
 export const DecryptingText: React.FC<DecryptingTextProps> = ({ 
   titles, 
@@ -23,40 +23,20 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
   const animationRef = useRef<NodeJS.Timeout>();
   const titleTimeoutRef = useRef<NodeJS.Timeout>();
 
-  const currentTitle = titles[currentTitleIndex];
+  // Convert current title to uppercase
+  const currentTitle = titles[currentTitleIndex].toUpperCase();
 
-  // Create a more gradual reveal order - start from center and work outward
-  const createSmoothRevealOrder = (length: number) => {
+  // Create a completely random reveal order for more spread out effect
+  const createRandomRevealOrder = (length: number) => {
     const indices = Array.from({ length }, (_, i) => i);
-    const center = Math.floor(length / 2);
-    const ordered = [];
     
-    // Start from center and alternate left/right
-    for (let i = 0; i < length; i++) {
-      if (i % 2 === 0) {
-        const rightIndex = center + Math.floor(i / 2);
-        if (rightIndex < length) ordered.push(rightIndex);
-      } else {
-        const leftIndex = center - Math.ceil(i / 2);
-        if (leftIndex >= 0) ordered.push(leftIndex);
-      }
+    // Fisher-Yates shuffle for true randomness
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
     }
     
-    // Add some randomness to make it less predictable
-    const shuffled = [];
-    const chunkSize = Math.max(1, Math.floor(ordered.length / 4));
-    
-    for (let i = 0; i < ordered.length; i += chunkSize) {
-      const chunk = ordered.slice(i, i + chunkSize);
-      // Shuffle within each chunk
-      for (let j = chunk.length - 1; j > 0; j--) {
-        const k = Math.floor(Math.random() * (j + 1));
-        [chunk[j], chunk[k]] = [chunk[k], chunk[j]];
-      }
-      shuffled.push(...chunk);
-    }
-    
-    return shuffled;
+    return indices;
   };
 
   const scrambleText = (targetText: string, revealedIndices: Set<number>) => {
@@ -69,7 +49,7 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
         if (char === ' ') {
           return ' '; // Keep spaces
         }
-        // Use only letters for cleaner look
+        // Use random letters for each position
         return CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
       })
       .join('');
@@ -78,24 +58,24 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
   const animateToTitle = (targetTitle: string) => {
     setIsAnimating(true);
     
-    // Filter out spaces and get only character positions
+    // Get ALL character positions (including letters, numbers, punctuation - everything except spaces)
     const characterPositions = targetTitle
       .split('')
       .map((char, index) => ({ char, index }))
-      .filter(({ char }) => char !== ' ')
+      .filter(({ char }) => char !== ' ') // Only filter out spaces
       .map(({ index }) => index);
     
-    // Create smooth reveal order
-    const revealOrder = createSmoothRevealOrder(characterPositions.length);
+    // Create completely random reveal order for maximum spread
+    const revealOrder = createRandomRevealOrder(characterPositions.length);
     const revealedIndices = new Set<number>();
     
     let revealedCount = 0;
     const totalFrames = Math.ceil(TRANSITION_TIME / ANIMATION_SPEED);
-    // Reveal more characters per frame since we have less time
-    const charactersPerFrame = Math.max(2, Math.ceil(characterPositions.length / totalFrames));
+    // Reveal fewer characters per frame for more gradual, spread out effect
+    const charactersPerFrame = Math.max(1, Math.ceil(characterPositions.length / (totalFrames * 1.2)));
 
     const animate = () => {
-      // Reveal characters more quickly due to shorter transition time
+      // Reveal characters one by one for maximum spread
       const charactersToReveal = Math.min(
         charactersPerFrame,
         characterPositions.length - revealedCount
