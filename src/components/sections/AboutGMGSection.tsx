@@ -12,17 +12,17 @@ export const AboutGMGSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left Side - Content */}
           <div className="space-y-12">
-            {/* Title with much closer spacing and blue/dark styling - ALL LOWERCASE */}
+            {/* Title - SMALLER SIZE, WHITE AND DARK STYLING */}
             <div>
               <h2 
                 className="font-extrabold leading-none lowercase"
                 style={{ 
-                  fontSize: typography.sizes.hero,
+                  fontSize: 'clamp(2rem, 4vw, 3.5rem)', // Smaller than hero size
                   letterSpacing: typography.tracking.widest,
                 }}
               >
-                <div className="text-[#66E8FA] mb-0">financial strategy,</div>
-                <div className="text-[#22282a] -mt-4">built on trust</div>
+                <div className="text-white mb-2">financial strategy,</div>
+                <div className="text-[#22282a]">built on trust</div>
               </h2>
             </div>
 
