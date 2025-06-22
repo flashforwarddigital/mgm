@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from '../components/Header';
 import { HeroSection } from '../components/sections/HeroSection';
+import { LogoCarousel } from '../components/ui/LogoCarousel';
 import { CapabilitiesSection } from '../components/sections/CapabilitiesSection';
 import { MVNOLaunchpadSection } from '../components/sections/MVNOLaunchpadSection';
 import { InterfaceSection } from '../components/sections/InterfaceSection';
@@ -18,6 +19,9 @@ const Index: React.FC = () => {
           <Header />
         </div>
       </div>
+
+      {/* Logo Carousel - Bridge between hero and next section */}
+      <LogoCarousel />
 
       {/* Main Content Sections */}
       <main className="w-full">

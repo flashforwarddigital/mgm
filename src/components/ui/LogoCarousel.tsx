@@ -18,52 +18,73 @@ const DUMMY_LOGOS = [
 
 export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) => {
   return (
-    <div className={`w-full overflow-hidden ${className}`}>
-      {/* Trusted by text */}
-      <div className="text-center mb-8">
-        <p className="text-gray-400 text-sm uppercase tracking-wider font-medium">
-          Trusted by 100+ of the largest companies
-        </p>
-      </div>
-      
-      {/* Carousel container */}
-      <div className="relative">
-        {/* Gradient overlays for smooth fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#22282A] to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#22282A] to-transparent z-10 pointer-events-none"></div>
-        
-        {/* Scrolling logos */}
-        <div className="flex animate-scroll">
-          {/* First set of logos */}
-          {DUMMY_LOGOS.map((logo, index) => (
-            <div
-              key={`first-${index}`}
-              className="flex-shrink-0 mx-8 flex items-center justify-center"
-              style={{ minWidth: '120px', height: '60px' }}
-            >
-              <img
-                src={logo.url}
-                alt={logo.name}
-                className="max-w-full max-h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-              />
+    <section 
+      className={`w-full relative z-20 ${className}`}
+      style={{ 
+        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        backdropFilter: 'blur(10px)',
+      }}
+    >
+      {/* Rounded top section */}
+      <div 
+        className="w-full"
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          backdropFilter: 'blur(10px)',
+          borderTopLeftRadius: '40px',
+          borderTopRightRadius: '40px',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderBottom: 'none',
+        }}
+      >
+        <div className="max-w-6xl mx-auto px-8 py-12">
+          {/* Trusted by text */}
+          <div className="text-center mb-8">
+            <p className="text-gray-400 text-sm uppercase tracking-wider font-medium">
+              Trusted by 100+ of the largest companies
+            </p>
+          </div>
+          
+          {/* Carousel container */}
+          <div className="relative">
+            {/* Gradient overlays for smooth fade effect */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black/20 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black/20 to-transparent z-10 pointer-events-none"></div>
+            
+            {/* Scrolling logos */}
+            <div className="flex animate-scroll">
+              {/* First set of logos */}
+              {DUMMY_LOGOS.map((logo, index) => (
+                <div
+                  key={`first-${index}`}
+                  className="flex-shrink-0 mx-8 flex items-center justify-center"
+                  style={{ minWidth: '120px', height: '60px' }}
+                >
+                  <img
+                    src={logo.url}
+                    alt={logo.name}
+                    className="max-w-full max-h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                  />
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {DUMMY_LOGOS.map((logo, index) => (
+                <div
+                  key={`second-${index}`}
+                  className="flex-shrink-0 mx-8 flex items-center justify-center"
+                  style={{ minWidth: '120px', height: '60px' }}
+                >
+                  <img
+                    src={logo.url}
+                    alt={logo.name}
+                    className="max-w-full max-h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-          {/* Duplicate set for seamless loop */}
-          {DUMMY_LOGOS.map((logo, index) => (
-            <div
-              key={`second-${index}`}
-              className="flex-shrink-0 mx-8 flex items-center justify-center"
-              style={{ minWidth: '120px', height: '60px' }}
-            >
-              <img
-                src={logo.url}
-                alt={logo.name}
-                className="max-w-full max-h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0"
-              />
-            </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
