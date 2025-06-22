@@ -102,8 +102,8 @@
   }
 }
 
-/* Beanco Script Font Import */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+/* Schabo X Condensed Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
 
 /* Logo Carousel Animation */
 @keyframes scroll {
@@ -125,8 +125,10 @@
   animation-play-state: paused;
 }
 
-/* Beanco Script Font Class */
-.font-beanco {
-  font-family: 'Dancing Script', cursive;
+/* Schabo X Condensed Font Class */
+.font-schabo {
+  font-family: 'Oswald', sans-serif;
   font-weight: 600;
+  font-stretch: condensed;
+  letter-spacing: 0.05em;
 }
