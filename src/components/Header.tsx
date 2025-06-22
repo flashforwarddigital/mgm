@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Logo } from './ui/Logo';
 import { NavigationButton } from './ui/NavigationButton';
 import { siteContent } from '../config/content';
 
 export const Header: React.FC = () => {
   const { header } = siteContent;
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -36,76 +47,147 @@ export const Header: React.FC = () => {
 
       requestAnimationFrame(animation);
     }
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <header className="sticky top-0 w-full backdrop-blur-md bg-black/30 border-b border-white/10 z-50">
-      <nav className="w-full px-4 py-4 flex items-center justify-between">
-        {/* Logo - Flush to left edge */}
-        <div className="flex-shrink-0">
+    <header 
+      className={`
+        sticky top-0 w-full z-50 transition-all duration-500 ease-out
+        ${isScrolled 
+          ? 'backdrop-blur-xl bg-black/40 border-b border-white/20 shadow-lg' 
+          : 'backdrop-blur-md bg-black/20 border-b border-white/10'
+        }
+      `}
+    >
+      <nav className="w-full px-4 py-4 flex items-center justify-between animate-fade-in-down">
+        {/* Logo - Animated entrance */}
+        <div className="flex-shrink-0 animate-fade-in-left">
           <Logo />
         </div>
 
-        {/* Navigation Items - Centered on larger screens, hidden on mobile */}
+        {/* Navigation Items - Staggered animation */}
         <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 items-center gap-8">
-          <NavigationButton onClick={() => scrollToSection('about-gmg')}>
+          <NavigationButton 
+            onClick={() => scrollToSection('about-gmg')}
+            className="animate-fade-in-up animation-delay-200 hover-lift"
+          >
             About GMG
           </NavigationButton>
-          <NavigationButton onClick={() => scrollToSection('our-services')}>
+          <NavigationButton 
+            onClick={() => scrollToSection('our-services')}
+            className="animate-fade-in-up animation-delay-300 hover-lift"
+          >
             Our Services
           </NavigationButton>
-          <NavigationButton onClick={() => scrollToSection('financial-health-check')}>
+          <NavigationButton 
+            onClick={() => scrollToSection('financial-health-check')}
+            className="animate-fade-in-up animation-delay-400 hover-lift"
+          >
             Health Check
           </NavigationButton>
-          <NavigationButton onClick={() => scrollToSection('statistics')}>
+          <NavigationButton 
+            onClick={() => scrollToSection('statistics')}
+            className="animate-fade-in-up animation-delay-500 hover-lift"
+          >
             Statistics
           </NavigationButton>
-          <NavigationButton onClick={() => scrollToSection('contact-us')}>
+          <NavigationButton 
+            onClick={() => scrollToSection('contact-us')}
+            className="animate-fade-in-up animation-delay-600 hover-lift"
+          >
             Contact
           </NavigationButton>
         </div>
 
-        {/* Mobile Menu Button - Only visible on mobile */}
+        {/* Mobile Menu Button - Animated */}
         <div className="lg:hidden flex-shrink-0">
-          <button className="text-white p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-white p-2 hover-scale transition-all duration-300 animate-fade-in-right"
+          >
+            <div className="relative w-6 h-6">
+              <span 
+                className={`
+                  absolute block h-0.5 w-6 bg-white transform transition-all duration-300 ease-in-out
+                  ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : 'translate-y-0'}
+                `}
+              />
+              <span 
+                className={`
+                  absolute block h-0.5 w-6 bg-white transform transition-all duration-300 ease-in-out translate-y-2
+                  ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}
+                `}
+              />
+              <span 
+                className={`
+                  absolute block h-0.5 w-6 bg-white transform transition-all duration-300 ease-in-out translate-y-4
+                  ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : 'translate-y-0'}
+                `}
+              />
+            </div>
           </button>
         </div>
 
-        {/* CTA Button - Only "Book a meeting" button, flush to right edge */}
+        {/* CTA Button - Animated entrance */}
         <div className="hidden md:flex flex-shrink-0">
-          <NavigationButton href="/meeting" variant="primary" className="text-sm lg:text-base px-4 lg:px-6">
+          <NavigationButton 
+            href="/meeting" 
+            variant="primary" 
+            className="text-sm lg:text-base px-4 lg:px-6 animate-fade-in-right animation-delay-700 btn-animated hover-glow"
+          >
             {header.cta.primary}
           </NavigationButton>
         </div>
       </nav>
 
-      {/* Mobile Navigation Menu - Hidden by default */}
-      <div className="lg:hidden hidden bg-black/90 backdrop-blur-md border-t border-white/10">
+      {/* Mobile Navigation Menu - Slide animation */}
+      <div 
+        className={`
+          lg:hidden bg-black/95 backdrop-blur-xl border-t border-white/10 overflow-hidden transition-all duration-500 ease-out
+          ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
+        `}
+      >
         <div className="px-4 py-6 space-y-4">
-          <NavigationButton onClick={() => scrollToSection('about-gmg')} className="block w-full text-left">
-            About GMG
-          </NavigationButton>
-          <NavigationButton onClick={() => scrollToSection('our-services')} className="block w-full text-left">
-            Our Services
-          </NavigationButton>
-          <NavigationButton onClick={() => scrollToSection('financial-health-check')} className="block w-full text-left">
-            Health Check
-          </NavigationButton>
-          <NavigationButton onClick={() => scrollToSection('statistics')} className="block w-full text-left">
-            Statistics
-          </NavigationButton>
-          <NavigationButton onClick={() => scrollToSection('contact-us')} className="block w-full text-left">
-            Contact
-          </NavigationButton>
+          {[
+            { label: 'About GMG', id: 'about-gmg' },
+            { label: 'Our Services', id: 'our-services' },
+            { label: 'Health Check', id: 'financial-health-check' },
+            { label: 'Statistics', id: 'statistics' },
+            { label: 'Contact', id: 'contact-us' }
+          ].map((item, index) => (
+            <NavigationButton 
+              key={item.id}
+              onClick={() => scrollToSection(item.id)} 
+              className={`
+                block w-full text-left transform transition-all duration-500 ease-out hover-lift
+                ${isMobileMenuOpen 
+                  ? 'translate-x-0 opacity-100' 
+                  : 'translate-x-8 opacity-0'
+                }
+              `}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              {item.label}
+            </NavigationButton>
+          ))}
           
-          {/* Mobile CTA Button - Only "Book a meeting" */}
-          <div className="pt-4">
-            <NavigationButton href="/meeting" variant="primary" className="block w-full text-center">
+          {/* Mobile CTA Button */}
+          <div 
+            className={`
+              pt-4 transform transition-all duration-500 ease-out
+              ${isMobileMenuOpen 
+                ? 'translate-x-0 opacity-100' 
+                : 'translate-x-8 opacity-0'
+              }
+            `}
+            style={{ transitionDelay: '500ms' }}
+          >
+            <NavigationButton 
+              href="/meeting" 
+              variant="primary" 
+              className="block w-full text-center btn-animated hover-glow"
+            >
               {header.cta.primary}
             </NavigationButton>
           </div>
