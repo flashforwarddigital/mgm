@@ -8,14 +8,15 @@ export const HeroSection: React.FC = () => {
 
   return (
     <section 
-      className="relative w-full min-h-screen flex flex-col"
+      className="relative w-full min-h-screen flex flex-col -mt-20 pt-20"
       style={{ backgroundColor: colors.sections.hero }}
     >
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image - Extends behind header */}
+      <div className="absolute inset-0 z-0 -top-20">
         <img
           src="https://cdn.builder.io/api/v1/image/assets/60f4999e82e146c4a58bdf49ad469d0d/79c77e133f1e469be4013037f1808aad8a7d5d97?placeholderIfAbsent=true"
           className="w-full h-full object-cover"
+          style={{ height: 'calc(100% + 80px)' }}
           alt="Background"
         />
       </div>
