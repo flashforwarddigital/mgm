@@ -45,7 +45,7 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
                   className="flex-shrink-0 mx-8 flex items-center justify-center"
                   style={{ minWidth: '200px', height: '80px' }}
                 >
-                  <span className="text-white text-3xl font-bold whitespace-nowrap uppercase tracking-wide">
+                  <span className="text-white text-3xl font-thin whitespace-nowrap uppercase tracking-wide opacity-70">
                     {word}
                   </span>
                 </div>
@@ -57,7 +57,7 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
                   className="flex-shrink-0 mx-8 flex items-center justify-center"
                   style={{ minWidth: '200px', height: '80px' }}
                 >
-                  <span className="text-white text-3xl font-bold whitespace-nowrap uppercase tracking-wide">
+                  <span className="text-white text-3xl font-thin whitespace-nowrap uppercase tracking-wide opacity-70">
                     {word}
                   </span>
                 </div>

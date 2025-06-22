@@ -113,7 +113,7 @@
 }
 
 .animate-scroll {
-  animation: scroll 30s linear infinite;
+  animation: scroll 25s linear infinite;
   width: calc(200% + 64px); /* Account for margins */
 }
 
