@@ -4,7 +4,7 @@ interface LogoCarouselProps {
   className?: string;
 }
 
-// Financial services related words for GMG - now in UPPERCASE with DIN Condensed style
+// Financial services related words for GMG - now in UPPERCASE with ultra-thin condensed style
 const CAROUSEL_WORDS = [
   'BUDGETING',
   'CASH FLOW', 
@@ -38,20 +38,20 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
         <div className="max-w-6xl mx-auto px-8 py-16">
           {/* Carousel container - positioned at the very bottom of the section */}
           <div className="relative overflow-hidden mt-16 mb-0">
-            {/* Scrolling words with DIN Condensed Light font - Infinite seamless loop */}
+            {/* Scrolling words with ultra-thin condensed font - Much slower infinite seamless loop */}
             <div className="animate-scroll-infinite">
-              {/* First set of words - more spacing between words */}
+              {/* First set of words - even more spacing between words */}
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex-shrink-0 mx-6 flex items-center justify-center" /* Increased mx from 3 to 6 */
-                  style={{ minWidth: '160px', height: '60px' }} /* Increased minWidth for more space */
+                  className="flex-shrink-0 mx-8 flex items-center justify-center" /* Increased mx from 6 to 8 for more word spacing */
+                  style={{ minWidth: '180px', height: '60px' }} /* Increased minWidth from 160px to 180px */
                 >
                   <span 
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
                     style={{
                       color: '#66E8FA', // Blue color
-                      fontSize: '1.6rem', // Slightly smaller size
+                      fontSize: '1.6rem', // Same size
                     }}
                   >
                     {word}
@@ -62,14 +62,14 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`second-${index}`}
-                  className="flex-shrink-0 mx-6 flex items-center justify-center" /* Increased mx from 3 to 6 */
-                  style={{ minWidth: '160px', height: '60px' }} /* Increased minWidth for more space */
+                  className="flex-shrink-0 mx-8 flex items-center justify-center" /* Increased mx from 6 to 8 for more word spacing */
+                  style={{ minWidth: '180px', height: '60px' }} /* Increased minWidth from 160px to 180px */
                 >
                   <span 
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
                     style={{
                       color: '#66E8FA', // Blue color
-                      fontSize: '1.6rem', // Slightly smaller size
+                      fontSize: '1.6rem', // Same size
                     }}
                   >
                     {word}
@@ -80,14 +80,14 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`third-${index}`}
-                  className="flex-shrink-0 mx-6 flex items-center justify-center" /* Increased mx from 3 to 6 */
-                  style={{ minWidth: '160px', height: '60px' }} /* Increased minWidth for more space */
+                  className="flex-shrink-0 mx-8 flex items-center justify-center" /* Increased mx from 6 to 8 for more word spacing */
+                  style={{ minWidth: '180px', height: '60px' }} /* Increased minWidth from 160px to 180px */
                 >
                   <span 
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
                     style={{
                       color: '#66E8FA', // Blue color
-                      fontSize: '1.6rem', // Slightly smaller size
+                      fontSize: '1.6rem', // Same size
                     }}
                   >
                     {word}
