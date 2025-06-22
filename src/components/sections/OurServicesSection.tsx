@@ -5,15 +5,17 @@ interface ServiceCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
-  className?: string;
+  delay?: number;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, className = "" }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, delay = 0 }) => {
   return (
     <div 
-      className={`group relative bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer ${className}`}
+      className="group relative bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer animate-fade-in-up"
       style={{
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+        animationDelay: `${delay}ms`,
+        animationFillMode: 'forwards'
       }}
     >
       {/* Icon */}
@@ -127,13 +129,13 @@ export const OurServicesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
-          {/* Title - ALL LOWERCASE, SAME SIZE AS HERO */}
+          {/* Title - ALL LOWERCASE, DARK COLOR */}
           <h2 
             className="font-extrabold leading-tight mb-8 lowercase"
             style={{
               fontSize: typography.sizes.hero,
               letterSpacing: typography.tracking.widest,
-              color: colors.text.light, // White color
+              color: colors.text.primary, // Dark color instead of light
               fontFamily: typography.families.sans
             }}
           >
@@ -149,11 +151,7 @@ export const OurServicesSection: React.FC = () => {
               title={service.title}
               description={service.description}
               icon={service.icon}
-              className="opacity-0 animate-fade-in-up"
-              style={{
-                animationDelay: `${index * 150}ms`,
-                animationFillMode: 'forwards'
-              }}
+              delay={index * 150}
             />
           ))}
         </div>
