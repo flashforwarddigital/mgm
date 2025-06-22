@@ -2,10 +2,9 @@ import React from 'react';
 import { carouselConfig } from '../../config/carousel-config';
 
 export const LogoCarousel: React.FC = () => {
-  // Create the scrolling content - triple it for seamless loop
+  // Create the scrolling content - use the already repeated words from config
   const createWords = () => {
-    const allWords = [...carouselConfig.words, ...carouselConfig.words, ...carouselConfig.words];
-    return allWords.map((word, index) => (
+    return carouselConfig.words.map((word, index) => (
       <div
         key={index}
         className="flex-shrink-0 flex items-center justify-center"

@@ -15,8 +15,63 @@ export const carouselConfig = {
   // Position
   position: 'bottom', // bottom of carousel section
   
-  // Content - Financial terms
+  // Content - Financial terms (REPEATED 4 TIMES for seamless loop)
   words: [
+    // First set
+    'BUDGETING',
+    'CASH FLOW', 
+    'BUSINESS GROWTH',
+    'LENDING',
+    'INVESTMENT',
+    'STRUCTURING',
+    'STRATEGY',
+    'ADVISORY',
+    'HEALTH CHECK',
+    'REFINANCING',
+    'PLANNING',
+    'WEALTH MANAGEMENT',
+    'FORECASTING',
+    'ANALYSIS',
+    'CONSULTING',
+    'OPTIMIZATION',
+    
+    // Second set (repeat)
+    'BUDGETING',
+    'CASH FLOW', 
+    'BUSINESS GROWTH',
+    'LENDING',
+    'INVESTMENT',
+    'STRUCTURING',
+    'STRATEGY',
+    'ADVISORY',
+    'HEALTH CHECK',
+    'REFINANCING',
+    'PLANNING',
+    'WEALTH MANAGEMENT',
+    'FORECASTING',
+    'ANALYSIS',
+    'CONSULTING',
+    'OPTIMIZATION',
+    
+    // Third set (repeat)
+    'BUDGETING',
+    'CASH FLOW', 
+    'BUSINESS GROWTH',
+    'LENDING',
+    'INVESTMENT',
+    'STRUCTURING',
+    'STRATEGY',
+    'ADVISORY',
+    'HEALTH CHECK',
+    'REFINANCING',
+    'PLANNING',
+    'WEALTH MANAGEMENT',
+    'FORECASTING',
+    'ANALYSIS',
+    'CONSULTING',
+    'OPTIMIZATION',
+    
+    // Fourth set (repeat)
     'BUDGETING',
     'CASH FLOW', 
     'BUSINESS GROWTH',
