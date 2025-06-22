@@ -1,27 +1,21 @@
 import React from 'react';
 
 export const LogoCarousel: React.FC = () => {
-  // Financial terms - repeated for seamless loop
+  // Financial terms - spread across for immediate visibility
   const words = [
     'BUDGETING', 'CASH FLOW', 'BUSINESS GROWTH', 'LENDING', 'INVESTMENT', 'STRUCTURING',
     'STRATEGY', 'ADVISORY', 'HEALTH CHECK', 'REFINANCING', 'PLANNING', 'WEALTH MANAGEMENT',
-    'FORECASTING', 'ANALYSIS', 'CONSULTING', 'OPTIMIZATION',
-    // Repeat for seamless loop
+    'FORECASTING', 'ANALYSIS', 'CONSULTING', 'OPTIMIZATION', 'RISK MANAGEMENT', 'PORTFOLIO',
     'BUDGETING', 'CASH FLOW', 'BUSINESS GROWTH', 'LENDING', 'INVESTMENT', 'STRUCTURING',
     'STRATEGY', 'ADVISORY', 'HEALTH CHECK', 'REFINANCING', 'PLANNING', 'WEALTH MANAGEMENT',
-    'FORECASTING', 'ANALYSIS', 'CONSULTING', 'OPTIMIZATION',
-    // Third repeat
+    'FORECASTING', 'ANALYSIS', 'CONSULTING', 'OPTIMIZATION', 'RISK MANAGEMENT', 'PORTFOLIO',
     'BUDGETING', 'CASH FLOW', 'BUSINESS GROWTH', 'LENDING', 'INVESTMENT', 'STRUCTURING',
     'STRATEGY', 'ADVISORY', 'HEALTH CHECK', 'REFINANCING', 'PLANNING', 'WEALTH MANAGEMENT',
-    'FORECASTING', 'ANALYSIS', 'CONSULTING', 'OPTIMIZATION',
-    // Fourth repeat
-    'BUDGETING', 'CASH FLOW', 'BUSINESS GROWTH', 'LENDING', 'INVESTMENT', 'STRUCTURING',
-    'STRATEGY', 'ADVISORY', 'HEALTH CHECK', 'REFINANCING', 'PLANNING', 'WEALTH MANAGEMENT',
-    'FORECASTING', 'ANALYSIS', 'CONSULTING', 'OPTIMIZATION'
+    'FORECASTING', 'ANALYSIS', 'CONSULTING', 'OPTIMIZATION', 'RISK MANAGEMENT', 'PORTFOLIO'
   ];
 
   return (
-    <section className="w-full bg-[#22282A] py-8 overflow-hidden">
+    <section className="w-full bg-[#22282A] overflow-hidden">
       <div className="carousel-container">
         <div className="carousel-track">
           {words.map((word, index) => (

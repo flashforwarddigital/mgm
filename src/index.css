@@ -105,21 +105,22 @@
 /* Import ultra-thin font */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 
-/* FIXED CAROUSEL STYLES - ULTRA SLOW AND WORKING */
+/* FIXED CAROUSEL STYLES - POSITIONED LOWER AND STARTS CLOSER */
 .carousel-container {
   width: 100%;
   overflow: hidden;
   position: relative;
-  height: 60px;
+  height: 80px;
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* Position words at bottom */
+  padding-bottom: 8px; /* Small padding from bottom edge */
 }
 
 .carousel-track {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  animation: scroll-left 240s linear infinite;
+  animation: scroll-left-close 240s linear infinite;
   gap: 3rem;
 }
 
@@ -134,10 +135,10 @@
   padding: 0 1rem;
 }
 
-/* FIXED: Proper animation that starts from right and goes left */
-@keyframes scroll-left {
+/* FIXED: Animation starts closer to left (20vw instead of 100vw) and spreads across */
+@keyframes scroll-left-close {
   0% {
-    transform: translateX(100vw);
+    transform: translateX(20vw); /* Start much closer to left */
   }
   100% {
     transform: translateX(-100%);
