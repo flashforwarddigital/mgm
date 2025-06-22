@@ -12,34 +12,34 @@ export const AboutGMGSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Content */}
           <div className="space-y-8">
-            {/* Title with reduced spacing */}
+            {/* Title with much closer spacing */}
             <div>
               <h2 
-                className="font-extrabold leading-tight"
+                className="font-extrabold leading-none"
                 style={{ 
                   fontSize: typography.sizes.hero,
                   letterSpacing: typography.tracking.widest,
                   color: colors.text.primary
                 }}
               >
-                <div className="text-white mb-1">Financial Strategy,</div>
-                <div className="text-[#22282a] -mt-2">Built on Trust</div>
+                <div className="text-[#22282a] mb-0">Financial Strategy,</div>
+                <div className="text-[#22282a] -mt-4">Built on Trust</div>
               </h2>
             </div>
 
             {/* Experience Badges */}
             <div className="flex flex-wrap gap-4 mb-8">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 border border-white/30">
-                <span className="text-white font-semibold text-lg">20+ Years Experience</span>
+              <div className="bg-[#22282a]/20 backdrop-blur-sm rounded-full px-6 py-3 border border-[#22282a]/30">
+                <span className="text-[#22282a] font-semibold text-lg">20+ Years Experience</span>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
-                <span className="text-white font-medium">Accounting</span>
+              <div className="bg-[#22282a]/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-[#22282a]/20">
+                <span className="text-[#22282a] font-medium">Accounting</span>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
-                <span className="text-white font-medium">Finance</span>
+              <div className="bg-[#22282a]/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-[#22282a]/20">
+                <span className="text-[#22282a] font-medium">Finance</span>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
-                <span className="text-white font-medium">Banking</span>
+              <div className="bg-[#22282a]/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-[#22282a]/20">
+                <span className="text-[#22282a] font-medium">Banking</span>
               </div>
             </div>
 
@@ -52,10 +52,7 @@ export const AboutGMGSection: React.FC = () => {
               }}
             >
               <p className="mb-4">
-                At GMG Financial Services, we combine deep industry knowledge with a personal approach to help you make confident, informed financial decisions.
-              </p>
-              <p>
-                Our goal is simple: to give you the tools, structure, and{' '}
+                At GMG Financial Services, we combine deep industry knowledge with a personal approach to help you make confident, informed financial decisions. Our goal is simple: to give you the tools, structure, and{' '}
                 <span className="relative inline-block">
                   <span className="text-[#66E8FA] font-semibold relative z-10">clarity</span>
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-[#66E8FA]/30 animate-pulse"></span>
@@ -80,16 +77,16 @@ export const AboutGMGSection: React.FC = () => {
           {/* Right Side - Image/Visual */}
           <div className="relative">
             {/* Placeholder for founder/team photo or stylized workspace */}
-            <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 min-h-[500px] flex items-center justify-center">
+            <div className="relative bg-white/20 backdrop-blur-sm rounded-3xl p-8 border border-white/30 min-h-[500px] flex items-center justify-center">
               {/* Temporary placeholder - replace with actual image */}
               <div className="text-center">
-                <div className="w-32 h-32 bg-[#66E8FA]/20 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="w-32 h-32 bg-[#66E8FA]/30 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#66E8FA]">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
                 </div>
-                <p className="text-white/60 text-lg">
+                <p className="text-[#22282a]/70 text-lg">
                   [Founder/Team Photo]
                   <br />
                   <span className="text-sm">Professional workspace image</span>
@@ -97,15 +94,15 @@ export const AboutGMGSection: React.FC = () => {
               </div>
 
               {/* Floating elements for visual interest */}
-              <div className="absolute top-4 right-4 bg-[#66E8FA]/20 rounded-lg p-3">
+              <div className="absolute top-4 right-4 bg-[#66E8FA]/30 rounded-lg p-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#66E8FA]">
                   <line x1="12" y1="1" x2="12" y2="23"></line>
                   <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                 </svg>
               </div>
 
-              <div className="absolute bottom-4 left-4 bg-white/10 rounded-lg p-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white">
+              <div className="absolute bottom-4 left-4 bg-[#22282a]/20 rounded-lg p-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#22282a]">
                   <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
                 </svg>
               </div>
