@@ -1,73 +1,135 @@
-# Welcome to your Lovable project
+# Effortel Landing Page
 
-## Project info
+A modern, maintainable React landing page built with TypeScript, Tailwind CSS, and a comprehensive design system.
 
-**URL**: https://lovable.dev/projects/fe736236-9cf1-4a83-965d-84d22554970a
+## 🎨 Design System
 
-## How can I edit this code?
+The project uses a centralized design system for easy customization:
 
-There are several ways of editing your application.
+### Configuration Files
+- `src/config/design-system.ts` - Colors, typography, spacing, and other design tokens
+- `src/config/content.ts` - All text content and section data
 
-**Use Lovable**
+### Quick Customization
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fe736236-9cf1-4a83-965d-84d22554970a) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+#### Colors
+```typescript
+// In src/config/design-system.ts
+export const colors = {
+  sections: {
+    hero: '#22282A',        // Hero section background
+    capabilities: '#92A6B0', // Capabilities section background
+    mvnoLaunchpad: '#66E8FA', // MVNO section background
+    interface: '#22282A',    // Interface section background
+    awards: '#E4EDF1',      // Awards section background
+    vision: '#66E8FA',      // Vision section background
+  }
+}
 ```
 
-**Edit a file directly in GitHub**
+#### Typography
+```typescript
+// In src/config/design-system.ts
+export const typography = {
+  sizes: {
+    hero: '83px',           // Main hero text size
+    heroMobile: '40px',     // Mobile hero text size
+    // ... other sizes
+  }
+}
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+#### Content
+```typescript
+// In src/config/content.ts
+export const siteContent = {
+  sections: {
+    hero: {
+      title: 'Your Custom Title Here',
+      subtitle: 'Your Custom Subtitle',
+      // ... other content
+    }
+  }
+}
+```
 
-**Use GitHub Codespaces**
+## 📁 Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+src/
+├── components/
+│   ├── sections/           # Individual page sections
+│   │   ├── HeroSection.tsx
+│   │   ├── CapabilitiesSection.tsx
+│   │   ├── MVNOLaunchpadSection.tsx
+│   │   ├── InterfaceSection.tsx
+│   │   └── VisionSection.tsx
+│   ├── ui/                 # Reusable UI components
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   └── AwardsSection.tsx
+├── config/
+│   ├── design-system.ts    # Design tokens and theme
+│   └── content.ts          # All text content
+├── constants/
+├── hooks/
+└── pages/
+    └── Index.tsx           # Main landing page
+```
 
-## What technologies are used for this project?
+## 🚀 Features
 
-This project is built with:
+- **Modular Architecture**: Each section is a separate component for easy editing
+- **Design System**: Centralized colors, typography, and spacing
+- **Content Management**: All text content in one configuration file
+- **Responsive Design**: Mobile-first approach with proper breakpoints
+- **TypeScript**: Full type safety throughout the codebase
+- **Easy Customization**: Change colors, fonts, and content without touching component code
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🛠️ Development
 
-## How can I deploy this project?
+### Adding a New Section
+1. Create a new component in `src/components/sections/`
+2. Add section content to `src/config/content.ts`
+3. Add section colors to `src/config/design-system.ts`
+4. Import and use in `src/pages/Index.tsx`
 
-Simply open [Lovable](https://lovable.dev/projects/fe736236-9cf1-4a83-965d-84d22554970a) and click on Share -> Publish.
+### Changing Section Colors
+Edit the `colors.sections` object in `src/config/design-system.ts`:
 
-## Can I connect a custom domain to my Lovable project?
+```typescript
+sections: {
+  newSection: '#YOUR_COLOR_HERE',
+}
+```
 
-Yes, you can!
+### Updating Content
+Edit the `siteContent.sections` object in `src/config/content.ts`:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```typescript
+sections: {
+  yourSection: {
+    title: 'New Title',
+    subtitle: 'New Subtitle',
+    description: ['Line 1', 'Line 2']
+  }
+}
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📱 Responsive Design
+
+The design system includes responsive breakpoints:
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+
+## 🎯 Landing Page Sections
+
+1. **Hero Section** - Main landing area with CTA buttons
+2. **Capabilities Section** - BSS/OSS capabilities highlight
+3. **MVNO Launchpad Section** - Product feature section
+4. **Interface Section** - User interface showcase
+5. **Awards Section** - Industry recognition
+6. **Vision Section** - Company vision and goals
+
+Each section has its own background color defined in the design system for easy customization.

@@ -1,37 +1,5 @@
 import React from 'react';
-import { colors, typography, spacing } from '../config/design-system';
-
-interface ContentSectionProps {
-  backgroundColor: string;
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const ContentSection: React.FC<ContentSectionProps> = ({ 
-  backgroundColor, 
-  children, 
-  className = "" 
-}) => {
-  return (
-    <section 
-      className={`flex w-full flex-col items-center text-center rounded-[22px] max-md:max-w-full max-md:px-5 max-md:py-[100px] ${className}`}
-      style={{ 
-        backgroundColor,
-        paddingTop: spacing.section.paddingY,
-        paddingBottom: '1016px',
-        paddingLeft: spacing.section.paddingX,
-        paddingRight: spacing.section.paddingX,
-      }}
-    >
-      <div 
-        className="items-center flex mb-[-203px] w-[1248px] max-w-full flex-col max-md:mb-2.5"
-        style={{ gap: spacing.section.gap }}
-      >
-        {children}
-      </div>
-    </section>
-  );
-};
+import { colors, typography } from '../../config/design-system';
 
 interface SectionHeaderProps {
   subtitle: string;

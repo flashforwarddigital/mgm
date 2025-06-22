@@ -1,4 +1,6 @@
 import React from 'react';
+import { colors, typography, spacing } from '../config/design-system';
+import { siteContent } from '../config/content';
 
 interface AwardItemProps {
   imageUrl: string;
@@ -20,7 +22,14 @@ const AwardItem: React.FC<AwardItemProps> = ({
   return (
     <div className={`self-stretch min-w-60 w-[417px] my-auto pr-1 ${containerClass}`} style={{ minHeight: height }}>
       <div className={`max-w-full w-[413px] rounded-[22px]`} style={{ minHeight: height }}>
-        <div className="relative w-full overflow-hidden flex-1 bg-neutral-50 pt-11 pb-[33px] px-11 rounded-[32.83px] max-md:px-5">
+        <div 
+          className="relative w-full overflow-hidden flex-1 pt-11 pb-[33px] px-11 max-md:px-5"
+          style={{ 
+            backgroundColor: '#F5F5F5',
+            borderRadius: '32.83px',
+            minHeight: height
+          }}
+        >
           <div className="absolute z-0 flex w-full items-center justify-center inset-0" style={{ minHeight: height }}>
             <img
               src={imageUrl}
@@ -29,7 +38,14 @@ const AwardItem: React.FC<AwardItemProps> = ({
             />
           </div>
           {isActive && (
-            <div className="justify-between items-center z-0 flex h-[22px] w-full gap-[40px_100px] text-[19px] text-[#92a6b0] font-normal whitespace-nowrap uppercase tracking-[-0.56px] leading-normal">
+            <div 
+              className="justify-between items-center z-0 flex h-[22px] w-full gap-[40px_100px] font-normal whitespace-nowrap uppercase leading-normal"
+              style={{ 
+                fontSize: typography.sizes.lg,
+                color: colors.text.accent,
+                letterSpacing: typography.tracking.wide
+              }}
+            >
               <span className="font-normal leading-[28px]">{year}</span>
               <img
                 src={year === "2016" ? "https://cdn.builder.io/api/v1/image/assets/60f4999e82e146c4a58bdf49ad469d0d/c9121766f46fad8cdd16a23b98d973569d524f22?placeholderIfAbsent=true" : year === "2024" ? "https://cdn.builder.io/api/v1/image/assets/60f4999e82e146c4a58bdf49ad469d0d/8b3722509c407d34d0fb9937661f58d9b1c92558?placeholderIfAbsent=true" : "https://cdn.builder.io/api/v1/image/assets/60f4999e82e146c4a58bdf49ad469d0d/df014115721f64c77ab85783759808ec590f3e3e?placeholderIfAbsent=true"}
@@ -45,30 +61,41 @@ const AwardItem: React.FC<AwardItemProps> = ({
 };
 
 export const AwardsSection: React.FC = () => {
+  const { awards } = siteContent.sections;
+
   return (
-    <section className="relative flex flex-col justify-center mr-[25px] mt-[113px] pt-2 max-md:max-w-full max-md:mr-2.5 max-md:mt-10">
-      <div className="justify-center items-stretch self-center z-0 flex w-full flex-col overflow-hidden flex-1 bg-[#E4EDF1] pt-[261px] pb-[438px] rounded-[21.89px] max-md:max-w-full max-md:pr-5 max-md:py-[100px]">
+    <section 
+      className="relative flex flex-col justify-center mr-[25px] mt-[113px] pt-2 max-md:max-w-full max-md:mr-2.5 max-md:mt-10"
+    >
+      <div 
+        className="justify-center items-stretch self-center z-0 flex w-full flex-col overflow-hidden flex-1 pt-[261px] pb-[438px] rounded-[21.89px] max-md:max-w-full max-md:pr-5 max-md:py-[100px]"
+        style={{ backgroundColor: colors.sections.awards }}
+      >
         <div className="max-w-[2188.8px] items-center flex mb-[-88px] flex-col pl-[323px] pr-[328px] max-md:max-w-full max-md:mb-2.5 max-md:px-5">
           <div className="max-w-full w-[1248px] flex-1 gap-[91.91px]">
-            <div className="items-center flex w-full flex-col text-center gap-[65.66px] max-md:max-w-full">
-              <div className="flex gap-[5.5px] text-lg text-[#92a6b0] font-normal uppercase tracking-[-0.52px] leading-none">
-                <span className="text-[17.5px] font-normal leading-[18px]">(</span>
-                <span className="text-[17.5px] font-normal leading-[18px]">
-                  Industry Recognition and Awards
-                </span>
-                <span className="text-[17.5px] font-normal leading-[18px]">)</span>
+            <div 
+              className="items-center flex w-full flex-col text-center max-md:max-w-full"
+              style={{ gap: spacing.section.gap }}
+            >
+              <div 
+                className="flex gap-[5.5px] font-normal uppercase leading-none"
+                style={{ 
+                  fontSize: typography.sizes.base,
+                  color: colors.text.accent,
+                  letterSpacing: typography.tracking.normal
+                }}
+              >
+                <span>({awards.subtitle})</span>
               </div>
 
-              <h2 className="w-[882px] max-w-full text-[83px] text-[#22282a] font-extrabold tracking-[-2.63px] leading-none gap-[-17.5px] mt-[66px] max-md:text-[40px] max-md:mt-10">
-                <div className="font-extrabold leading-[96px] max-md:max-w-full max-md:text-[40px] max-md:px-5">
-                  Recognized for
-                </div>
-                <div className="font-extrabold leading-[96px] max-md:max-w-full max-md:text-[40px]">
-                  Excellence in BSS/OSS
-                </div>
-                <div className="font-extrabold leading-none tracking-[-2.627px] w-full overflow-hidden text-[84px] pt-[13px] pb-[35px] px-[46px] max-md:max-w-full max-md:text-[40px] max-md:px-5">
-                  and MVNE Solutions
-                </div>
+              <h2 
+                className="w-[882px] max-w-full font-extrabold tracking-[-2.63px] leading-none gap-[-17.5px] mt-[66px] max-md:mt-10 whitespace-pre-line"
+                style={{ 
+                  fontSize: typography.sizes.hero,
+                  color: colors.text.primary
+                }}
+              >
+                {awards.title}
               </h2>
             </div>
 
@@ -110,7 +137,13 @@ export const AwardsSection: React.FC = () => {
                 </div>
 
                 <div className="self-center flex w-full justify-center mt-[87px] max-md:mt-10">
-                  <div className="border-[#B1C5CE] gap-[2.84px] bg-[#B1C5CE] rounded-[16.42px] border-[2px] border-solid flex">
+                  <div 
+                    className="gap-[2.84px] rounded-[16.42px] border-[2px] border-solid flex"
+                    style={{ 
+                      backgroundColor: '#B1C5CE',
+                      borderColor: '#B1C5CE'
+                    }}
+                  >
                     <img
                       src="https://cdn.builder.io/api/v1/image/assets/60f4999e82e146c4a58bdf49ad469d0d/5232323290b61bc2081e3410786229bf3eea6ce1?placeholderIfAbsent=true"
                       className="aspect-[0.99] object-contain w-[65px] min-h-[66px] shrink-0 rounded-[10px]"
@@ -128,7 +161,10 @@ export const AwardsSection: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="absolute z-0 flex min-h-px max-w-full w-[1897px] opacity-20 bg-[#22282A] top-0 bottom-[1867px] inset-x-0" />
+      <div 
+        className="absolute z-0 flex min-h-px max-w-full w-[1897px] opacity-20 top-0 bottom-[1867px] inset-x-0"
+        style={{ backgroundColor: colors.text.primary }}
+      />
     </section>
   );
 };
