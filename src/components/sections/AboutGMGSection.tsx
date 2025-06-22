@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { colors, typography } from '../../config/design-system';
 
 export const AboutGMGSection: React.FC = () => {
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (imageRef.current) {
+        const scrolled = window.pageYOffset;
+        const parallax = scrolled * 0.3; // Adjust speed of parallax
+        imageRef.current.style.transform = `translateY(-${parallax}px) rotate(3deg)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section 
       id="about-gmg"
@@ -57,14 +72,16 @@ export const AboutGMGSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side - Tilted Image Placeholder */}
+          {/* Right Side - Tilted Image Placeholder with Parallax */}
           <div className="relative">
-            {/* Main tilted container */}
+            {/* Main tilted container with parallax effect */}
             <div 
-              className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 min-h-[500px] flex items-center justify-center transform rotate-3 hover:rotate-1 transition-transform duration-500"
+              ref={imageRef}
+              className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 min-h-[500px] flex items-center justify-center hover:rotate-1 transition-transform duration-500"
               style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                transform: 'rotate(3deg)' // Initial rotation
               }}
             >
               {/* Placeholder content */}
