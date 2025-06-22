@@ -1,56 +1,49 @@
 import React from 'react';
 import { colors, typography } from '../../config/design-system';
+import { BackgroundGradient } from '../ui/background-gradient';
 
 interface ServiceCardProps {
   title: string;
   description: string;
-  icon: React.ReactNode;
   delay?: number;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, delay = 0 }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, delay = 0 }) => {
   return (
-    <div 
-      className="group relative bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer animate-fade-in-up"
-      style={{
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-        animationDelay: `${delay}ms`,
-        animationFillMode: 'forwards'
-      }}
-    >
-      {/* Icon */}
-      <div className="w-14 h-14 bg-[#22282a]/10 backdrop-blur-sm rounded-xl border border-[#22282a]/20 flex items-center justify-center mb-6 group-hover:bg-[#22282a]/20 transition-colors duration-300">
-        {icon}
+    <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-8 bg-white/80 backdrop-blur-sm">
+      <div 
+        className="group relative min-h-[200px] flex flex-col justify-center animate-fade-in-up"
+        style={{
+          animationDelay: `${delay}ms`,
+          animationFillMode: 'forwards'
+        }}
+      >
+        {/* Title */}
+        <h3 
+          className="font-bold mb-4 lowercase text-center"
+          style={{ 
+            fontSize: typography.sizes.xl,
+            color: colors.text.primary,
+            fontFamily: typography.families.sans
+          }}
+        >
+          {title}
+        </h3>
+
+        {/* Description */}
+        <p 
+          className="font-normal leading-relaxed text-center"
+          style={{ 
+            fontSize: typography.sizes.base,
+            color: colors.text.secondary,
+            lineHeight: typography.lineHeights.loose,
+            fontFamily: typography.families.sans
+          }}
+        >
+          {description}
+        </p>
       </div>
-
-      {/* Title */}
-      <h3 
-        className="font-bold mb-4 lowercase"
-        style={{ 
-          fontSize: typography.sizes.xl,
-          color: colors.text.primary,
-          fontFamily: typography.families.sans
-        }}
-      >
-        {title}
-      </h3>
-
-      {/* Description */}
-      <p 
-        className="font-normal leading-relaxed"
-        style={{ 
-          fontSize: typography.sizes.base,
-          color: colors.text.secondary,
-          lineHeight: typography.lineHeights.loose,
-          fontFamily: typography.families.sans
-        }}
-      >
-        {description}
-      </p>
-
-      {/* Subtle hover glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#66E8FA]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none"></div>
-    </div>
+    </BackgroundGradient>
   );
 };
 
@@ -58,65 +51,27 @@ export const OurServicesSection: React.FC = () => {
   const services = [
     {
       title: "planning & budgeting",
-      description: "Realistic plans, goal alignment, everyday budgeting systems",
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#22282a]">
-          <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"></path>
-          <path d="M9 11V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
-          <line x1="9" y1="16" x2="15" y2="16"></line>
-        </svg>
-      )
+      description: "Realistic plans, goal alignment, everyday budgeting systems"
     },
     {
       title: "cash flow & performance",
-      description: "Business insights, efficiency, profitability",
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#22282a]">
-          <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
-        </svg>
-      )
+      description: "Business insights, efficiency, profitability"
     },
     {
       title: "strategy & structuring",
-      description: "Right setup, legal/accountant alignment, tax optimisation",
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#22282a]">
-          <polygon points="12,2 2,7 12,12 22,7 12,2"></polygon>
-          <polyline points="2,17 12,22 22,17"></polyline>
-          <polyline points="2,12 12,17 22,12"></polyline>
-        </svg>
-      )
+      description: "Right setup, legal/accountant alignment, tax optimisation"
     },
     {
       title: "lending & finance",
-      description: "Tailored loans, refinancing, equity access, full bank support",
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#22282a]">
-          <line x1="12" y1="1" x2="12" y2="23"></line>
-          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-        </svg>
-      )
+      description: "Tailored loans, refinancing, equity access, full bank support"
     },
     {
       title: "investments",
-      description: "Portfolio reviews, property strategy, tax-aware performance",
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#22282a]">
-          <line x1="18" y1="20" x2="18" y2="10"></line>
-          <line x1="12" y1="20" x2="12" y2="4"></line>
-          <line x1="6" y1="20" x2="6" y2="14"></line>
-        </svg>
-      )
+      description: "Portfolio reviews, property strategy, tax-aware performance"
     },
     {
       title: "ongoing advisory",
-      description: "Trusted advice, plain-English breakdowns, continuous support",
-      icon: (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#22282a]">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-      )
+      description: "Trusted advice, plain-English breakdowns, continuous support"
     }
   ];
 
@@ -143,14 +98,13 @@ export const OurServicesSection: React.FC = () => {
           </h2>
         </div>
 
-        {/* Services Grid - 3 columns with minimal glass design */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Services Grid - 3 columns with background gradient cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
               title={service.title}
               description={service.description}
-              icon={service.icon}
               delay={index * 150}
             />
           ))}
