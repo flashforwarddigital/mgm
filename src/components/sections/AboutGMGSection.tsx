@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { colors, typography } from '../../config/design-system';
 
 export const AboutGMGSection: React.FC = () => {
-  // Framer Motion scroll-based parallax
-  const { scrollYProgress } = useScroll();
+  // Create a ref for the container to track scroll within this section
+  const containerRef = useRef<HTMLDivElement>(null);
   
-  // Transform scroll progress to parallax movement (negative for upward movement)
-  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [3, -2]);
+  // Use the container ref for more precise scroll tracking
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // FIXED: Transform scroll progress to parallax movement (upward movement when scrolling down)
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]); // Moves up as you scroll down
+  const rotate = useTransform(scrollYProgress, [0, 1], [5, -5]); // Subtle rotation
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 1.1]); // Scale effect
 
   return (
     <section 
+      ref={containerRef}
       id="about-gmg"
       className="w-full py-40 px-4" // Increased padding from py-32 to py-40
       style={{ backgroundColor: colors.sections.aboutGMG }}
@@ -65,15 +73,16 @@ export const AboutGMGSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side - Tilted Image Placeholder with Smooth Framer Motion Parallax */}
+          {/* Right Side - Tilted Image Placeholder with FIXED Smooth Framer Motion Parallax */}
           <div className="relative">
-            {/* Main tilted container with smooth parallax effect */}
+            {/* Main tilted container with FIXED smooth parallax effect */}
             <motion.div 
               style={{ 
-                y, // Smooth upward parallax movement
+                y, // FIXED: Smooth upward parallax movement
                 rotate, // Subtle rotation change
+                scale, // Scale effect
               }}
-              className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 min-h-[500px] flex items-center justify-center transform hover:scale-105 transition-transform duration-500"
+              className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 min-h-[500px] flex items-center justify-center"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -83,7 +92,7 @@ export const AboutGMGSection: React.FC = () => {
               }}
               whileHover={{ 
                 scale: 1.05,
-                rotate: 1,
+                rotate: 2,
                 transition: { duration: 0.3 }
               }}
               style={{
