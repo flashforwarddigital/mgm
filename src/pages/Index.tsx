@@ -3,7 +3,6 @@ import { Header } from '../components/Header';
 import { HeroSection } from '../components/sections/HeroSection';
 import { LogoCarousel } from '../components/ui/LogoCarousel';
 import { AboutGMGSection } from '../components/sections/AboutGMGSection';
-import { AboutUsSection } from '../components/sections/AboutUsSection';
 import { OurServicesSection } from '../components/sections/OurServicesSection';
 import { FinancialHealthCheckSection } from '../components/sections/FinancialHealthCheckSection';
 import { StatisticsSection } from '../components/sections/StatisticsSection';
@@ -28,10 +27,6 @@ const Index: React.FC = () => {
       {/* Main Content Sections - GMG Financial Services */}
       <main className="w-full">
         <AboutGMGSection />
-        
-        {/* NEW: Organic About Us Section */}
-        <AboutUsSection />
-        
         <OurServicesSection />
         <FinancialHealthCheckSection />
         <StatisticsSection />
