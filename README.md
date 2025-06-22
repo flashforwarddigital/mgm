@@ -9,8 +9,34 @@ The project uses a centralized design system for easy customization:
 ### Configuration Files
 - `src/config/design-system.ts` - Colors, typography, spacing, and other design tokens
 - `src/config/content.ts` - All text content and section data
+- `src/config/carousel-config.ts` - **NEW**: Complete carousel configuration
 
 ### Quick Customization
+
+#### Carousel Settings (NEW)
+```typescript
+// In src/config/carousel-config.ts
+export const carouselConfig = {
+  animation: {
+    duration: '180s', // Ultra slow - easily adjustable
+    timingFunction: 'linear',
+    iterationCount: 'infinite',
+  },
+  spacing: {
+    wordSpacing: '3rem', // Space between words
+    letterSpacing: '0.25em', // Space between letters
+    minWordWidth: '220px', // Minimum width per word
+  },
+  typography: {
+    fontSize: '1.8rem',
+    fontWeight: '100', // Ultra thin
+    color: '#66E8FA',
+  },
+  position: {
+    verticalPosition: 'bottom', // 'top', 'center', or 'bottom'
+  }
+}
+```
 
 #### Section Colors
 ```typescript
@@ -23,33 +49,6 @@ export const colors = {
     financialHealthCheck: '#E4EDF1', // Financial Health Check - Clean light
     statistics: '#22282A',        // Statistics - Dark for emphasis
     contactUs: '#66E8FA',         // Contact Us - Bright call-to-action
-  }
-}
-```
-
-#### Typography
-```typescript
-// In src/config/design-system.ts
-export const typography = {
-  sizes: {
-    hero: 'clamp(2.5rem, 5vw, 5.2rem)', // Responsive hero text
-    heroMobile: '40px',                  // Mobile hero text size
-    // ... other sizes
-  }
-}
-```
-
-#### Content
-```typescript
-// In src/config/content.ts
-export const siteContent = {
-  sections: {
-    hero: {
-      rotatingTitles: [
-        "Real Advice for <span style='color: #66E8FA;'>Real Life</span> Goals",
-        // ... more titles
-      ]
-    }
   }
 }
 ```
@@ -67,22 +66,50 @@ src/
 │   │   ├── StatisticsSection.tsx
 │   │   └── ContactUsSection.tsx
 │   ├── ui/                     # Reusable UI components
+│   │   ├── LogoCarousel.tsx    # **RESTRUCTURED**: Configurable carousel
+│   │   ├── CarouselControls.tsx # **NEW**: Development controls
+│   │   └── ...
 │   ├── Header.tsx
 │   └── Footer.tsx
 ├── config/
 │   ├── design-system.ts        # Design tokens and theme
-│   └── content.ts              # All text content
+│   ├── content.ts              # All text content
+│   └── carousel-config.ts      # **NEW**: Complete carousel configuration
 ├── constants/
 ├── hooks/
 └── pages/
     └── Index.tsx               # Main landing page
 ```
 
+## 🎠 Carousel System (RESTRUCTURED)
+
+The carousel system has been completely restructured for easy editing:
+
+### Easy Configuration
+All carousel settings are now in `src/config/carousel-config.ts`:
+
+- **Speed**: Change `duration` from '60s' to '240s' for ultra-slow
+- **Spacing**: Adjust `wordSpacing` and `letterSpacing` independently
+- **Position**: Set `verticalPosition` to 'top', 'center', or 'bottom'
+- **Typography**: Control font size, weight, and color
+- **Content**: Edit the `words` array to change carousel text
+
+### CSS Variables System
+The carousel uses CSS custom properties for runtime configuration:
+- `--carousel-duration`: Animation speed
+- `--carousel-word-spacing`: Space between words
+- `--carousel-letter-spacing`: Space between letters
+- `--carousel-font-weight`: Font thickness (100 = ultra-thin)
+
+### Development Controls
+Uncomment `<CarouselControls />` in `Index.tsx` for live editing during development.
+
 ## 🚀 Features
 
 - **Modular Architecture**: Each section is a separate component for easy editing
 - **Design System**: Centralized colors, typography, and spacing
 - **Content Management**: All text content in one configuration file
+- **Carousel System**: **NEW** - Completely configurable carousel with easy settings
 - **Responsive Design**: Mobile-first approach with proper breakpoints
 - **TypeScript**: Full type safety throughout the codebase
 - **Easy Customization**: Change colors, fonts, and content without touching component code
@@ -90,31 +117,30 @@ src/
 
 ## 🛠️ Development
 
-### Adding a New Section
-1. Create a new component in `src/components/sections/`
-2. Add section content to `src/config/content.ts`
-3. Add section colors to `src/config/design-system.ts`
-4. Import and use in `src/pages/Index.tsx`
+### Editing Carousel Settings
+1. Open `src/config/carousel-config.ts`
+2. Modify any setting (speed, spacing, position, etc.)
+3. Changes apply immediately - no component editing needed
 
-### Changing Section Colors
-Edit the `colors.sections` object in `src/config/design-system.ts`:
-
+### Making Carousel Slower
 ```typescript
-sections: {
-  newSection: '#YOUR_COLOR_HERE',
+animation: {
+  duration: '300s', // 5 minutes - ultra slow
 }
 ```
 
-### Updating Content
-Edit the `siteContent.sections` object in `src/config/content.ts`:
-
+### Adjusting Carousel Position
 ```typescript
-sections: {
-  yourSection: {
-    title: 'New Title',
-    subtitle: 'New Subtitle',
-    description: ['Line 1', 'Line 2']
-  }
+position: {
+  verticalPosition: 'bottom', // Moves to bottom of section
+}
+```
+
+### Changing Carousel Spacing
+```typescript
+spacing: {
+  wordSpacing: '4rem', // More space between words
+  letterSpacing: '0.3em', // More space between letters
 }
 ```
 
@@ -128,13 +154,12 @@ The design system includes responsive breakpoints:
 ## 🎯 GMG Financial Services Sections
 
 1. **Hero Section** - Rotating financial advice titles with morphing text effect
-2. **About GMG Section** - Company introduction and experience
-3. **Our Services Section** - Comprehensive financial solutions overview
-4. **Financial Health Check Section** - Specialized service highlight
-5. **Statistics Section** - Key performance metrics and achievements
-6. **Contact Us Section** - Call-to-action with consultation booking
-
-Each section has its own background color defined in the design system for easy customization.
+2. **Logo Carousel** - **RESTRUCTURED** - Configurable scrolling financial terms
+3. **About GMG Section** - Company introduction and experience
+4. **Our Services Section** - Comprehensive financial solutions overview
+5. **Financial Health Check Section** - Specialized service highlight
+6. **Statistics Section** - Key performance metrics and achievements
+7. **Contact Us Section** - Call-to-action with consultation booking
 
 ## 💼 Financial Services Features
 
@@ -144,3 +169,4 @@ Each section has its own background color defined in the design system for easy 
 - Strong call-to-action elements
 - Responsive design for all devices
 - SEO-optimized structure
+- **NEW**: Ultra-configurable carousel system for financial terms

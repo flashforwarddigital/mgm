@@ -8,6 +8,7 @@ import { FinancialHealthCheckSection } from '../components/sections/FinancialHea
 import { StatisticsSection } from '../components/sections/StatisticsSection';
 import { ContactUsSection } from '../components/sections/ContactUsSection';
 import { Footer } from '../components/Footer';
+// import { CarouselControls } from '../components/ui/CarouselControls'; // Uncomment for development
 
 const Index: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* Logo Carousel - Bridge between hero and next section */}
+      {/* Logo Carousel - Bridge between hero and next section - POSITIONED AT BOTTOM */}
       <LogoCarousel />
 
       {/* Main Content Sections - GMG Financial Services */}
@@ -33,6 +34,9 @@ const Index: React.FC = () => {
       </main>
 
       <Footer />
+
+      {/* Development Controls - Remove in production */}
+      {/* <CarouselControls /> */}
     </div>
   );
 };

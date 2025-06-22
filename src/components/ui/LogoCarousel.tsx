@@ -1,99 +1,67 @@
 import React from 'react';
+import { carouselConfig } from '../../config/carousel-config';
 
 interface LogoCarouselProps {
   className?: string;
 }
 
-// Financial services related words for GMG - now in UPPERCASE with ultra-thin condensed style
-const CAROUSEL_WORDS = [
-  'BUDGETING',
-  'CASH FLOW', 
-  'BUSINESS GROWTH',
-  'LENDING',
-  'INVESTMENT',
-  'STRUCTURING',
-  'STRATEGY',
-  'ADVISORY',
-  'HEALTH CHECK',
-  'REFINANCING',
-  'PLANNING',
-  'WEALTH MANAGEMENT'
-];
-
 export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) => {
+  // Generate CSS custom properties from config
+  const carouselStyles = {
+    '--carousel-duration': carouselConfig.animation.duration,
+    '--carousel-timing': carouselConfig.animation.timingFunction,
+    '--carousel-iteration': carouselConfig.animation.iterationCount,
+    '--carousel-font-family': carouselConfig.typography.fontFamily,
+    '--carousel-font-weight': carouselConfig.typography.fontWeight,
+    '--carousel-font-size': carouselConfig.typography.fontSize,
+    '--carousel-letter-spacing': carouselConfig.spacing.letterSpacing,
+    '--carousel-color': carouselConfig.typography.color,
+    '--carousel-text-transform': carouselConfig.typography.textTransform,
+    '--carousel-word-spacing': carouselConfig.spacing.wordSpacing,
+    '--carousel-min-width': carouselConfig.spacing.minWordWidth,
+    '--carousel-height': carouselConfig.spacing.containerHeight,
+    '--carousel-align': carouselConfig.position.verticalPosition === 'bottom' ? 'flex-end' : 
+                       carouselConfig.position.verticalPosition === 'top' ? 'flex-start' : 'center',
+  } as React.CSSProperties;
+
+  // Create word elements with proper spacing
+  const createWordSet = (setKey: string) => {
+    return carouselConfig.words.map((word, index) => (
+      <div
+        key={`${setKey}-${index}`}
+        className="carousel-word"
+      >
+        <span className="carousel-text whitespace-nowrap">
+          {word}
+        </span>
+      </div>
+    ));
+  };
+
   return (
     <section 
       className={`w-full relative z-20 ${className}`}
       style={{ 
         backgroundColor: '#22282A',
+        marginTop: carouselConfig.position.marginTop,
+        marginBottom: carouselConfig.position.marginBottom,
+        paddingTop: carouselConfig.position.paddingTop,
+        paddingBottom: carouselConfig.position.paddingBottom,
       }}
     >
-      {/* Clean section without borders */}
-      <div 
-        className="w-full"
-        style={{
-          backgroundColor: '#22282A',
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-8 py-16">
+      <div className="w-full" style={{ backgroundColor: '#22282A' }}>
+        <div className="max-w-6xl mx-auto px-8">
           {/* Carousel container - positioned at the very bottom of the section */}
-          <div className="relative overflow-hidden mt-16 mb-0">
-            {/* Scrolling words with ultra-thin condensed font - Ultra slow infinite seamless loop */}
-            <div className="animate-scroll-infinite">
-              {/* First set of words - maximum spacing between words */}
-              {CAROUSEL_WORDS.map((word, index) => (
-                <div
-                  key={`first-${index}`}
-                  className="flex-shrink-0 mx-10 flex items-center justify-center" /* Increased mx from 8 to 10 for maximum word spacing */
-                  style={{ minWidth: '200px', height: '60px' }} /* Increased minWidth from 180px to 200px */
-                >
-                  <span 
-                    className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
-                    style={{
-                      color: '#66E8FA', // Blue color
-                      fontSize: '1.6rem', // Same size
-                    }}
-                  >
-                    {word}
-                  </span>
-                </div>
-              ))}
-              {/* Duplicate set for seamless infinite loop - ensures no blank spaces */}
-              {CAROUSEL_WORDS.map((word, index) => (
-                <div
-                  key={`second-${index}`}
-                  className="flex-shrink-0 mx-10 flex items-center justify-center" /* Increased mx from 8 to 10 for maximum word spacing */
-                  style={{ minWidth: '200px', height: '60px' }} /* Increased minWidth from 180px to 200px */
-                >
-                  <span 
-                    className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
-                    style={{
-                      color: '#66E8FA', // Blue color
-                      fontSize: '1.6rem', // Same size
-                    }}
-                  >
-                    {word}
-                  </span>
-                </div>
-              ))}
-              {/* Third set for extra seamless connection - eliminates any gaps */}
-              {CAROUSEL_WORDS.map((word, index) => (
-                <div
-                  key={`third-${index}`}
-                  className="flex-shrink-0 mx-10 flex items-center justify-center" /* Increased mx from 8 to 10 for maximum word spacing */
-                  style={{ minWidth: '200px', height: '60px' }} /* Increased minWidth from 180px to 200px */
-                >
-                  <span 
-                    className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
-                    style={{
-                      color: '#66E8FA', // Blue color
-                      fontSize: '1.6rem', // Same size
-                    }}
-                  >
-                    {word}
-                  </span>
-                </div>
-              ))}
+          <div 
+            className="carousel-container"
+            style={carouselStyles}
+          >
+            {/* Scrolling words with ultra-slow infinite seamless loop */}
+            <div className="carousel-animate">
+              {/* Generate multiple sets for seamless infinite loop */}
+              {Array.from({ length: carouselConfig.loop.duplicateCount }, (_, setIndex) => 
+                createWordSet(`set-${setIndex}`)
+              )}
             </div>
           </div>
         </div>

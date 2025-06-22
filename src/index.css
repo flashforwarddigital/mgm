@@ -103,12 +103,12 @@
 }
 
 /* Ultra-thin condensed fonts import - Multiple options for thinnest possible */
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 
-/* Logo Carousel Animation - Ultra slow infinite seamless loop */
-@keyframes scroll-infinite {
+/* Logo Carousel Animation - ULTRA SLOW infinite seamless loop */
+@keyframes carousel-scroll-ultra-slow {
   0% {
     transform: translateX(0);
   }
@@ -117,22 +117,54 @@
   }
 }
 
-.animate-scroll-infinite {
-  animation: scroll-infinite 90s linear infinite; /* Ultra slow - 90s instead of 60s */
+/* Carousel animation class - configurable via CSS variables */
+.carousel-animate {
+  animation: carousel-scroll-ultra-slow var(--carousel-duration, 180s) var(--carousel-timing, linear) var(--carousel-iteration, infinite);
   display: flex;
   width: fit-content;
+  will-change: transform; /* Optimize for smooth animation */
 }
 
-/* Pause animation on hover */
-.animate-scroll-infinite:hover {
+/* Pause animation on hover for better UX */
+.carousel-animate:hover {
   animation-play-state: paused;
 }
 
-/* Ultra-thin condensed font class - Thinnest possible option with maximum spacing */
-.font-din-condensed {
-  font-family: 'Barlow Condensed', 'Roboto Condensed', 'Oswald', sans-serif; /* Barlow Condensed is thinnest */
-  font-weight: 200; /* Ultra-light weight - thinner than 300 */
+/* Ultra-thin condensed font class - Configurable via CSS variables */
+.carousel-text {
+  font-family: var(--carousel-font-family, 'Barlow Condensed', 'Roboto Condensed', 'Oswald', sans-serif);
+  font-weight: var(--carousel-font-weight, 100); /* Ultra-light weight - thinnest possible */
   font-stretch: ultra-condensed;
-  letter-spacing: 0.2em; /* Maximum letter spacing - increased from 0.15em to 0.2em */
-  opacity: 1; /* Full opacity */
+  letter-spacing: var(--carousel-letter-spacing, 0.25em); /* Maximum letter spacing */
+  font-size: var(--carousel-font-size, 1.8rem);
+  color: var(--carousel-color, #66E8FA);
+  text-transform: var(--carousel-text-transform, uppercase);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-text:hover {
+  opacity: 0.8;
+}
+
+/* Carousel container positioning */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: var(--carousel-height, 80px);
+  display: flex;
+  align-items: var(--carousel-align, flex-end); /* Default to bottom alignment */
+}
+
+/* Word spacing in carousel */
+.carousel-word {
+  flex-shrink: 0;
+  margin-left: var(--carousel-word-spacing, 3rem);
+  margin-right: var(--carousel-word-spacing, 3rem);
+  min-width: var(--carousel-min-width, 220px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
