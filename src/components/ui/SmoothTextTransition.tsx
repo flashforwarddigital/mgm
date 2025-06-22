@@ -7,88 +7,43 @@ interface SmoothTextTransitionProps {
   effect?: 'typewriter' | 'fade' | 'slide' | 'morphCharacter';
 }
 
-const TYPEWRITER_SPEED = 80; // ms per character
+const CHARACTERS = 'abcdefghijklmnopqrstuvwxyz';
 const PAUSE_TIME = 3000; // 3 seconds pause between titles
-const FADE_DURATION = 800; // 800ms fade transition
+const MORPH_DURATION = 2000; // 2 seconds for morphing
 
 export const SmoothTextTransition: React.FC<SmoothTextTransitionProps> = ({ 
   titles, 
   className = "", 
   style = {},
-  effect = 'typewriter'
+  effect = 'morphCharacter'
 }) => {
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isAnimating, setIsAnimating] = useState(false);
-  const [opacity, setOpacity] = useState(1);
+  const animationRef = useRef<number>();
   const timeoutRef = useRef<NodeJS.Timeout>();
 
   const formatTitle = (title: string) => {
     return title.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
   };
 
-  // Typewriter Effect
-  const typewriterEffect = () => {
-    const currentTitle = formatTitle(titles[currentTitleIndex]);
-    setIsAnimating(true);
-    setDisplayText('');
-    
-    let charIndex = 0;
-    
-    const typeChar = () => {
-      if (charIndex < currentTitle.length) {
-        setDisplayText(currentTitle.slice(0, charIndex + 1));
-        charIndex++;
-        timeoutRef.current = setTimeout(typeChar, TYPEWRITER_SPEED);
-      } else {
-        // Finished typing, pause then move to next
-        timeoutRef.current = setTimeout(() => {
-          setIsAnimating(false);
-          setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
-        }, PAUSE_TIME);
-      }
-    };
-
-    typeChar();
+  const getRandomChar = () => {
+    return CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
   };
 
-  // Fade Effect
-  const fadeEffect = () => {
-    setIsAnimating(true);
-    
-    // Fade out
-    setOpacity(0);
-    
-    timeoutRef.current = setTimeout(() => {
-      // Change text while invisible
-      setDisplayText(formatTitle(titles[currentTitleIndex]));
-      
-      // Fade in
-      setOpacity(1);
-      
-      timeoutRef.current = setTimeout(() => {
-        setIsAnimating(false);
-        setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
-      }, PAUSE_TIME);
-    }, FADE_DURATION);
-  };
-
-  // Character-by-Character Morphing (Smoothest)
   const morphCharacterEffect = () => {
     const currentTitle = formatTitle(titles[currentTitleIndex]);
     const nextTitle = formatTitle(titles[(currentTitleIndex + 1) % titles.length]);
     
     setIsAnimating(true);
     
-    const maxLength = Math.max(currentTitle.length, nextTitle.length);
-    const animationDuration = 2000; // 2 seconds
-    const frameRate = 60; // 60fps
-    const totalFrames = (animationDuration / 1000) * frameRate;
-    
-    let currentFrame = 0;
+    const startTime = Date.now();
     
     const animate = () => {
-      const progress = currentFrame / totalFrames;
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / MORPH_DURATION, 1);
+      
+      const maxLength = Math.max(currentTitle.length, nextTitle.length);
       let result = '';
       
       for (let i = 0; i < maxLength; i++) {
@@ -96,106 +51,91 @@ export const SmoothTextTransition: React.FC<SmoothTextTransitionProps> = ({
         const nextChar = nextTitle[i] || '';
         
         if (currentChar === nextChar) {
+          // Same character, keep it
           result += currentChar;
+        } else if (currentChar === ' ' || nextChar === ' ') {
+          // Handle spaces
+          if (progress > 0.5) {
+            result += nextChar;
+          } else {
+            result += currentChar;
+          }
         } else if (progress < 0.3) {
           // Early phase: keep current character
           result += currentChar;
         } else if (progress < 0.7) {
-          // Middle phase: random character
-          const chars = 'abcdefghijklmnopqrstuvwxyz';
-          result += chars[Math.floor(Math.random() * chars.length)];
+          // Middle phase: random scrambling
+          result += getRandomChar();
         } else {
           // Late phase: transition to next character
-          if (Math.random() < (progress - 0.7) / 0.3) {
+          const transitionProgress = (progress - 0.7) / 0.3;
+          if (Math.random() < transitionProgress) {
             result += nextChar;
           } else {
-            result += currentChar;
+            result += getRandomChar();
           }
         }
       }
       
       setDisplayText(result);
-      currentFrame++;
       
-      if (currentFrame < totalFrames) {
-        timeoutRef.current = setTimeout(animate, 1000 / frameRate);
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(animate);
       } else {
+        // Animation complete
         setDisplayText(nextTitle);
         setIsAnimating(false);
-        setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+        
+        // Schedule next title change
+        timeoutRef.current = setTimeout(() => {
+          setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+        }, PAUSE_TIME);
       }
     };
     
-    animate();
-  };
-
-  // Slide Effect
-  const slideEffect = () => {
-    setIsAnimating(true);
-    
-    // Slide out current text
-    setDisplayText('');
-    
-    timeoutRef.current = setTimeout(() => {
-      // Set new text and slide in
-      setDisplayText(formatTitle(titles[currentTitleIndex]));
-      
-      timeoutRef.current = setTimeout(() => {
-        setIsAnimating(false);
-        setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
-      }, PAUSE_TIME);
-    }, 300);
+    animationRef.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    // Clear existing animations
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
 
     if (!isAnimating) {
+      // Start with current title displayed
+      const currentTitle = formatTitle(titles[currentTitleIndex]);
+      setDisplayText(currentTitle);
+      
+      // Schedule next animation
       timeoutRef.current = setTimeout(() => {
-        switch (effect) {
-          case 'typewriter':
-            typewriterEffect();
-            break;
-          case 'fade':
-            fadeEffect();
-            break;
-          case 'slide':
-            slideEffect();
-            break;
-          case 'morphCharacter':
-            morphCharacterEffect();
-            break;
-          default:
-            typewriterEffect();
-        }
-      }, effect === 'typewriter' ? 100 : PAUSE_TIME);
+        morphCharacterEffect();
+      }, PAUSE_TIME);
     }
 
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
-  }, [currentTitleIndex, isAnimating, effect]);
+  }, [currentTitleIndex, titles]);
 
-  // Initialize
+  // Initialize with first title
   useEffect(() => {
-    if (!displayText) {
+    if (titles.length > 0) {
       setDisplayText(formatTitle(titles[0]));
     }
-  }, []);
-
-  const transitionStyle = {
-    ...style,
-    opacity: effect === 'fade' ? opacity : 1,
-    transition: effect === 'fade' ? `opacity ${FADE_DURATION}ms ease-in-out` : 'none',
-    transform: effect === 'slide' && isAnimating ? 'translateY(-20px)' : 'translateY(0)',
-  };
+  }, [titles]);
 
   return (
-    <div className={className} style={transitionStyle}>
-      {displayText}
-      {effect === 'typewriter' && isAnimating && (
-        <span className="animate-pulse">|</span>
-      )}
+    <div className={className} style={style}>
+      {displayText || formatTitle(titles[0] || '')}
     </div>
   );
 };
