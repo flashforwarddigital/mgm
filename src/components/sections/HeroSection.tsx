@@ -1,7 +1,7 @@
 import React from 'react';
 import { colors, typography } from '../../config/design-system';
 import { siteContent } from '../../config/content';
-import { SmoothTextTransition } from '../ui/SmoothTextTransition';
+import { MorphingText } from '../ui/morphing-text';
 
 const ROTATING_TITLES = [
   "Real Advice for Real Life Goals",
@@ -31,25 +31,13 @@ export const HeroSection: React.FC = () => {
       {/* Main Content - Centered with extra top spacing */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-32">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Main Title with Smooth Transition Effect */}
-          <h1 className="w-full mb-12">
-            <SmoothTextTransition
-              titles={ROTATING_TITLES}
-              effect="morphCharacter"
-              className="font-extrabold text-center"
-              style={{
-                fontSize: typography.sizes.hero,
-                color: colors.text.light,
-                letterSpacing: typography.tracking.widest,
-                lineHeight: typography.lineHeights.hero,
-                minHeight: '300px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-              }}
+          {/* Main Title with Morphing Effect */}
+          <div className="mb-12">
+            <MorphingText
+              texts={ROTATING_TITLES}
+              className="text-white font-extrabold"
             />
-          </h1>
+          </div>
 
           {/* Watch Video Button */}
           <div className="flex justify-center">
