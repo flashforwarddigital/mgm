@@ -1,7 +1,7 @@
 import React from 'react';
 import { colors, typography } from '../../config/design-system';
 import { siteContent } from '../../config/content';
-import { DecryptingText } from '../ui/DecryptingText';
+import { SmoothTextTransition } from '../ui/SmoothTextTransition';
 
 const ROTATING_TITLES = [
   "Real Advice for Real Life Goals",
@@ -31,10 +31,11 @@ export const HeroSection: React.FC = () => {
       {/* Main Content - Centered with extra top spacing */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-32">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Main Title with Decrypting Effect */}
+          {/* Main Title with Smooth Transition Effect */}
           <h1 className="w-full mb-12">
-            <DecryptingText
+            <SmoothTextTransition
               titles={ROTATING_TITLES}
+              effect="morphCharacter" // Try: 'typewriter', 'fade', 'slide', 'morphCharacter'
               className="font-extrabold text-center"
               style={{
                 fontSize: typography.sizes.hero,
