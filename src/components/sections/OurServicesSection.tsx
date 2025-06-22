@@ -71,15 +71,16 @@ export const OurServicesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
-          {/* Title */}
+          {/* Title - SAME FONT, SIZE, AND ALL LOWERCASE LIKE ABOUT GMG */}
           <h2 
-            className="font-extrabold leading-tight mb-8 text-gray-900"
+            className="font-extrabold leading-tight mb-8 lowercase"
             style={{
-              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-              letterSpacing: '-0.02em'
+              fontSize: typography.sizes.hero, // Same as other sections
+              letterSpacing: typography.tracking.widest, // Same as other sections
+              color: colors.text.primary // Dark color like other sections
             }}
           >
-            Our Services
+            our services
           </h2>
           
           {/* Subtitle */}
@@ -100,12 +101,7 @@ export const OurServicesSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Learn More Button */}
-        <div className="flex justify-center mt-16">
-          <button className="bg-gray-900 text-white hover:bg-gray-800 px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:scale-105">
-            Learn More About Our Services
-          </button>
-        </div>
+        {/* REMOVED: Learn More Button */}
       </div>
     </section>
   );
