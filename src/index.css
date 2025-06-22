@@ -37,12 +37,19 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -98,7 +105,7 @@
 /* Import ultra-thin font */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 
-/* ENHANCED CAROUSEL STYLES - POSITIONED LOWER AND STARTS CLOSER */
+/* FIXED CAROUSEL STYLES - POSITIONED LOWER AND STARTS CLOSER */
 .carousel-container {
   width: 100%;
   overflow: hidden;
@@ -113,9 +120,8 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
-  animation: scroll-left-enhanced 120s linear infinite; /* ENHANCED: Even slower for better visibility */
+  animation: scroll-left-close 240s linear infinite;
   gap: 3rem;
-  will-change: transform; /* Optimize for smooth animation */
 }
 
 .carousel-word {
@@ -127,16 +133,15 @@
   text-transform: uppercase;
   flex-shrink: 0;
   padding: 0 1rem;
-  transform: translateZ(0); /* Force hardware acceleration */
 }
 
-/* ENHANCED: Smoother animation with better performance */
-@keyframes scroll-left-enhanced {
+/* FIXED: Animation starts closer to left (20vw instead of 100vw) and spreads across */
+@keyframes scroll-left-close {
   0% {
-    transform: translateX(15vw) translateZ(0); /* Start even closer */
+    transform: translateX(20vw); /* Start much closer to left */
   }
   100% {
-    transform: translateX(-100%) translateZ(0);
+    transform: translateX(-100%);
   }
 }
 
@@ -156,33 +161,4 @@
 
 .animation-delay-1500 {
   animation-delay: 1.5s;
-}
-
-/* FIXED: Override any conflicting text sizes in hero */
-.hero-title-override {
-  font-size: 3rem !important; /* Mobile */
-}
-
-@media (min-width: 640px) {
-  .hero-title-override {
-    font-size: 3.5rem !important; /* Small */
-  }
-}
-
-@media (min-width: 768px) {
-  .hero-title-override {
-    font-size: 4rem !important; /* Medium */
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-title-override {
-    font-size: 4.5rem !important; /* Large */
-  }
-}
-
-@media (min-width: 1280px) {
-  .hero-title-override {
-    font-size: 5rem !important; /* XL - reasonable size */
-  }
 }

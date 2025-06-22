@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+
 import { cn } from "@/lib/utils";
 
 const morphTime = 1.5;
@@ -63,6 +64,7 @@ const useMorphingText = (texts: string[]) => {
     }
   }, []);
 
+  // Initialize with first text immediately
   const initialize = useCallback(() => {
     if (!initializedRef.current && text1Ref.current && text2Ref.current && texts.length > 0) {
       text1Ref.current.innerHTML = texts[0];
@@ -78,6 +80,7 @@ const useMorphingText = (texts: string[]) => {
   }, [texts]);
 
   useEffect(() => {
+    // Initialize immediately
     initialize();
     
     let animationFrameId: number;
@@ -85,6 +88,7 @@ const useMorphingText = (texts: string[]) => {
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
+      // Ensure initialization happens
       if (!initializedRef.current) {
         initialize();
         return;
@@ -154,7 +158,12 @@ const MorphingText: React.FC<MorphingTextProps> = ({ texts, className }) => (
   <div
     className={cn(
       "relative mx-auto w-full max-w-6xl text-center font-sans font-bold leading-none [filter:url(#threshold)_blur(0.6px)]",
-      // FIXED: Removed conflicting height and text size classes - let className override
+      // Increased heights and added padding to prevent cutoff
+      "h-20 text-2xl py-2", // Mobile - added padding
+      "sm:h-24 sm:text-3xl sm:py-3", // Small screens
+      "md:h-28 md:text-4xl md:py-4", // Medium screens
+      "lg:h-32 lg:text-5xl lg:py-5", // Large screens
+      "xl:h-36 xl:text-6xl xl:py-6", // Extra large screens - increased height
       className,
     )}
   >
