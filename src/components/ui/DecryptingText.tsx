@@ -6,10 +6,11 @@ interface DecryptingTextProps {
   style?: React.CSSProperties;
 }
 
-const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
-const ANIMATION_SPEED = 30; // milliseconds per frame
-const TITLE_DISPLAY_TIME = 7000; // 7 seconds to display each title (5 + 2 extra)
-const TRANSITION_TIME = 4000; // 4 seconds for transition animation (2 + 2 extra)
+// Only letters for smoother, cleaner animation
+const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const ANIMATION_SPEED = 80; // Slower: 80ms per frame (was 30ms)
+const TITLE_DISPLAY_TIME = 6000; // 6 seconds to display each title
+const TRANSITION_TIME = 3000; // 3 seconds for transition animation (slower)
 
 export const DecryptingText: React.FC<DecryptingTextProps> = ({ 
   titles, 
@@ -24,15 +25,38 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
 
   const currentTitle = titles[currentTitleIndex];
 
-  // Create a random reveal order for characters
-  const createRandomRevealOrder = (length: number) => {
+  // Create a more gradual reveal order - start from center and work outward
+  const createSmoothRevealOrder = (length: number) => {
     const indices = Array.from({ length }, (_, i) => i);
-    // Fisher-Yates shuffle algorithm
-    for (let i = indices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [indices[i], indices[j]] = [indices[j], indices[i]];
+    const center = Math.floor(length / 2);
+    const ordered = [];
+    
+    // Start from center and alternate left/right
+    for (let i = 0; i < length; i++) {
+      if (i % 2 === 0) {
+        const rightIndex = center + Math.floor(i / 2);
+        if (rightIndex < length) ordered.push(rightIndex);
+      } else {
+        const leftIndex = center - Math.ceil(i / 2);
+        if (leftIndex >= 0) ordered.push(leftIndex);
+      }
     }
-    return indices;
+    
+    // Add some randomness to make it less predictable
+    const shuffled = [];
+    const chunkSize = Math.max(1, Math.floor(ordered.length / 4));
+    
+    for (let i = 0; i < ordered.length; i += chunkSize) {
+      const chunk = ordered.slice(i, i + chunkSize);
+      // Shuffle within each chunk
+      for (let j = chunk.length - 1; j > 0; j--) {
+        const k = Math.floor(Math.random() * (j + 1));
+        [chunk[j], chunk[k]] = [chunk[k], chunk[j]];
+      }
+      shuffled.push(...chunk);
+    }
+    
+    return shuffled;
   };
 
   const scrambleText = (targetText: string, revealedIndices: Set<number>) => {
@@ -45,6 +69,7 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
         if (char === ' ') {
           return ' '; // Keep spaces
         }
+        // Use only letters for cleaner look
         return CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
       })
       .join('');
@@ -60,16 +85,17 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
       .filter(({ char }) => char !== ' ')
       .map(({ index }) => index);
     
-    // Create random reveal order for non-space characters
-    const revealOrder = createRandomRevealOrder(characterPositions.length);
+    // Create smooth reveal order
+    const revealOrder = createSmoothRevealOrder(characterPositions.length);
     const revealedIndices = new Set<number>();
     
     let revealedCount = 0;
     const totalFrames = Math.ceil(TRANSITION_TIME / ANIMATION_SPEED);
-    const charactersPerFrame = Math.max(1, Math.ceil(characterPositions.length / totalFrames));
+    // Reveal fewer characters per frame for smoother animation
+    const charactersPerFrame = Math.max(1, Math.ceil(characterPositions.length / (totalFrames * 1.5)));
 
     const animate = () => {
-      // Reveal more characters randomly
+      // Reveal characters more gradually
       const charactersToReveal = Math.min(
         charactersPerFrame,
         characterPositions.length - revealedCount
@@ -96,7 +122,7 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
         animationRef.current = setTimeout(animate, ANIMATION_SPEED);
       } else {
         setIsAnimating(false);
-        // Schedule next title change after 7 seconds (5 + 2 extra)
+        // Schedule next title change
         titleTimeoutRef.current = setTimeout(() => {
           setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
         }, TITLE_DISPLAY_TIME);
