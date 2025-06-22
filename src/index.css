@@ -105,22 +105,22 @@
 /* Ultra-thin fonts */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 
-/* Simple carousel animation - ULTRA SLOW */
+/* FIXED: Carousel animation - starts from right, scrolls left, ULTRA SLOW */
 @keyframes scroll-left {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%); /* Start from right edge */
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* End at left edge */
   }
 }
 
-.carousel-scroll {
+.carousel-scroll-content {
   animation: scroll-left 300s linear infinite;
   display: flex;
   width: fit-content;
 }
 
-.carousel-scroll:hover {
+.carousel-scroll-content:hover {
   animation-play-state: paused;
 }

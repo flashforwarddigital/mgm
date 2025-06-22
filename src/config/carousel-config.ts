@@ -4,11 +4,11 @@ export const carouselConfig = {
   speed: '300s', // 5 minutes per cycle - ULTRA SLOW
   
   // Spacing settings
-  wordSpacing: '4rem', // Space between words (64px)
-  letterSpacing: '0.3em', // Space between letters
+  wordSpacing: '2rem', // Reduced space between words (32px)
+  letterSpacing: '0.2em', // Reduced space between letters
   
-  // Typography
-  fontSize: '2rem',
+  // Typography - SMALLER WORDS
+  fontSize: '1.2rem', // Much smaller font size
   fontWeight: '100', // Ultra thin
   color: '#66E8FA',
   

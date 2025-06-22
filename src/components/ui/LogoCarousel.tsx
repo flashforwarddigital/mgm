@@ -11,7 +11,7 @@ export const LogoCarousel: React.FC = () => {
         style={{
           marginLeft: carouselConfig.wordSpacing,
           marginRight: carouselConfig.wordSpacing,
-          minWidth: '200px',
+          minWidth: '120px', // Reduced minimum width
         }}
       >
         <span
@@ -40,19 +40,31 @@ export const LogoCarousel: React.FC = () => {
     >
       <div className="w-full overflow-hidden">
         <div 
-          className="flex items-center h-20"
+          className="flex items-center h-16" // Reduced height
           style={{
             justifyContent: carouselConfig.position === 'bottom' ? 'flex-end' : 
                            carouselConfig.position === 'top' ? 'flex-start' : 'center'
           }}
         >
+          {/* Container that starts from the right edge and scrolls left */}
           <div 
-            className="carousel-scroll"
+            className="carousel-scroll-container"
             style={{
-              animationDuration: carouselConfig.speed,
+              width: '100%',
+              position: 'relative',
+              overflow: 'hidden',
             }}
           >
-            {createWords()}
+            <div 
+              className="carousel-scroll-content"
+              style={{
+                display: 'flex',
+                animation: `scroll-left ${carouselConfig.speed} linear infinite`,
+                transform: 'translateX(100%)', // Start from right edge
+              }}
+            >
+              {createWords()}
+            </div>
           </div>
         </div>
       </div>
