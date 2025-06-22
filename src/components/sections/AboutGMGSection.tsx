@@ -1,21 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { colors, typography } from '../../config/design-system';
 
 export const AboutGMGSection: React.FC = () => {
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (imageRef.current) {
-        const scrolled = window.pageYOffset;
-        const parallax = scrolled * 0.3; // Adjust speed of parallax
-        imageRef.current.style.transform = `translateY(${parallax}px) rotate(3deg)`;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Framer Motion scroll-based parallax
+  const { scrollYProgress } = useScroll();
+  
+  // Transform scroll progress to parallax movement (negative for upward movement)
+  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [3, -2]);
 
   return (
     <section 
@@ -72,26 +65,47 @@ export const AboutGMGSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side - Tilted Image Placeholder with Parallax */}
+          {/* Right Side - Tilted Image Placeholder with Smooth Framer Motion Parallax */}
           <div className="relative">
-            {/* Main tilted container with parallax effect */}
-            <div 
-              ref={imageRef}
-              className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 min-h-[500px] flex items-center justify-center transform rotate-3 hover:rotate-1 transition-transform duration-500"
+            {/* Main tilted container with smooth parallax effect */}
+            <motion.div 
+              style={{ 
+                y, // Smooth upward parallax movement
+                rotate, // Subtle rotation change
+              }}
+              className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 min-h-[500px] flex items-center justify-center transform hover:scale-105 transition-transform duration-500"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ 
+                duration: 0.8,
+                ease: "easeOut"
+              }}
+              whileHover={{ 
+                scale: 1.05,
+                rotate: 1,
+                transition: { duration: 0.3 }
+              }}
               style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                willChange: 'transform' // Optimize for animations
               }}
             >
               {/* Placeholder content */}
-              <div className="text-center transform -rotate-3">
-                <div className="w-40 h-40 bg-[#66E8FA]/20 rounded-full mx-auto mb-8 flex items-center justify-center backdrop-blur-sm border border-[#66E8FA]/30">
+              <div className="text-center">
+                <motion.div 
+                  className="w-40 h-40 bg-[#66E8FA]/20 rounded-full mx-auto mb-8 flex items-center justify-center backdrop-blur-sm border border-[#66E8FA]/30"
+                  whileHover={{ 
+                    scale: 1.1,
+                    backgroundColor: 'rgba(102, 232, 250, 0.3)',
+                    transition: { duration: 0.3 }
+                  }}
+                >
                   <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-[#66E8FA]">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
-                </div>
+                </motion.div>
                 <p className="text-white/80 text-xl font-medium">
                   [Founder/Team Photo]
                   <br />
@@ -99,29 +113,113 @@ export const AboutGMGSection: React.FC = () => {
                 </p>
               </div>
 
-              {/* Floating geometric elements */}
-              <div className="absolute top-6 right-6 w-16 h-16 bg-[#66E8FA]/20 rounded-2xl backdrop-blur-sm border border-[#66E8FA]/30 flex items-center justify-center transform rotate-12">
+              {/* Floating geometric elements with individual animations */}
+              <motion.div 
+                className="absolute top-6 right-6 w-16 h-16 bg-[#66E8FA]/20 rounded-2xl backdrop-blur-sm border border-[#66E8FA]/30 flex items-center justify-center"
+                animate={{ 
+                  rotate: [12, 24, 12],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ 
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#66E8FA]">
                   <line x1="12" y1="1" x2="12" y2="23"></line>
                   <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                 </svg>
-              </div>
+              </motion.div>
 
-              <div className="absolute bottom-6 left-6 w-14 h-14 bg-white/20 rounded-xl backdrop-blur-sm border border-white/30 flex items-center justify-center transform -rotate-12">
+              <motion.div 
+                className="absolute bottom-6 left-6 w-14 h-14 bg-white/20 rounded-xl backdrop-blur-sm border border-white/30 flex items-center justify-center"
+                animate={{ 
+                  rotate: [-12, -24, -12],
+                  y: [0, -10, 0]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+              >
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white">
                   <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
                 </svg>
-              </div>
+              </motion.div>
 
-              {/* Additional floating elements for uniqueness */}
-              <div className="absolute top-1/2 left-4 w-8 h-8 bg-[#66E8FA]/30 rounded-full animate-pulse"></div>
-              <div className="absolute top-1/4 right-12 w-6 h-6 bg-white/30 rounded-full animate-pulse animation-delay-1000"></div>
-              <div className="absolute bottom-1/3 right-4 w-10 h-10 bg-[#66E8FA]/20 rounded-lg transform rotate-45"></div>
-            </div>
+              {/* Additional floating elements with smooth animations */}
+              <motion.div 
+                className="absolute top-1/2 left-4 w-8 h-8 bg-[#66E8FA]/30 rounded-full"
+                animate={{ 
+                  scale: [1, 1.3, 1],
+                  opacity: [0.3, 0.7, 0.3]
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              <motion.div 
+                className="absolute top-1/4 right-12 w-6 h-6 bg-white/30 rounded-full"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3]
+                }}
+                transition={{ 
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+              />
+              
+              <motion.div 
+                className="absolute bottom-1/3 right-4 w-10 h-10 bg-[#66E8FA]/20 rounded-lg"
+                animate={{ 
+                  rotate: [45, 90, 45],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ 
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.5
+                }}
+              />
+            </motion.div>
 
-            {/* Background decorative elements */}
-            <div className="absolute -top-8 -left-8 w-32 h-32 bg-[#66E8FA]/10 rounded-full blur-xl"></div>
-            <div className="absolute -bottom-12 -right-12 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+            {/* Background decorative elements with subtle animations */}
+            <motion.div 
+              className="absolute -top-8 -left-8 w-32 h-32 bg-[#66E8FA]/10 rounded-full blur-xl"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.1, 0.2, 0.1]
+              }}
+              transition={{ 
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            <motion.div 
+              className="absolute -bottom-12 -right-12 w-40 h-40 bg-white/10 rounded-full blur-2xl"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.1, 0.15, 0.1]
+              }}
+              transition={{ 
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2
+              }}
+            />
           </div>
         </div>
       </div>
