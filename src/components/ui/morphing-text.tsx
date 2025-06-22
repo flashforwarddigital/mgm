@@ -158,13 +158,12 @@ const MorphingText: React.FC<MorphingTextProps> = ({ texts, className }) => (
   <div
     className={cn(
       "relative mx-auto w-full max-w-6xl text-center font-sans font-bold leading-none [filter:url(#threshold)_blur(0.6px)]",
-      // Increased heights and added padding to prevent cutoff - Made even larger
-      "h-24 text-3xl py-3", // Mobile - increased from h-20
-      "sm:h-32 sm:text-4xl sm:py-4", // Small screens - increased
-      "md:h-40 md:text-5xl md:py-5", // Medium screens - increased
-      "lg:h-48 lg:text-6xl lg:py-6", // Large screens - increased
-      "xl:h-56 xl:text-7xl xl:py-7", // Extra large screens - increased significantly
-      "2xl:h-64 2xl:text-8xl 2xl:py-8", // Added 2xl breakpoint for even larger screens
+      // Reduced sizes - just a little larger than original, not massive
+      "h-20 text-3xl py-2", // Mobile - reasonable size
+      "sm:h-24 sm:text-4xl sm:py-3", // Small screens
+      "md:h-28 md:text-5xl md:py-3", // Medium screens
+      "lg:h-32 lg:text-6xl lg:py-4", // Large screens - much more reasonable
+      "xl:h-36 xl:text-7xl xl:py-4", // Extra large - not too big
       className,
     )}
   >
