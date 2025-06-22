@@ -8,8 +8,8 @@ interface DecryptingTextProps {
 
 const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
 const ANIMATION_SPEED = 30; // milliseconds per frame
-const TITLE_DISPLAY_TIME = 5000; // 5 seconds to display each title
-const TRANSITION_TIME = 2000; // 2 seconds for transition animation
+const TITLE_DISPLAY_TIME = 7000; // 7 seconds to display each title (5 + 2 extra)
+const TRANSITION_TIME = 4000; // 4 seconds for transition animation (2 + 2 extra)
 
 export const DecryptingText: React.FC<DecryptingTextProps> = ({ 
   titles, 
@@ -96,7 +96,7 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
         animationRef.current = setTimeout(animate, ANIMATION_SPEED);
       } else {
         setIsAnimating(false);
-        // Schedule next title change after 5 seconds
+        // Schedule next title change after 7 seconds (5 + 2 extra)
         titleTimeoutRef.current = setTimeout(() => {
           setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
         }, TITLE_DISPLAY_TIME);
