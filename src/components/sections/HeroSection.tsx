@@ -29,8 +29,8 @@ export const HeroSection: React.FC = () => {
         />
       </div>
 
-      {/* Main Content - Centered with extra top spacing */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-32">
+      {/* Main Content - Centered with slightly more top spacing */}
+      <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-40">
         <div className="max-w-7xl mx-auto text-center w-full">
           {/* Main Title with Morphing Effect */}
           <div className="mb-12 px-4">
