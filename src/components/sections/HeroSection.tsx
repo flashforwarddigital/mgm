@@ -35,7 +35,7 @@ export const HeroSection: React.FC = () => {
           <h1 className="w-full mb-12">
             <SmoothTextTransition
               titles={ROTATING_TITLES}
-              effect="morphCharacter" // Try: 'typewriter', 'fade', 'slide', 'morphCharacter'
+              effect="morphCharacter"
               className="font-extrabold text-center"
               style={{
                 fontSize: typography.sizes.hero,
