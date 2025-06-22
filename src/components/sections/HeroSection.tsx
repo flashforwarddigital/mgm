@@ -21,14 +21,14 @@ export const HeroSection: React.FC = () => {
         />
       </div>
 
-      {/* Main Content - Raised higher with more reasonable sizing */}
+      {/* Main Content - Raised higher with FIXED sizing */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-16">
         <div className="max-w-7xl mx-auto text-center w-full">
-          {/* Main Title with Morphing Effect - Raised and Just a Little Larger */}
+          {/* Main Title with Morphing Effect - FIXED: Just slightly larger than original */}
           <div className="mb-16 px-4 -mt-16">
             <MorphingText
               texts={hero.rotatingTitles}
-              className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+              className="text-white font-extrabold !text-4xl sm:!text-5xl md:!text-6xl lg:!text-7xl"
             />
           </div>
 

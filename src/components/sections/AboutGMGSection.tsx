@@ -12,10 +12,11 @@ export const AboutGMGSection: React.FC = () => {
     offset: ["start end", "end start"]
   });
   
-  // FIXED: Transform scroll progress to parallax movement (upward movement when scrolling down)
-  const y = useTransform(scrollYProgress, [0, 1], [150, -150]); // Stronger upward movement
-  const rotate = useTransform(scrollYProgress, [0, 1], [8, -8]); // More noticeable rotation
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 1.15]); // More dramatic scale
+  // ENHANCED: More dramatic parallax movement with better easing
+  const y = useTransform(scrollYProgress, [0, 1], [200, -200]); // Even stronger movement
+  const rotate = useTransform(scrollYProgress, [0, 1], [12, -12]); // More rotation
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 1.2]); // More dramatic scale
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.7, 1, 1, 0.7]); // Fade effect
 
   return (
     <section 
@@ -73,22 +74,23 @@ export const AboutGMGSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side - Tilted Image Placeholder with FIXED Smooth Framer Motion Parallax */}
+          {/* Right Side - Tilted Image Placeholder with ENHANCED Smooth Framer Motion Parallax */}
           <div className="relative">
-            {/* Main tilted container with FIXED smooth parallax effect */}
+            {/* Main tilted container with ENHANCED smooth parallax effect */}
             <motion.div 
               style={{ 
-                y, // FIXED: Smooth upward parallax movement
-                rotate, // Subtle rotation change
-                scale, // Scale effect
+                y, // ENHANCED: Stronger upward parallax movement
+                rotate, // More dramatic rotation change
+                scale, // More dramatic scale effect
+                opacity, // Added fade effect
               }}
               className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 min-h-[500px] flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, scale: 0.9, y: 100 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ 
-                duration: 0.8,
-                ease: "easeOut"
+                duration: 1.2,
+                ease: [0.25, 0.46, 0.45, 0.94] // Custom easing
               }}
               whileHover={{ 
                 scale: 1.05,
