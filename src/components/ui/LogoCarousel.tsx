@@ -2,7 +2,7 @@ import React from 'react';
 import { carouselConfig } from '../../config/carousel-config';
 
 export const LogoCarousel: React.FC = () => {
-  // Create the scrolling content - use the already repeated words from config
+  // Create the scrolling content using the words from config
   const createWords = () => {
     return carouselConfig.words.map((word, index) => (
       <div
@@ -34,13 +34,13 @@ export const LogoCarousel: React.FC = () => {
     <section 
       className="w-full bg-[#22282A] relative z-20"
       style={{ 
-        paddingTop: '0',
-        paddingBottom: carouselConfig.position === 'bottom' ? '2rem' : '0',
+        paddingTop: '2rem',
+        paddingBottom: '2rem',
       }}
     >
       <div className="w-full overflow-hidden">
         <div 
-          className="flex items-end h-20"
+          className="flex items-center h-20"
           style={{
             justifyContent: carouselConfig.position === 'bottom' ? 'flex-end' : 
                            carouselConfig.position === 'top' ? 'flex-start' : 'center'
