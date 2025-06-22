@@ -105,7 +105,7 @@
 /* Import ultra-thin font */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 
-/* FIXED CAROUSEL STYLES - WHITE TEXT AND SMALLER SIZE */
+/* FIXED CAROUSEL STYLES - CYAN COLOR AND NO LIGHT EFFECTS */
 .carousel-container {
   width: 100%;
   overflow: hidden;
@@ -114,6 +114,7 @@
   display: flex;
   align-items: flex-end; /* Position words at bottom */
   padding-bottom: 8px; /* Small padding from bottom edge */
+  background: #22282A; /* Solid dark background - no gradients */
 }
 
 .carousel-track {
@@ -128,11 +129,12 @@
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 1.25rem; /* Smaller - was 1.5rem */
   font-weight: 100;
-  color: #ffffff; /* White color instead of #66E8FA */
+  color: #66E8FA; /* FIXED: Back to cyan color instead of white */
   letter-spacing: 0.2em;
   text-transform: uppercase;
   flex-shrink: 0;
   padding: 0 1rem;
+  /* REMOVED: All light effects and shadows */
 }
 
 /* FIXED: Animation starts closer to left (20vw instead of 100vw) and spreads across */

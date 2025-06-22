@@ -52,22 +52,19 @@ export const LogoCarousel: React.FC = () => {
       ref={carouselRef}
       className="w-full bg-[#22282A] overflow-hidden relative animate-fade-in-up animation-delay-1000"
     >
-      {/* Gradient overlays for smooth edges */}
-      <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-[#22282A] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-[#22282A] to-transparent z-10 pointer-events-none" />
+      {/* REMOVED: Gradient overlays that were causing light effects */}
       
-      {/* Animated background glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#66E8FA]/5 to-transparent animate-shimmer" />
+      {/* REMOVED: Animated background glow that was causing shimmer */}
       
       <div className="carousel-container">
         <div className="carousel-track hover:animation-play-state-paused">
           {words.map((word, index) => (
             <span 
               key={index} 
-              className="carousel-word hover-glow transition-all duration-300 hover:text-[#66E8FA] hover:scale-110"
+              className="carousel-word transition-all duration-300 hover:scale-110"
               style={{
-                animationDelay: `${index * 0.1}s`,
-                filter: 'drop-shadow(0 0 10px rgba(102, 232, 250, 0.3))'
+                animationDelay: `${index * 0.1}s`
+                // REMOVED: filter drop-shadow that was causing light effects
               }}
             >
               {word}
