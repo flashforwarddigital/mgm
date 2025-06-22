@@ -7,8 +7,7 @@ interface DecryptingTextProps {
 }
 
 const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
-const ANIMATION_SPEED = 30; // milliseconds per frame (faster)
-const REVEAL_SPEED = 4; // characters revealed per frame (faster reveal)
+const ANIMATION_SPEED = 30; // milliseconds per frame
 const TITLE_DISPLAY_TIME = 5000; // 5 seconds to display each title
 const TRANSITION_TIME = 2000; // 2 seconds for transition animation
 
@@ -25,11 +24,22 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
 
   const currentTitle = titles[currentTitleIndex];
 
-  const scrambleText = (targetText: string, revealedCount: number) => {
+  // Create a random reveal order for characters
+  const createRandomRevealOrder = (length: number) => {
+    const indices = Array.from({ length }, (_, i) => i);
+    // Fisher-Yates shuffle algorithm
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    return indices;
+  };
+
+  const scrambleText = (targetText: string, revealedIndices: Set<number>) => {
     return targetText
       .split('')
       .map((char, index) => {
-        if (index < revealedCount) {
+        if (revealedIndices.has(index)) {
           return char; // Already revealed
         }
         if (char === ' ') {
@@ -42,26 +52,47 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
 
   const animateToTitle = (targetTitle: string) => {
     setIsAnimating(true);
-    let revealedCount = 0;
-    let frameCount = 0;
     
-    // Calculate how many frames the transition should take
+    // Filter out spaces and get only character positions
+    const characterPositions = targetTitle
+      .split('')
+      .map((char, index) => ({ char, index }))
+      .filter(({ char }) => char !== ' ')
+      .map(({ index }) => index);
+    
+    // Create random reveal order for non-space characters
+    const revealOrder = createRandomRevealOrder(characterPositions.length);
+    const revealedIndices = new Set<number>();
+    
+    let revealedCount = 0;
     const totalFrames = Math.ceil(TRANSITION_TIME / ANIMATION_SPEED);
-    const revealRate = Math.ceil(targetTitle.length / totalFrames);
+    const charactersPerFrame = Math.max(1, Math.ceil(characterPositions.length / totalFrames));
 
     const animate = () => {
-      frameCount++;
-      
-      // Reveal characters more aggressively to fit within 2 seconds
-      revealedCount = Math.min(
-        revealedCount + revealRate, 
-        targetTitle.length
+      // Reveal more characters randomly
+      const charactersToReveal = Math.min(
+        charactersPerFrame,
+        characterPositions.length - revealedCount
       );
 
-      const scrambled = scrambleText(targetTitle, revealedCount);
+      for (let i = 0; i < charactersToReveal && revealedCount < characterPositions.length; i++) {
+        const nextRevealIndex = revealOrder[revealedCount];
+        const actualIndex = characterPositions[nextRevealIndex];
+        revealedIndices.add(actualIndex);
+        revealedCount++;
+      }
+
+      // Always reveal spaces immediately
+      targetTitle.split('').forEach((char, index) => {
+        if (char === ' ') {
+          revealedIndices.add(index);
+        }
+      });
+
+      const scrambled = scrambleText(targetTitle, revealedIndices);
       setDisplayText(scrambled);
 
-      if (revealedCount < targetTitle.length) {
+      if (revealedCount < characterPositions.length) {
         animationRef.current = setTimeout(animate, ANIMATION_SPEED);
       } else {
         setIsAnimating(false);
