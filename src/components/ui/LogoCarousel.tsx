@@ -6,16 +6,16 @@ interface LogoCarouselProps {
 
 // Words to display in the carousel
 const CAROUSEL_WORDS = [
-  'Budgeting',
-  'Cash Flow', 
-  'Business Growth',
-  'Lending',
-  'Investment',
-  'Structuring',
-  'Strategy',
-  'Advisory',
-  'Health Check',
-  'Refinancing'
+  'BUDGETING',
+  'CASH FLOW', 
+  'BUSINESS GROWTH',
+  'LENDING',
+  'INVESTMENT',
+  'STRUCTURING',
+  'STRATEGY',
+  'ADVISORY',
+  'HEALTH CHECK',
+  'REFINANCING'
 ];
 
 export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) => {
@@ -26,20 +26,16 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
         backgroundColor: '#22282A',
       }}
     >
-      {/* Rounded top section */}
+      {/* Clean section without borders */}
       <div 
         className="w-full"
         style={{
           backgroundColor: '#22282A',
-          borderTopLeftRadius: '40px',
-          borderTopRightRadius: '40px',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          borderBottom: 'none',
         }}
       >
         <div className="max-w-6xl mx-auto px-8 py-12">
           {/* Carousel container */}
-          <div className="relative">
+          <div className="relative overflow-hidden">
             {/* Scrolling words */}
             <div className="flex animate-scroll">
               {/* First set of words */}
@@ -47,9 +43,9 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
                 <div
                   key={`first-${index}`}
                   className="flex-shrink-0 mx-8 flex items-center justify-center"
-                  style={{ minWidth: '180px', height: '60px' }}
+                  style={{ minWidth: '200px', height: '80px' }}
                 >
-                  <span className="text-white text-xl font-medium whitespace-nowrap">
+                  <span className="text-white text-3xl font-bold whitespace-nowrap uppercase tracking-wide">
                     {word}
                   </span>
                 </div>
@@ -59,9 +55,9 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
                 <div
                   key={`second-${index}`}
                   className="flex-shrink-0 mx-8 flex items-center justify-center"
-                  style={{ minWidth: '180px', height: '60px' }}
+                  style={{ minWidth: '200px', height: '80px' }}
                 >
-                  <span className="text-white text-xl font-medium whitespace-nowrap">
+                  <span className="text-white text-3xl font-bold whitespace-nowrap uppercase tracking-wide">
                     {word}
                   </span>
                 </div>
