@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { colors, typography } from '../../config/design-system';
 
 export const AboutGMGSection: React.FC = () => {
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (imageRef.current) {
+        const scrolled = window.pageYOffset;
+        const parallax = scrolled * 0.3; // Adjust speed of parallax
+        imageRef.current.style.transform = `translateY(${parallax}px) rotate(3deg)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section 
       id="about-gmg"
-      className="w-full py-32 px-4"
+      className="w-full py-40 px-4" // Increased padding from py-32 to py-40
       style={{ backgroundColor: colors.sections.aboutGMG }}
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left Side - Content */}
           <div className="space-y-12">
-            {/* Title with much closer spacing and blue/dark styling - ALL LOWERCASE */}
+            {/* Title with much closer spacing and white/dark styling - ALL LOWERCASE */}
             <div>
               <h2 
                 className="font-extrabold leading-none lowercase"
@@ -21,7 +36,7 @@ export const AboutGMGSection: React.FC = () => {
                   letterSpacing: typography.tracking.widest,
                 }}
               >
-                <div className="text-[#66E8FA] mb-0">financial strategy,</div>
+                <div className="text-white mb-0">financial strategy,</div>
                 <div className="text-[#22282a] -mt-4">built on trust</div>
               </h2>
             </div>
@@ -57,14 +72,16 @@ export const AboutGMGSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side - Tilted Image Placeholder */}
+          {/* Right Side - Tilted Image Placeholder with Parallax */}
           <div className="relative">
-            {/* Main tilted container */}
+            {/* Main tilted container with parallax effect */}
             <div 
+              ref={imageRef}
               className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20 min-h-[500px] flex items-center justify-center transform rotate-3 hover:rotate-1 transition-transform duration-500"
               style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                willChange: 'transform' // Optimize for animations
               }}
             >
               {/* Placeholder content */}

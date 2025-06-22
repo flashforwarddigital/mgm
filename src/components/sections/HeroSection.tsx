@@ -21,14 +21,14 @@ export const HeroSection: React.FC = () => {
         />
       </div>
 
-      {/* Main Content - Centered with proper spacing for sticky header */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-32">
+      {/* Main Content - Raised higher and made larger */}
+      <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-16">
         <div className="max-w-7xl mx-auto text-center w-full">
-          {/* Main Title with Morphing Effect */}
-          <div className="mb-12 px-4">
+          {/* Main Title with Morphing Effect - Raised and Larger */}
+          <div className="mb-16 px-4 -mt-16">
             <MorphingText
               texts={hero.rotatingTitles}
-              className="text-white font-extrabold"
+              className="text-white font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
             />
           </div>
 
