@@ -40,12 +40,12 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
           <div className="relative overflow-hidden mt-16 mb-0">
             {/* Scrolling words with DIN Condensed Light font - Infinite seamless loop */}
             <div className="animate-scroll-infinite">
-              {/* First set of words - closer spacing */}
+              {/* First set of words - more spacing between words */}
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex-shrink-0 mx-3 flex items-center justify-center"
-                  style={{ minWidth: '140px', height: '60px' }}
+                  className="flex-shrink-0 mx-6 flex items-center justify-center" /* Increased mx from 3 to 6 */
+                  style={{ minWidth: '160px', height: '60px' }} /* Increased minWidth for more space */
                 >
                   <span 
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
@@ -62,8 +62,8 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`second-${index}`}
-                  className="flex-shrink-0 mx-3 flex items-center justify-center"
-                  style={{ minWidth: '140px', height: '60px' }}
+                  className="flex-shrink-0 mx-6 flex items-center justify-center" /* Increased mx from 3 to 6 */
+                  style={{ minWidth: '160px', height: '60px' }} /* Increased minWidth for more space */
                 >
                   <span 
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"
@@ -80,8 +80,8 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`third-${index}`}
-                  className="flex-shrink-0 mx-3 flex items-center justify-center"
-                  style={{ minWidth: '140px', height: '60px' }}
+                  className="flex-shrink-0 mx-6 flex items-center justify-center" /* Increased mx from 3 to 6 */
+                  style={{ minWidth: '160px', height: '60px' }} /* Increased minWidth for more space */
                 >
                   <span 
                     className="font-din-condensed whitespace-nowrap hover:opacity-80 transition-opacity duration-300 uppercase"

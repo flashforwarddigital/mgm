@@ -105,7 +105,7 @@
 /* DIN Condensed Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
-/* Logo Carousel Animation - Infinite seamless loop with previous speed */
+/* Logo Carousel Animation - Slower infinite seamless loop */
 @keyframes scroll-infinite {
   0% {
     transform: translateX(0);
@@ -116,7 +116,7 @@
 }
 
 .animate-scroll-infinite {
-  animation: scroll-infinite 20s linear infinite; /* Back to previous speed - 20s instead of 30s */
+  animation: scroll-infinite 40s linear infinite; /* Much slower - 40s instead of 20s */
   display: flex;
   width: fit-content;
 }
@@ -126,11 +126,11 @@
   animation-play-state: paused;
 }
 
-/* DIN Condensed Light Font Class - Updated to use Light weight */
+/* DIN Condensed Light Font Class - Updated spacing */
 .font-din-condensed {
   font-family: 'Oswald', sans-serif;
-  font-weight: 300; /* DIN Condensed Light - changed from 200 to 300 */
+  font-weight: 300; /* DIN Condensed Light */
   font-stretch: condensed;
-  letter-spacing: normal; /* Normal letter spacing */
+  letter-spacing: 0.1em; /* More letter spacing */
   opacity: 1; /* Full opacity */
 }
