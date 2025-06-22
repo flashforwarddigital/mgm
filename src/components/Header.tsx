@@ -6,14 +6,14 @@ import { NAVIGATION_ITEMS } from '../constants/navigation';
 export const Header: React.FC = () => {
   return (
     <header className="w-full backdrop-blur-md bg-black/20 border-b border-white/10">
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo - Left side */}
-        <div className="flex-shrink-0">
+      <nav className="w-full px-0 py-4 flex items-center">
+        {/* Logo - Flush to left edge */}
+        <div className="pl-6">
           <Logo />
         </div>
 
-        {/* Navigation Items - Centered */}
-        <div className="hidden lg:flex items-center justify-center flex-1 gap-12">
+        {/* Navigation Items - Absolutely centered */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 hidden lg:flex items-center gap-12">
           {NAVIGATION_ITEMS.map((item) => (
             <NavigationButton
               key={item.label}
@@ -25,8 +25,8 @@ export const Header: React.FC = () => {
           ))}
         </div>
 
-        {/* CTA Buttons - Right side */}
-        <div className="flex items-center gap-4 flex-shrink-0">
+        {/* CTA Buttons - Flush to right edge */}
+        <div className="ml-auto pr-6 flex items-center gap-4">
           <NavigationButton href="/contact" variant="secondary">
             Get in touch
           </NavigationButton>
