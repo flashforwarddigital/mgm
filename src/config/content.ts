@@ -45,8 +45,14 @@ export const siteContent = {
   // Landing page sections
   sections: {
     hero: {
-      subtitle: 'RECOGNIZED AS THE BEST MVNE GLOBALLY',
-      title: 'Streamline Operations,\nSkyrocket Revenue,\nand Delight Customers',
+      // Removed subtitle - now using rotating titles with decrypting effect
+      rotatingTitles: [
+        "Real Advice for Real Life Goals",
+        "Take Control of Your Financial Future", 
+        "Confident Financial Decisions Start Here",
+        "Your Trusted Partner in Financial Clarity",
+        "Strategic Advice. Lasting Results"
+      ],
       buttons: [
         { label: 'Services', type: 'secondary', action: '/services' },
         { label: 'Product', type: 'primary', action: '/products' }

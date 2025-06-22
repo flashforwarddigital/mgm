@@ -2,6 +2,15 @@ import React from 'react';
 import { colors, typography } from '../../config/design-system';
 import { siteContent } from '../../config/content';
 import { useHeroActions } from '../../hooks/useHeroActions';
+import { DecryptingText } from '../ui/DecryptingText';
+
+const ROTATING_TITLES = [
+  "Real Advice for Real Life Goals",
+  "Take Control of Your Financial Future", 
+  "Confident Financial Decisions Start Here",
+  "Your Trusted Partner in Financial Clarity",
+  "Strategic Advice. Lasting Results"
+];
 
 export const HeroSection: React.FC = () => {
   const { handleServicesClick, handleProductClick } = useHeroActions();
@@ -23,33 +32,22 @@ export const HeroSection: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Subtitle */}
-        <div 
-          className="flex justify-center gap-2 font-normal uppercase leading-none mb-8"
-          style={{ 
-            fontSize: typography.sizes.base,
-            color: colors.text.muted,
-            letterSpacing: typography.tracking.normal
-          }}
-        >
-          <span>({hero.subtitle})</span>
-        </div>
-
-        {/* Main Title */}
-        <h1 
-          className="font-extrabold text-center mb-12 max-w-4xl mx-auto"
-          style={{
-            fontSize: typography.sizes.hero,
-            color: colors.text.light,
-            letterSpacing: typography.tracking.widest,
-            lineHeight: typography.lineHeights.hero,
-          }}
-        >
-          {hero.title.split('\n').map((line, index) => (
-            <div key={index} className="block">
-              {line}
-            </div>
-          ))}
+        {/* Main Title with Decrypting Effect */}
+        <h1 className="mb-12 max-w-4xl mx-auto">
+          <DecryptingText
+            titles={ROTATING_TITLES}
+            className="font-extrabold text-center"
+            style={{
+              fontSize: typography.sizes.hero,
+              color: colors.text.light,
+              letterSpacing: typography.tracking.widest,
+              lineHeight: typography.lineHeights.hero,
+              minHeight: '200px', // Prevent layout shift
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          />
         </h1>
 
         {/* Action Buttons */}
