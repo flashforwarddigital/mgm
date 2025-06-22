@@ -5,12 +5,12 @@ import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 const morphTime = 1.5;
-const cooldownTime = 0.5;
+const cooldownTime = 5.0; // Changed from 0.5 to 5.0 seconds
 
 const useMorphingText = (texts: string[]) => {
   const textIndexRef = useRef(0);
   const morphRef = useRef(0);
-  const cooldownRef = useRef(0);
+  const cooldownRef = useRef(cooldownTime); // Start with cooldown
   const timeRef = useRef(new Date());
 
   const text1Ref = useRef<HTMLSpanElement>(null);
@@ -98,11 +98,11 @@ const Texts: React.FC<Pick<MorphingTextProps, "texts">> = ({ texts }) => {
   return (
     <>
       <span
-        className="absolute inset-x-0 top-0 m-auto inline-block w-full"
+        className="absolute inset-x-0 top-0 m-auto inline-block w-full whitespace-nowrap overflow-hidden text-ellipsis"
         ref={text1Ref}
       />
       <span
-        className="absolute inset-x-0 top-0 m-auto inline-block w-full"
+        className="absolute inset-x-0 top-0 m-auto inline-block w-full whitespace-nowrap overflow-hidden text-ellipsis"
         ref={text2Ref}
       />
     </>
@@ -129,7 +129,12 @@ const SvgFilters: React.FC = () => (
 const MorphingText: React.FC<MorphingTextProps> = ({ texts, className }) => (
   <div
     className={cn(
-      "relative mx-auto h-16 w-full max-w-screen-md text-center font-sans text-[40pt] font-bold leading-none [filter:url(#threshold)_blur(0.6px)] md:h-24 lg:text-[6rem]",
+      "relative mx-auto w-full max-w-6xl text-center font-sans font-bold leading-none [filter:url(#threshold)_blur(0.6px)]",
+      "h-16 text-2xl", // Mobile
+      "sm:h-20 sm:text-3xl", // Small screens
+      "md:h-24 md:text-4xl", // Medium screens
+      "lg:h-28 lg:text-5xl", // Large screens
+      "xl:h-32 xl:text-6xl", // Extra large screens
       className,
     )}
   >

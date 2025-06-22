@@ -30,9 +30,9 @@ export const HeroSection: React.FC = () => {
 
       {/* Main Content - Centered with extra top spacing */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-32">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto text-center w-full">
           {/* Main Title with Morphing Effect */}
-          <div className="mb-12">
+          <div className="mb-12 px-4">
             <MorphingText
               texts={ROTATING_TITLES}
               className="text-white font-extrabold"
