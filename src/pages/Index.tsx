@@ -21,11 +21,11 @@ const Index: React.FC = () => {
         </div>
       </div>
 
-      {/* Logo Carousel - Bridge between hero and next section - POSITIONED AT VERY BOTTOM */}
+      {/* Logo Carousel - Bridge between hero and next section - POSITIONED AT BOTTOM */}
       <LogoCarousel />
 
-      {/* Main Content Sections - GMG Financial Services with padding for sticky header */}
-      <main className="w-full content-with-sticky-header">
+      {/* Main Content Sections - GMG Financial Services */}
+      <main className="w-full">
         <AboutGMGSection />
         <OurServicesSection />
         <FinancialHealthCheckSection />
