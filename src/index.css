@@ -105,31 +105,32 @@
 /* DIN Condensed Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
-/* Logo Carousel Animation */
-@keyframes scroll {
+/* Logo Carousel Animation - Infinite seamless loop */
+@keyframes scroll-infinite {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 
-.animate-scroll {
-  animation: scroll 25s linear infinite;
-  width: calc(200% + 64px); /* Account for margins */
+.animate-scroll-infinite {
+  animation: scroll-infinite 30s linear infinite;
+  display: flex;
+  width: fit-content;
 }
 
 /* Pause animation on hover */
-.animate-scroll:hover {
+.animate-scroll-infinite:hover {
   animation-play-state: paused;
 }
 
-/* DIN Condensed Font Class - Updated for smaller, tighter, full opacity blue text */
+/* DIN Condensed Font Class - Updated for thinner weight and normal letter spacing */
 .font-din-condensed {
   font-family: 'Oswald', sans-serif;
-  font-weight: 300; /* Even thinner weight - reduced from 400 to 300 */
+  font-weight: 200; /* Much thinner - reduced from 300 to 200 */
   font-stretch: condensed;
-  letter-spacing: -0.08em; /* Keep tight letter spacing */
-  opacity: 1; /* Full opacity instead of 0.8 */
+  letter-spacing: normal; /* Normal letter spacing instead of tight */
+  opacity: 1; /* Full opacity */
 }
