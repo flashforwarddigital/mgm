@@ -108,7 +108,7 @@ const ChecklistItem: React.FC<ChecklistItemProps> = ({ text, isChecked, delay = 
     <div 
       ref={itemRef}
       className={`
-        flex items-center gap-3 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20
+        flex items-center gap-3 p-4 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200 shadow-lg
         transform transition-all duration-700 ease-out
         ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
       `}
@@ -116,7 +116,7 @@ const ChecklistItem: React.FC<ChecklistItemProps> = ({ text, isChecked, delay = 
     >
       <div className={`
         w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-500
-        ${isChecked ? 'bg-[#66E8FA] border-[#66E8FA]' : 'border-white/40'}
+        ${isChecked ? 'bg-[#66E8FA] border-[#66E8FA]' : 'border-gray-400'}
       `}>
         {isChecked && (
           <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
@@ -136,7 +136,7 @@ const ChecklistItem: React.FC<ChecklistItemProps> = ({ text, isChecked, delay = 
           </svg>
         )}
       </div>
-      <span className="text-white text-sm font-medium">{text}</span>
+      <span className="text-gray-800 text-sm font-medium">{text}</span>
     </div>
   );
 };
@@ -188,8 +188,8 @@ const FloatingCard: React.FC<FloatingCardProps> = ({ title, value, trend, positi
     <div 
       ref={cardRef}
       className={`
-        absolute ${position} bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20
-        transform transition-all duration-1000 ease-out hover:scale-105 hover:bg-white/20
+        absolute ${position} bg-white/95 backdrop-blur-md rounded-2xl p-4 border border-gray-200 shadow-xl
+        transform transition-all duration-1000 ease-out hover:scale-105 hover:bg-white
         ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}
       `}
       style={{ 
@@ -197,11 +197,11 @@ const FloatingCard: React.FC<FloatingCardProps> = ({ title, value, trend, positi
         minWidth: '160px'
       }}
     >
-      <div className="text-white/70 text-xs font-medium uppercase tracking-wide mb-1">
+      <div className="text-gray-600 text-xs font-medium uppercase tracking-wide mb-1">
         {title}
       </div>
       <div className="flex items-center justify-between">
-        <span className="text-white text-lg font-bold">{value}</span>
+        <span className="text-gray-900 text-lg font-bold">{value}</span>
         <span 
           className="text-sm font-medium"
           style={{ color: trendColors[trend] }}
@@ -259,18 +259,25 @@ export const FinancialHealthCheckSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left Side - Content */}
           <div className="space-y-12">
-            {/* Title */}
+            {/* Title - CLOSER SPACING WITH HIGHLIGHTED KEYWORDS */}
             <div>
               <h2 
-                className="font-extrabold leading-tight lowercase"
+                className="font-extrabold lowercase leading-none"
                 style={{ 
                   fontSize: typography.sizes.hero,
                   letterSpacing: typography.tracking.widest,
-                  color: colors.text.primary
+                  color: colors.text.primary,
+                  lineHeight: '0.9' // Tighter line height for closer spacing
                 }}
               >
-                <div className="mb-2">know exactly</div>
-                <div className="mb-2">where you stand</div>
+                <div className="mb-1">know exactly</div>
+                <div className="mb-1">
+                  <span className="text-[#22282a]">where you </span>
+                  <span className="text-[#66E8FA] relative">
+                    stand
+                    <span className="absolute bottom-0 left-0 w-full h-2 bg-[#66E8FA]/20 -z-10"></span>
+                  </span>
+                </div>
               </h2>
             </div>
 
@@ -292,14 +299,10 @@ export const FinancialHealthCheckSection: React.FC = () => {
               </p>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* SINGLE COMBINED CTA BUTTON */}
+            <div className="pt-4">
               <button className="border-[#66E8FA] bg-[#66E8FA] text-[#22282a] hover:bg-[#5dd8ea] hover:scale-105 justify-center items-center flex min-h-[55px] gap-[13px] overflow-hidden px-[22px] py-[17px] rounded-[13.79px] text-[21px] font-normal whitespace-nowrap uppercase tracking-[-0.62px] leading-none transition-all duration-300">
                 <span className="pb-px">Check My Financial Health</span>
-              </button>
-              
-              <button className="border-[#22282A] border-2 text-[#22282a] hover:bg-[#22282A] hover:text-white justify-center items-center flex min-h-[55px] gap-[13px] overflow-hidden px-[22px] py-[17px] rounded-[13.79px] text-[21px] font-normal whitespace-nowrap uppercase tracking-[-0.62px] leading-none transition-all duration-300">
-                <span className="pb-px">Start the Assessment</span>
               </button>
             </div>
           </div>
@@ -374,7 +377,7 @@ export const FinancialHealthCheckSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Floating UI Cards */}
+            {/* IMPROVED FLOATING UI CARDS - Better visibility with white backgrounds */}
             <FloatingCard
               title="Monthly Savings"
               value="$2,450"
@@ -399,7 +402,7 @@ export const FinancialHealthCheckSection: React.FC = () => {
               delay={1400}
             />
 
-            {/* Floating Checklist */}
+            {/* IMPROVED FLOATING CHECKLIST - Better visibility */}
             <div 
               className="absolute -right-16 top-1/2 transform -translate-y-1/2 w-72 space-y-3"
               style={{
