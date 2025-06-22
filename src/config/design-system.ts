@@ -1,4 +1,4 @@
-// Design System Configuration
+// Design System Configuration for GMG Financial Services
 // This file contains all design tokens for easy customization
 
 export const colors = {
@@ -10,14 +10,14 @@ export const colors = {
     darkSecondary: '#394247',
   },
   
-  // Section background colors - FULL WIDTH BACKGROUNDS
+  // Section background colors - GMG Financial Services
   sections: {
-    hero: '#22282A',        // Dark hero section
-    capabilities: '#92A6B0', // Gray capabilities section
-    mvnoLaunchpad: '#66E8FA', // Cyan MVNO section
-    interface: '#22282A',    // Dark interface section
-    awards: '#E4EDF1',      // Light awards section
-    vision: '#66E8FA',      // Cyan vision section
+    hero: '#22282A',              // Hero section - Dark professional
+    aboutGMG: '#92A6B0',          // About GMG - Professional gray
+    ourServices: '#66E8FA',       // Our Services - Bright cyan
+    financialHealthCheck: '#E4EDF1', // Financial Health Check - Clean light
+    statistics: '#22282A',        // Statistics - Dark for emphasis
+    contactUs: '#66E8FA',         // Contact Us - Bright call-to-action
   },
   
   // Text colors

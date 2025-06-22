@@ -1,4 +1,4 @@
-// Content Configuration
+// Content Configuration for GMG Financial Services
 // This file contains all text content and section data for easy editing
 
 export const siteContent = {
@@ -6,19 +6,22 @@ export const siteContent = {
   header: {
     navigation: [
       {
-        label: 'Products',
+        label: 'Services',
         hasDropdown: true,
         items: [
-          { label: 'EMS', href: '/ems' },
-          { label: 'Spotlight', href: '/spotlight' }
+          { label: 'Business Advisory', href: '/business-advisory' },
+          { label: 'Financial Planning', href: '/financial-planning' },
+          { label: 'Cash Flow Management', href: '/cash-flow' },
+          { label: 'Investment Strategy', href: '/investment' }
         ]
       },
       {
         label: 'Solutions',
         hasDropdown: true,
         items: [
-          { label: 'MVNO Launchpad', href: '/mvno-launchpad' },
-          { label: 'MnO', href: '/mno' }
+          { label: 'Health Check', href: '/health-check' },
+          { label: 'Business Growth', href: '/business-growth' },
+          { label: 'Restructuring', href: '/restructuring' }
         ]
       },
       {
@@ -27,13 +30,13 @@ export const siteContent = {
         items: [
           { label: 'Blog', href: '/blog' },
           { label: 'Case Studies', href: '/case-studies' },
-          { label: 'Events', href: '/events' },
-          { label: 'News', href: '/news' }
+          { label: 'Financial Tools', href: '/tools' },
+          { label: 'Market Insights', href: '/insights' }
         ]
       },
       {
-        label: 'Services',
-        href: '/services'
+        label: 'About',
+        href: '/about'
       }
     ],
     cta: {
@@ -42,60 +45,72 @@ export const siteContent = {
     }
   },
 
-  // Landing page sections
+  // Landing page sections for GMG Financial Services
   sections: {
     hero: {
-      // Rotating titles with decrypting effect - no buttons
+      // Rotating titles with financial focus
       rotatingTitles: [
-        "Real Advice for Real Life Goals",
-        "Take Control of Your Financial Future", 
-        "Confident Financial Decisions Start Here",
-        "Your Trusted Partner in Financial Clarity",
-        "Strategic Advice. Lasting Results"
+        "Real Advice for <span style='color: #66E8FA;'>Real Life</span> Goals",
+        "Take Control of Your <span style='color: #66E8FA;'>Financial Future</span>", 
+        "Confident <span style='color: #66E8FA;'>Financial Decisions</span> Start Here",
+        "Your Trusted Partner in <span style='color: #66E8FA;'>Financial Clarity</span>",
+        "Strategic Advice. <span style='color: #66E8FA;'>Lasting Results</span>"
       ]
     },
 
-    capabilities: {
-      title: 'Unparalleled\nBSS/OSS Capabilities'
-    },
-
-    mvnoLaunchpad: {
-      subtitle: 'MVNO LaunchPad – Accelerate Your Journey',
-      title: 'From Vision to Reality:\nLaunching Your MVNO',
+    aboutGMG: {
+      title: 'About GMG\nFinancial Services',
       description: [
-        'Effortel\'s MVNO LaunchPad and Mobile Suite provide the foundation',
-        'you need to not only launch your MVNO with unprecedented speed,',
-        'but also thrive in the competitive telecommunications landscape.'
+        'With over 20 years of experience in financial advisory,',
+        'GMG provides strategic guidance to help businesses and individuals',
+        'achieve their financial goals with confidence and clarity.'
       ]
     },
 
-    interface: {
-      title: 'Intuitive Interface and\nEffortless Self-Management',
+    ourServices: {
+      subtitle: 'Comprehensive Financial Solutions',
+      title: 'Our Services:\nTailored for Your Success',
       description: [
-        'Effortel Mobile Suite is designed and engineered to streamline operations,',
-        'accelerate revenue growth, and deliver exceptional customer experiences.'
+        'From business advisory to personal financial planning,',
+        'our expert team delivers customized solutions that drive',
+        'sustainable growth and long-term financial stability.'
       ]
     },
 
-    awards: {
-      subtitle: 'Industry Recognition and Awards',
-      title: 'Recognized for\nExcellence in BSS/OSS\nand MVNE Solutions'
+    financialHealthCheck: {
+      title: 'Financial Health Check:\nYour Path to Financial Wellness',
+      description: [
+        'Our comprehensive financial health check provides deep insights',
+        'into your current financial position and actionable strategies',
+        'to optimize your financial performance and achieve your goals.'
+      ]
     },
 
-    vision: {
-      subtitle: 'MVNO LaunchPad – Accelerate Your Journey',
-      title: 'From Vision to Reality:\nLaunching Your MVNO',
+    statistics: {
+      subtitle: 'Proven Track Record',
+      title: 'Trusted by Clients\nAcross Industries',
+      stats: [
+        { number: '500+', label: 'Clients Served' },
+        { number: '20+', label: 'Years Experience' },
+        { number: '95%', label: 'Client Satisfaction' },
+        { number: '$50M+', label: 'Funds Managed' }
+      ]
+    },
+
+    contactUs: {
+      subtitle: 'Ready to Get Started?',
+      title: 'Contact Us:\nLet\'s Discuss Your Financial Future',
       description: [
-        'Effortel\'s MVNO LaunchPad and Mobile Suite provide the foundation',
-        'you need to not only launch your MVNO with unprecedented speed,',
-        'but also thrive in the competitive telecommunications landscape.'
+        'Schedule a consultation with our expert team today.',
+        'We\'re here to help you navigate your financial journey',
+        'and achieve the success you deserve.'
       ]
     }
   },
 
   // Footer content
   footer: {
-    cta: 'Take Your\nBrand Mobile.',
+    cta: 'Take Control of Your\nFinancial Future',
     attribution: 'Design & Dev by Onion'
   }
 } as const;

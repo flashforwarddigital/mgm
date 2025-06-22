@@ -1,9 +1,11 @@
 import React from 'react';
 import { Logo } from './ui/Logo';
 import { NavigationButton } from './ui/NavigationButton';
-import { NAVIGATION_ITEMS } from '../constants/navigation';
+import { siteContent } from '../config/content';
 
 export const Header: React.FC = () => {
+  const { header } = siteContent;
+
   return (
     <header className="w-full backdrop-blur-md bg-black/20 border-b border-white/10">
       <nav className="w-full px-0 py-4 flex items-center">
@@ -14,7 +16,7 @@ export const Header: React.FC = () => {
 
         {/* Navigation Items - Absolutely centered */}
         <div className="absolute left-1/2 transform -translate-x-1/2 hidden lg:flex items-center gap-12">
-          {NAVIGATION_ITEMS.map((item) => (
+          {header.navigation.map((item) => (
             <NavigationButton
               key={item.label}
               href={'href' in item ? item.href : undefined}
@@ -28,10 +30,10 @@ export const Header: React.FC = () => {
         {/* CTA Buttons - Flush to right edge */}
         <div className="ml-auto pr-6 flex items-center gap-4">
           <NavigationButton href="/contact" variant="secondary">
-            Get in touch
+            {header.cta.secondary}
           </NavigationButton>
           <NavigationButton href="/meeting" variant="primary">
-            Book a meeting
+            {header.cta.primary}
           </NavigationButton>
         </div>
       </nav>

@@ -1,6 +1,6 @@
-# Effortel Landing Page
+# GMG Financial Services Website
 
-A modern, maintainable React landing page built with TypeScript, Tailwind CSS, and a comprehensive design system.
+A modern, responsive React website built with TypeScript, Tailwind CSS, and a comprehensive design system for GMG Financial Services.
 
 ## 🎨 Design System
 
@@ -12,17 +12,17 @@ The project uses a centralized design system for easy customization:
 
 ### Quick Customization
 
-#### Colors
+#### Section Colors
 ```typescript
 // In src/config/design-system.ts
 export const colors = {
   sections: {
-    hero: '#22282A',        // Hero section background
-    capabilities: '#92A6B0', // Capabilities section background
-    mvnoLaunchpad: '#66E8FA', // MVNO section background
-    interface: '#22282A',    // Interface section background
-    awards: '#E4EDF1',      // Awards section background
-    vision: '#66E8FA',      // Vision section background
+    hero: '#22282A',              // Hero section - Dark professional
+    aboutGMG: '#92A6B0',          // About GMG - Professional gray
+    ourServices: '#66E8FA',       // Our Services - Bright cyan
+    financialHealthCheck: '#E4EDF1', // Financial Health Check - Clean light
+    statistics: '#22282A',        // Statistics - Dark for emphasis
+    contactUs: '#66E8FA',         // Contact Us - Bright call-to-action
   }
 }
 ```
@@ -32,8 +32,8 @@ export const colors = {
 // In src/config/design-system.ts
 export const typography = {
   sizes: {
-    hero: '83px',           // Main hero text size
-    heroMobile: '40px',     // Mobile hero text size
+    hero: 'clamp(2.5rem, 5vw, 5.2rem)', // Responsive hero text
+    heroMobile: '40px',                  // Mobile hero text size
     // ... other sizes
   }
 }
@@ -45,9 +45,10 @@ export const typography = {
 export const siteContent = {
   sections: {
     hero: {
-      title: 'Your Custom Title Here',
-      subtitle: 'Your Custom Subtitle',
-      // ... other content
+      rotatingTitles: [
+        "Real Advice for <span style='color: #66E8FA;'>Real Life</span> Goals",
+        // ... more titles
+      ]
     }
   }
 }
@@ -58,23 +59,23 @@ export const siteContent = {
 ```
 src/
 ├── components/
-│   ├── sections/           # Individual page sections
+│   ├── sections/               # GMG Financial Services sections
 │   │   ├── HeroSection.tsx
-│   │   ├── CapabilitiesSection.tsx
-│   │   ├── MVNOLaunchpadSection.tsx
-│   │   ├── InterfaceSection.tsx
-│   │   └── VisionSection.tsx
-│   ├── ui/                 # Reusable UI components
+│   │   ├── AboutGMGSection.tsx
+│   │   ├── OurServicesSection.tsx
+│   │   ├── FinancialHealthCheckSection.tsx
+│   │   ├── StatisticsSection.tsx
+│   │   └── ContactUsSection.tsx
+│   ├── ui/                     # Reusable UI components
 │   ├── Header.tsx
-│   ├── Footer.tsx
-│   └── AwardsSection.tsx
+│   └── Footer.tsx
 ├── config/
-│   ├── design-system.ts    # Design tokens and theme
-│   └── content.ts          # All text content
+│   ├── design-system.ts        # Design tokens and theme
+│   └── content.ts              # All text content
 ├── constants/
 ├── hooks/
 └── pages/
-    └── Index.tsx           # Main landing page
+    └── Index.tsx               # Main landing page
 ```
 
 ## 🚀 Features
@@ -85,6 +86,7 @@ src/
 - **Responsive Design**: Mobile-first approach with proper breakpoints
 - **TypeScript**: Full type safety throughout the codebase
 - **Easy Customization**: Change colors, fonts, and content without touching component code
+- **Financial Services Focus**: Tailored content and design for financial advisory
 
 ## 🛠️ Development
 
@@ -123,13 +125,22 @@ The design system includes responsive breakpoints:
 - Tablet: 768px - 1024px
 - Desktop: > 1024px
 
-## 🎯 Landing Page Sections
+## 🎯 GMG Financial Services Sections
 
-1. **Hero Section** - Main landing area with CTA buttons
-2. **Capabilities Section** - BSS/OSS capabilities highlight
-3. **MVNO Launchpad Section** - Product feature section
-4. **Interface Section** - User interface showcase
-5. **Awards Section** - Industry recognition
-6. **Vision Section** - Company vision and goals
+1. **Hero Section** - Rotating financial advice titles with morphing text effect
+2. **About GMG Section** - Company introduction and experience
+3. **Our Services Section** - Comprehensive financial solutions overview
+4. **Financial Health Check Section** - Specialized service highlight
+5. **Statistics Section** - Key performance metrics and achievements
+6. **Contact Us Section** - Call-to-action with consultation booking
 
 Each section has its own background color defined in the design system for easy customization.
+
+## 💼 Financial Services Features
+
+- Professional color scheme optimized for financial services
+- Trust-building statistics and testimonials
+- Clear service offerings and value propositions
+- Strong call-to-action elements
+- Responsive design for all devices
+- SEO-optimized structure

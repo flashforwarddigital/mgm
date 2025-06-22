@@ -2,26 +2,28 @@ import React from 'react';
 import { colors, typography } from '../../config/design-system';
 import { siteContent } from '../../config/content';
 
-export const InterfaceSection: React.FC = () => {
-  const { interface: interfaceContent } = siteContent.sections;
+export const AboutGMGSection: React.FC = () => {
+  const { aboutGMG } = siteContent.sections;
 
   return (
     <section 
       className="w-full py-32 px-4"
-      style={{ backgroundColor: colors.sections.interface }}
+      style={{ backgroundColor: colors.sections.aboutGMG }}
     >
       <div className="max-w-6xl mx-auto text-center">
-        {/* Title */}
         <h2 
           className="font-extrabold leading-tight mb-8"
           style={{ 
             fontSize: typography.sizes.hero,
             letterSpacing: typography.tracking.widest,
-            color: colors.text.light
+            color: colors.text.primary
           }}
         >
-          {interfaceContent.title.split('\n').map((line, index) => (
-            <div key={index} className="mb-2">
+          {aboutGMG.title.split('\n').map((line, index) => (
+            <div 
+              key={index} 
+              className={index === 0 ? 'text-white mb-4' : 'text-[#22282a]'}
+            >
               {line}
             </div>
           ))}
@@ -29,14 +31,14 @@ export const InterfaceSection: React.FC = () => {
 
         {/* Description */}
         <div 
-          className="max-w-4xl mx-auto"
+          className="max-w-4xl mx-auto mt-8"
           style={{ 
-            fontSize: typography.sizes['4xl'],
-            color: colors.text.neutral,
+            fontSize: typography.sizes['3xl'],
+            color: colors.text.secondary,
             lineHeight: typography.lineHeights.loose
           }}
         >
-          {interfaceContent.description.map((line, index) => (
+          {aboutGMG.description.map((line, index) => (
             <p key={index} className="mb-2">
               {line}
             </p>

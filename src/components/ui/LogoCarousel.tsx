@@ -4,7 +4,7 @@ interface LogoCarouselProps {
   className?: string;
 }
 
-// Words to display in the carousel
+// Financial services related words for GMG
 const CAROUSEL_WORDS = [
   'BUDGETING',
   'CASH FLOW', 
@@ -15,7 +15,9 @@ const CAROUSEL_WORDS = [
   'STRATEGY',
   'ADVISORY',
   'HEALTH CHECK',
-  'REFINANCING'
+  'REFINANCING',
+  'PLANNING',
+  'WEALTH MANAGEMENT'
 ];
 
 export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) => {

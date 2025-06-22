@@ -2,11 +2,11 @@ import React from 'react';
 import { Header } from '../components/Header';
 import { HeroSection } from '../components/sections/HeroSection';
 import { LogoCarousel } from '../components/ui/LogoCarousel';
-import { CapabilitiesSection } from '../components/sections/CapabilitiesSection';
-import { MVNOLaunchpadSection } from '../components/sections/MVNOLaunchpadSection';
-import { InterfaceSection } from '../components/sections/InterfaceSection';
-import { AwardsSection } from '../components/AwardsSection';
-import { VisionSection } from '../components/sections/VisionSection';
+import { AboutGMGSection } from '../components/sections/AboutGMGSection';
+import { OurServicesSection } from '../components/sections/OurServicesSection';
+import { FinancialHealthCheckSection } from '../components/sections/FinancialHealthCheckSection';
+import { StatisticsSection } from '../components/sections/StatisticsSection';
+import { ContactUsSection } from '../components/sections/ContactUsSection';
 import { Footer } from '../components/Footer';
 
 const Index: React.FC = () => {
@@ -23,13 +23,13 @@ const Index: React.FC = () => {
       {/* Logo Carousel - Bridge between hero and next section */}
       <LogoCarousel />
 
-      {/* Main Content Sections */}
+      {/* Main Content Sections - GMG Financial Services */}
       <main className="w-full">
-        <CapabilitiesSection />
-        <MVNOLaunchpadSection />
-        <InterfaceSection />
-        <AwardsSection />
-        <VisionSection />
+        <AboutGMGSection />
+        <OurServicesSection />
+        <FinancialHealthCheckSection />
+        <StatisticsSection />
+        <ContactUsSection />
       </main>
 
       <Footer />

@@ -2,13 +2,13 @@ import React from 'react';
 import { colors, typography } from '../../config/design-system';
 import { siteContent } from '../../config/content';
 
-export const MVNOLaunchpadSection: React.FC = () => {
-  const { mvnoLaunchpad } = siteContent.sections;
+export const OurServicesSection: React.FC = () => {
+  const { ourServices } = siteContent.sections;
 
   return (
     <section 
       className="w-full py-32 px-4"
-      style={{ backgroundColor: colors.sections.mvnoLaunchpad }}
+      style={{ backgroundColor: colors.sections.ourServices }}
     >
       <div className="max-w-6xl mx-auto text-center">
         {/* Subtitle */}
@@ -20,7 +20,7 @@ export const MVNOLaunchpadSection: React.FC = () => {
             letterSpacing: typography.tracking.normal
           }}
         >
-          <span>({mvnoLaunchpad.subtitle})</span>
+          <span>({ourServices.subtitle})</span>
         </div>
 
         {/* Title */}
@@ -31,14 +31,14 @@ export const MVNOLaunchpadSection: React.FC = () => {
             letterSpacing: typography.tracking.widest,
           }}
         >
-          {mvnoLaunchpad.title.split('\n').map((line, index) => (
+          {ourServices.title.split('\n').map((line, index) => (
             <div key={index} className="mb-2">
               {index === 0 ? (
                 <span style={{ color: colors.text.primary }}>{line}</span>
               ) : (
                 <>
-                  <span style={{ color: colors.text.primary }}>Launching </span>
-                  <span style={{ color: colors.text.light }}>Your MVNO</span>
+                  <span style={{ color: colors.text.primary }}>Tailored for </span>
+                  <span style={{ color: colors.text.light }}>Your Success</span>
                 </>
               )}
             </div>
@@ -54,7 +54,7 @@ export const MVNOLaunchpadSection: React.FC = () => {
             lineHeight: typography.lineHeights.loose
           }}
         >
-          {mvnoLaunchpad.description.map((line, index) => (
+          {ourServices.description.map((line, index) => (
             <p key={index} className="mb-2">
               {line}
             </p>
