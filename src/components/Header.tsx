@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Logo } from './ui/Logo';
 import { NavigationButton } from './ui/NavigationButton';
@@ -10,7 +9,7 @@ export const Header: React.FC = () => {
       <nav className="justify-between items-center relative z-0 flex w-full gap-[40px_100px] h-full flex-1 shrink basis-[0%] px-[22px] py-[5px] max-md:max-w-full max-md:px-5">
         <Logo />
 
-        <div className="absolute z-0 flex min-w-60 min-h-[63px] items-center justify-center flex-wrap left-[738px] right-[582px] inset-y-0 max-md:max-w-full">
+        <div className="absolute z-0 flex min-w-60 min-h-[63px] items-center justify-center gap-8 left-1/2 transform -translate-x-1/2 max-md:max-w-full">
           {NAVIGATION_ITEMS.map((item) => (
             <NavigationButton
               key={item.label}
@@ -22,7 +21,7 @@ export const Header: React.FC = () => {
           ))}
         </div>
 
-        <div className="self-stretch z-0 flex min-w-60 gap-[11px] text-[21px] font-normal uppercase tracking-[-0.62px] leading-none my-auto">
+        <div className="self-stretch z-0 flex min-w-60 gap-[11px] my-auto">
           <NavigationButton href="/contact" variant="secondary">
             Get in touch
           </NavigationButton>
