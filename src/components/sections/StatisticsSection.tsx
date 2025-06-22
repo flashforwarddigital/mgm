@@ -53,9 +53,9 @@ export const StatisticsSection: React.FC = () => {
           <span>({statistics.subtitle})</span>
         </div>
 
-        {/* Title */}
+        {/* Title - ALL LOWERCASE */}
         <h2 
-          className="font-extrabold leading-tight mb-16"
+          className="font-extrabold leading-tight mb-16 lowercase"
           style={{ 
             fontSize: typography.sizes.hero,
             letterSpacing: typography.tracking.widest,

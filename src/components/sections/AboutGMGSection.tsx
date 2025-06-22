@@ -12,26 +12,25 @@ export const AboutGMGSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left Side - Content */}
           <div className="space-y-12">
-            {/* Title with much closer spacing and white/dark styling */}
+            {/* Title with much closer spacing and blue/dark styling - ALL LOWERCASE */}
             <div>
               <h2 
-                className="font-extrabold leading-none"
+                className="font-extrabold leading-none lowercase"
                 style={{ 
                   fontSize: typography.sizes.hero,
                   letterSpacing: typography.tracking.widest,
                 }}
               >
-                <div className="text-white mb-0">Financial</div>
-                <div className="text-[#22282a] -mt-4">Strategy,</div>
-                <div className="text-white -mt-4">Built on Trust</div>
+                <div className="text-[#66E8FA] mb-0">financial strategy,</div>
+                <div className="text-[#22282a] -mt-4">built on trust</div>
               </h2>
             </div>
 
-            {/* Description with animated highlights */}
+            {/* Description with animated highlights - DARK COLOR */}
             <div 
               className="text-xl leading-relaxed"
               style={{ 
-                color: colors.text.light,
+                color: '#22282a', // Dark color as requested
                 lineHeight: typography.lineHeights.loose
               }}
             >
@@ -50,10 +49,10 @@ export const AboutGMGSection: React.FC = () => {
               </p>
             </div>
 
-            {/* CTA Button - Same style as hero section */}
+            {/* CTA Button - Same style as hero section - UPDATED TEXT */}
             <div className="pt-4">
               <button className="border-[#66E8FA] bg-[#66E8FA] text-[#22282a] hover:bg-[#5dd8ea] hover:scale-105 justify-center items-center flex min-h-[55px] gap-[13px] overflow-hidden px-[22px] py-[17px] rounded-[13.79px] text-[21px] font-normal whitespace-nowrap uppercase tracking-[-0.62px] leading-none transition-all duration-300">
-                <span className="pb-px">Learn More About Our Approach</span>
+                <span className="pb-px">learn more</span>
               </button>
             </div>
           </div>

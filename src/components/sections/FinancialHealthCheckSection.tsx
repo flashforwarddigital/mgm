@@ -12,9 +12,9 @@ export const FinancialHealthCheckSection: React.FC = () => {
       style={{ backgroundColor: colors.sections.financialHealthCheck }}
     >
       <div className="max-w-6xl mx-auto text-center">
-        {/* Title */}
+        {/* Title - ALL LOWERCASE */}
         <h2 
-          className="font-extrabold leading-tight mb-8"
+          className="font-extrabold leading-tight mb-8 lowercase"
           style={{ 
             fontSize: typography.sizes.hero,
             letterSpacing: typography.tracking.widest,

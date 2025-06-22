@@ -24,9 +24,9 @@ export const OurServicesSection: React.FC = () => {
           <span>({ourServices.subtitle})</span>
         </div>
 
-        {/* Title */}
+        {/* Title - ALL LOWERCASE */}
         <h2 
-          className="font-extrabold leading-tight mb-8"
+          className="font-extrabold leading-tight mb-8 lowercase"
           style={{
             fontSize: typography.sizes.hero,
             letterSpacing: typography.tracking.widest,
@@ -38,8 +38,8 @@ export const OurServicesSection: React.FC = () => {
                 <span style={{ color: colors.text.primary }}>{line}</span>
               ) : (
                 <>
-                  <span style={{ color: colors.text.primary }}>Tailored for </span>
-                  <span style={{ color: colors.text.light }}>Your Success</span>
+                  <span style={{ color: colors.text.primary }}>tailored for </span>
+                  <span style={{ color: colors.text.light }}>your success</span>
                 </>
               )}
             </div>

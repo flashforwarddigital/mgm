@@ -24,9 +24,9 @@ export const ContactUsSection: React.FC = () => {
           <span>({contactUs.subtitle})</span>
         </div>
 
-        {/* Title */}
+        {/* Title - ALL LOWERCASE */}
         <h2 
-          className="font-extrabold leading-tight mb-8"
+          className="font-extrabold leading-tight mb-8 lowercase"
           style={{
             fontSize: typography.sizes.hero,
             letterSpacing: typography.tracking.widest,
@@ -38,8 +38,8 @@ export const ContactUsSection: React.FC = () => {
                 <span style={{ color: colors.text.primary }}>{line}</span>
               ) : (
                 <>
-                  <span style={{ color: colors.text.primary }}>Let's Discuss Your </span>
-                  <span style={{ color: colors.text.light }}>Financial Future</span>
+                  <span style={{ color: colors.text.primary }}>let's discuss your </span>
+                  <span style={{ color: colors.text.light }}>financial future</span>
                 </>
               )}
             </div>
