@@ -35,19 +35,19 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
           backgroundColor: '#22282A',
         }}
       >
-        <div className="max-w-6xl mx-auto px-8 py-12">
+        <div className="max-w-6xl mx-auto px-8 py-16">
           {/* Carousel container */}
           <div className="relative overflow-hidden">
-            {/* Scrolling words */}
+            {/* Scrolling words with Beanco font */}
             <div className="flex animate-scroll">
               {/* First set of words */}
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex-shrink-0 mx-8 flex items-center justify-center"
-                  style={{ minWidth: '200px', height: '80px' }}
+                  className="flex-shrink-0 mx-12 flex items-center justify-center"
+                  style={{ minWidth: '250px', height: '100px' }}
                 >
-                  <span className="text-white text-3xl font-thin whitespace-nowrap uppercase tracking-wide opacity-70">
+                  <span className="font-beanco text-white text-5xl whitespace-nowrap opacity-80 hover:opacity-100 transition-opacity duration-300">
                     {word}
                   </span>
                 </div>
@@ -56,10 +56,10 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
               {CAROUSEL_WORDS.map((word, index) => (
                 <div
                   key={`second-${index}`}
-                  className="flex-shrink-0 mx-8 flex items-center justify-center"
-                  style={{ minWidth: '200px', height: '80px' }}
+                  className="flex-shrink-0 mx-12 flex items-center justify-center"
+                  style={{ minWidth: '250px', height: '100px' }}
                 >
-                  <span className="text-white text-3xl font-thin whitespace-nowrap uppercase tracking-wide opacity-70">
+                  <span className="font-beanco text-white text-5xl whitespace-nowrap opacity-80 hover:opacity-100 transition-opacity duration-300">
                     {word}
                   </span>
                 </div>

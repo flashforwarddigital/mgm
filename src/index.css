@@ -102,6 +102,9 @@
   }
 }
 
+/* Beanco Script Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
 /* Logo Carousel Animation */
 @keyframes scroll {
   0% {
@@ -120,4 +123,10 @@
 /* Pause animation on hover */
 .animate-scroll:hover {
   animation-play-state: paused;
+}
+
+/* Beanco Script Font Class */
+.font-beanco {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
 }

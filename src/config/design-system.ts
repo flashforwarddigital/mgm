@@ -38,6 +38,12 @@ export const colors = {
 } as const;
 
 export const typography = {
+  // Font families
+  families: {
+    sans: 'system-ui, -apple-system, sans-serif',
+    beanco: "'Dancing Script', cursive", // Beanco-style script font
+  },
+  
   // Font sizes - Responsive and scalable
   sizes: {
     xs: '14px',
@@ -48,6 +54,7 @@ export const typography = {
     '2xl': '22px',
     '3xl': '23px',
     '4xl': '25px',
+    '5xl': '48px', // For carousel words
     hero: 'clamp(2.5rem, 5vw, 5.2rem)', // Responsive hero text
     heroMobile: '40px',
   },
@@ -56,6 +63,7 @@ export const typography = {
   weights: {
     normal: 400,
     medium: 500,
+    semibold: 600,
     bold: 700,
     extrabold: 800,
   },
