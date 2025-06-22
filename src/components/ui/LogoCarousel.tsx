@@ -4,20 +4,20 @@ interface LogoCarouselProps {
   className?: string;
 }
 
-// Financial services related words for GMG
+// Financial services related words for GMG - now in lowercase
 const CAROUSEL_WORDS = [
-  'BUDGETING',
-  'CASH FLOW', 
-  'BUSINESS GROWTH',
-  'LENDING',
-  'INVESTMENT',
-  'STRUCTURING',
-  'STRATEGY',
-  'ADVISORY',
-  'HEALTH CHECK',
-  'REFINANCING',
-  'PLANNING',
-  'WEALTH MANAGEMENT'
+  'budgeting',
+  'cash flow', 
+  'business growth',
+  'lending',
+  'investment',
+  'structuring',
+  'strategy',
+  'advisory',
+  'health check',
+  'refinancing',
+  'planning',
+  'wealth management'
 ];
 
 export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) => {
