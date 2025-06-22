@@ -5,11 +5,11 @@ import { NAVIGATION_ITEMS } from '../constants/navigation';
 
 export const Header: React.FC = () => {
   return (
-    <header className="relative justify-center items-stretch backdrop-blur-[15px] bg-[#22282A] flex mb-[-270px] min-h-[88px] py-3 max-md:mb-2.5">
-      <nav className="justify-between items-center relative z-0 flex w-full gap-[40px_100px] h-full flex-1 shrink basis-[0%] px-[22px] py-[5px] max-md:max-w-full max-md:px-5">
+    <header className="w-full backdrop-blur-md bg-black/20 border-b border-white/10">
+      <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Logo />
 
-        <div className="absolute z-0 flex min-w-60 min-h-[63px] items-center justify-center gap-8 left-1/2 transform -translate-x-1/2 max-md:max-w-full">
+        <div className="hidden lg:flex items-center gap-8">
           {NAVIGATION_ITEMS.map((item) => (
             <NavigationButton
               key={item.label}
@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
           ))}
         </div>
 
-        <div className="self-stretch z-0 flex min-w-60 gap-[11px] my-auto">
+        <div className="flex items-center gap-4">
           <NavigationButton href="/contact" variant="secondary">
             Get in touch
           </NavigationButton>
@@ -30,7 +30,6 @@ export const Header: React.FC = () => {
           </NavigationButton>
         </div>
       </nav>
-      <div className="bg-[rgba(59,65,68,0.50)] absolute z-0 flex min-h-px w-[1920px] h-px right-0 bottom-0 max-md:max-w-full" />
     </header>
   );
 };

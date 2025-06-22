@@ -10,14 +10,14 @@ export const colors = {
     darkSecondary: '#394247',
   },
   
-  // Section background colors
+  // Section background colors - FULL WIDTH BACKGROUNDS
   sections: {
-    hero: '#22282A',
-    capabilities: '#92A6B0',
-    mvnoLaunchpad: '#66E8FA',
-    interface: '#22282A',
-    awards: '#E4EDF1',
-    vision: '#66E8FA',
+    hero: '#22282A',        // Dark hero section
+    capabilities: '#92A6B0', // Gray capabilities section
+    mvnoLaunchpad: '#66E8FA', // Cyan MVNO section
+    interface: '#22282A',    // Dark interface section
+    awards: '#E4EDF1',      // Light awards section
+    vision: '#66E8FA',      // Cyan vision section
   },
   
   // Text colors
@@ -38,7 +38,7 @@ export const colors = {
 } as const;
 
 export const typography = {
-  // Font sizes
+  // Font sizes - Responsive and scalable
   sizes: {
     xs: '14px',
     sm: '16px',
@@ -48,7 +48,7 @@ export const typography = {
     '2xl': '22px',
     '3xl': '23px',
     '4xl': '25px',
-    hero: '83px',
+    hero: 'clamp(2.5rem, 5vw, 5.2rem)', // Responsive hero text
     heroMobile: '40px',
   },
   
@@ -66,8 +66,8 @@ export const typography = {
     tight: 1.2,
     normal: 1.5,
     loose: 1.75,
-    hero: '96px',
-    heroMobile: '51px',
+    hero: '1.1',
+    heroMobile: '1.3',
   },
   
   // Letter spacing
@@ -91,13 +91,13 @@ export const spacing = {
   '3xl': '96px',
   '4xl': '128px',
   
-  // Section-specific spacing
+  // Section-specific spacing - Optimized for full-width sections
   section: {
-    paddingY: '174px',
-    paddingYMobile: '100px',
-    paddingX: '80px',
-    paddingXMobile: '20px',
-    gap: '65.66px',
+    paddingY: '8rem',        // 128px - Consistent vertical padding
+    paddingYMobile: '4rem',  // 64px - Mobile vertical padding
+    paddingX: '1rem',        // 16px - Minimal horizontal padding
+    paddingXMobile: '1rem',  // 16px - Mobile horizontal padding
+    gap: '4rem',             // 64px - Gap between section elements
   }
 } as const;
 

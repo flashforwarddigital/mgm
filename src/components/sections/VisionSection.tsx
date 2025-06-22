@@ -1,71 +1,65 @@
 import React from 'react';
-import { colors, typography, spacing } from '../../config/design-system';
+import { colors, typography } from '../../config/design-system';
 import { siteContent } from '../../config/content';
-import { SectionHeader } from '../ui/SectionHeader';
 
 export const VisionSection: React.FC = () => {
   const { vision } = siteContent.sections;
 
   return (
     <section 
-      className="flex w-full flex-col items-center text-center rounded-[22px] max-md:max-w-full max-md:px-5"
-      style={{ 
-        backgroundColor: colors.sections.vision,
-        paddingTop: spacing.section.paddingY,
-        paddingBottom: '1016px',
-        paddingLeft: spacing.section.paddingX,
-        paddingRight: spacing.section.paddingX,
-      }}
+      className="w-full py-32 px-4"
+      style={{ backgroundColor: colors.sections.vision }}
     >
-      <div 
-        className="items-center flex mb-[-203px] w-[1248px] max-w-full flex-col max-md:mb-2.5"
-        style={{ gap: spacing.section.gap }}
-      >
-        <SectionHeader
-          subtitle={vision.subtitle}
-          title={
-            <>
-              <div 
-                className="font-extrabold leading-none w-full overflow-hidden px-[18px] py-4 max-md:max-w-full"
-                style={{ 
-                  letterSpacing: typography.tracking.widest,
-                  fontSize: typography.sizes.hero
-                }}
-              >
-                {vision.title.split('\n')[0]}
-              </div>
-              <div 
-                className="font-extrabold leading-none w-full overflow-hidden px-[5px] py-4 max-md:max-w-full"
-                style={{ 
-                  letterSpacing: typography.tracking.widest,
-                  fontSize: typography.sizes.hero
-                }}
-              >
-                <span style={{ color: colors.text.primary }}>Launching </span>
-                <span style={{ color: colors.text.light }}>Your MVNO</span>
-              </div>
-            </>
-          }
-          description={
-            <div style={{ color: colors.text.secondary }}>
-              {vision.description.map((line, index) => (
-                <div 
-                  key={index}
-                  className="font-medium w-full overflow-hidden pb-[5px] max-md:max-w-full"
-                  style={{ 
-                    fontSize: typography.sizes['3xl'],
-                    lineHeight: typography.lineHeights.loose
-                  }}
-                >
-                  {line}
-                </div>
-              ))}
+      <div className="max-w-6xl mx-auto text-center">
+        {/* Subtitle */}
+        <div 
+          className="flex justify-center gap-2 font-normal uppercase leading-none mb-16"
+          style={{ 
+            fontSize: typography.sizes.base,
+            color: colors.text.muted,
+            letterSpacing: typography.tracking.normal
+          }}
+        >
+          <span>({vision.subtitle})</span>
+        </div>
+
+        {/* Title */}
+        <h2 
+          className="font-extrabold leading-tight mb-8"
+          style={{
+            fontSize: typography.sizes.hero,
+            letterSpacing: typography.tracking.widest,
+          }}
+        >
+          {vision.title.split('\n').map((line, index) => (
+            <div key={index} className="mb-2">
+              {index === 0 ? (
+                <span style={{ color: colors.text.primary }}>{line}</span>
+              ) : (
+                <>
+                  <span style={{ color: colors.text.primary }}>Launching </span>
+                  <span style={{ color: colors.text.light }}>Your MVNO</span>
+                </>
+              )}
             </div>
-          }
-          titleColor={colors.text.primary}
-          subtitleColor={colors.text.muted}
-          descriptionColor={colors.text.secondary}
-        />
+          ))}
+        </h2>
+
+        {/* Description */}
+        <div 
+          className="max-w-4xl mx-auto"
+          style={{ 
+            fontSize: typography.sizes['3xl'],
+            color: colors.text.secondary,
+            lineHeight: typography.lineHeights.loose
+          }}
+        >
+          {vision.description.map((line, index) => (
+            <p key={index} className="mb-2">
+              {line}
+            </p>
+          ))}
+        </div>
       </div>
     </section>
   );
