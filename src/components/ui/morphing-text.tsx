@@ -12,6 +12,7 @@ const useMorphingText = (texts: string[]) => {
   const morphRef = useRef(0);
   const cooldownRef = useRef(cooldownTime);
   const timeRef = useRef(new Date());
+  const initializedRef = useRef(false);
 
   const text1Ref = useRef<HTMLSpanElement>(null);
   const text2Ref = useRef<HTMLSpanElement>(null);
@@ -63,11 +64,35 @@ const useMorphingText = (texts: string[]) => {
     }
   }, []);
 
+  // Initialize with first text immediately
+  const initialize = useCallback(() => {
+    if (!initializedRef.current && text1Ref.current && text2Ref.current && texts.length > 0) {
+      text1Ref.current.innerHTML = texts[0];
+      text1Ref.current.style.opacity = "0%";
+      text1Ref.current.style.filter = "none";
+      
+      text2Ref.current.innerHTML = texts[0];
+      text2Ref.current.style.opacity = "100%";
+      text2Ref.current.style.filter = "none";
+      
+      initializedRef.current = true;
+    }
+  }, [texts]);
+
   useEffect(() => {
+    // Initialize immediately
+    initialize();
+    
     let animationFrameId: number;
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+
+      // Ensure initialization happens
+      if (!initializedRef.current) {
+        initialize();
+        return;
+      }
 
       const newTime = new Date();
       const dt = (newTime.getTime() - timeRef.current.getTime()) / 1000;
@@ -83,7 +108,7 @@ const useMorphingText = (texts: string[]) => {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [doMorph, doCooldown]);
+  }, [doMorph, doCooldown, initialize]);
 
   return { text1Ref, text2Ref };
 };
@@ -95,15 +120,18 @@ interface MorphingTextProps {
 
 const Texts: React.FC<Pick<MorphingTextProps, "texts">> = ({ texts }) => {
   const { text1Ref, text2Ref } = useMorphingText(texts);
+  
   return (
     <>
       <span
         className="absolute inset-x-0 top-0 m-auto inline-block w-full whitespace-nowrap overflow-hidden text-ellipsis"
         ref={text1Ref}
+        dangerouslySetInnerHTML={{ __html: texts[0] || '' }}
       />
       <span
         className="absolute inset-x-0 top-0 m-auto inline-block w-full whitespace-nowrap overflow-hidden text-ellipsis"
         ref={text2Ref}
+        dangerouslySetInnerHTML={{ __html: texts[0] || '' }}
       />
     </>
   );
