@@ -121,7 +121,7 @@ export const DecryptingText: React.FC<DecryptingTextProps> = ({
   }, [currentTitleIndex]);
 
   return (
-    <div className={`font-mono ${className}`} style={style}>
+    <div className={className} style={style}>
       {displayText}
     </div>
   );
