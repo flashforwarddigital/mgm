@@ -102,13 +102,11 @@
   }
 }
 
-/* Ultra-thin condensed fonts import - Multiple options for thinnest possible */
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@100;200;300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;200;300;400;500;600;700&display=swap');
+/* Ultra-thin fonts */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 
-/* Logo Carousel Animation - ULTRA SLOW infinite seamless loop */
-@keyframes carousel-scroll-ultra-slow {
+/* Simple carousel animation - ULTRA SLOW */
+@keyframes scroll-left {
   0% {
     transform: translateX(0);
   }
@@ -117,54 +115,12 @@
   }
 }
 
-/* Carousel animation class - configurable via CSS variables */
-.carousel-animate {
-  animation: carousel-scroll-ultra-slow var(--carousel-duration, 180s) var(--carousel-timing, linear) var(--carousel-iteration, infinite);
+.carousel-scroll {
+  animation: scroll-left 300s linear infinite;
   display: flex;
   width: fit-content;
-  will-change: transform; /* Optimize for smooth animation */
 }
 
-/* Pause animation on hover for better UX */
-.carousel-animate:hover {
+.carousel-scroll:hover {
   animation-play-state: paused;
-}
-
-/* Ultra-thin condensed font class - Configurable via CSS variables */
-.carousel-text {
-  font-family: var(--carousel-font-family, 'Barlow Condensed', 'Roboto Condensed', 'Oswald', sans-serif);
-  font-weight: var(--carousel-font-weight, 100); /* Ultra-light weight - thinnest possible */
-  font-stretch: ultra-condensed;
-  letter-spacing: var(--carousel-letter-spacing, 0.25em); /* Maximum letter spacing */
-  font-size: var(--carousel-font-size, 1.8rem);
-  color: var(--carousel-color, #66E8FA);
-  text-transform: var(--carousel-text-transform, uppercase);
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.carousel-text:hover {
-  opacity: 0.8;
-}
-
-/* Carousel container positioning */
-.carousel-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: var(--carousel-height, 80px);
-  display: flex;
-  align-items: var(--carousel-align, flex-end); /* Default to bottom alignment */
-}
-
-/* Word spacing in carousel */
-.carousel-word {
-  flex-shrink: 0;
-  margin-left: var(--carousel-word-spacing, 3rem);
-  margin-right: var(--carousel-word-spacing, 3rem);
-  min-width: var(--carousel-min-width, 220px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
 }

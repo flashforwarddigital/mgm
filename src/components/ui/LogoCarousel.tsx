@@ -1,37 +1,30 @@
 import React from 'react';
 import { carouselConfig } from '../../config/carousel-config';
 
-interface LogoCarouselProps {
-  className?: string;
-}
-
-export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) => {
-  // Generate CSS custom properties from config
-  const carouselStyles = {
-    '--carousel-duration': carouselConfig.animation.duration,
-    '--carousel-timing': carouselConfig.animation.timingFunction,
-    '--carousel-iteration': carouselConfig.animation.iterationCount,
-    '--carousel-font-family': carouselConfig.typography.fontFamily,
-    '--carousel-font-weight': carouselConfig.typography.fontWeight,
-    '--carousel-font-size': carouselConfig.typography.fontSize,
-    '--carousel-letter-spacing': carouselConfig.spacing.letterSpacing,
-    '--carousel-color': carouselConfig.typography.color,
-    '--carousel-text-transform': carouselConfig.typography.textTransform,
-    '--carousel-word-spacing': carouselConfig.spacing.wordSpacing,
-    '--carousel-min-width': carouselConfig.spacing.minWordWidth,
-    '--carousel-height': carouselConfig.spacing.containerHeight,
-    '--carousel-align': carouselConfig.position.verticalPosition === 'bottom' ? 'flex-end' : 
-                       carouselConfig.position.verticalPosition === 'top' ? 'flex-start' : 'center',
-  } as React.CSSProperties;
-
-  // Create word elements with proper spacing
-  const createWordSet = (setKey: string) => {
-    return carouselConfig.words.map((word, index) => (
+export const LogoCarousel: React.FC = () => {
+  // Create the scrolling content - triple it for seamless loop
+  const createWords = () => {
+    const allWords = [...carouselConfig.words, ...carouselConfig.words, ...carouselConfig.words];
+    return allWords.map((word, index) => (
       <div
-        key={`${setKey}-${index}`}
-        className="carousel-word"
+        key={index}
+        className="flex-shrink-0 flex items-center justify-center"
+        style={{
+          marginLeft: carouselConfig.wordSpacing,
+          marginRight: carouselConfig.wordSpacing,
+          minWidth: '200px',
+        }}
       >
-        <span className="carousel-text whitespace-nowrap">
+        <span
+          className="whitespace-nowrap uppercase"
+          style={{
+            fontFamily: "'Barlow Condensed', sans-serif",
+            fontSize: carouselConfig.fontSize,
+            fontWeight: carouselConfig.fontWeight,
+            letterSpacing: carouselConfig.letterSpacing,
+            color: carouselConfig.color,
+          }}
+        >
           {word}
         </span>
       </div>
@@ -40,29 +33,27 @@ export const LogoCarousel: React.FC<LogoCarouselProps> = ({ className = "" }) =>
 
   return (
     <section 
-      className={`w-full relative z-20 ${className}`}
+      className="w-full bg-[#22282A] relative z-20"
       style={{ 
-        backgroundColor: '#22282A',
-        marginTop: carouselConfig.position.marginTop,
-        marginBottom: carouselConfig.position.marginBottom,
-        paddingTop: carouselConfig.position.paddingTop,
-        paddingBottom: carouselConfig.position.paddingBottom,
+        paddingTop: '0',
+        paddingBottom: carouselConfig.position === 'bottom' ? '2rem' : '0',
       }}
     >
-      <div className="w-full" style={{ backgroundColor: '#22282A' }}>
-        <div className="max-w-6xl mx-auto px-8">
-          {/* Carousel container - positioned at the very bottom of the section */}
+      <div className="w-full overflow-hidden">
+        <div 
+          className="flex items-end h-20"
+          style={{
+            justifyContent: carouselConfig.position === 'bottom' ? 'flex-end' : 
+                           carouselConfig.position === 'top' ? 'flex-start' : 'center'
+          }}
+        >
           <div 
-            className="carousel-container"
-            style={carouselStyles}
+            className="carousel-scroll"
+            style={{
+              animationDuration: carouselConfig.speed,
+            }}
           >
-            {/* Scrolling words with ultra-slow infinite seamless loop */}
-            <div className="carousel-animate">
-              {/* Generate multiple sets for seamless infinite loop */}
-              {Array.from({ length: carouselConfig.loop.duplicateCount }, (_, setIndex) => 
-                createWordSet(`set-${setIndex}`)
-              )}
-            </div>
+            {createWords()}
           </div>
         </div>
       </div>
