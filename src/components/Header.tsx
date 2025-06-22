@@ -76,11 +76,8 @@ export const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* CTA Buttons - Flush to right edge, responsive sizing */}
-        <div className="hidden md:flex flex-shrink-0 items-center gap-3">
-          <NavigationButton href="/contact" variant="secondary" className="text-sm lg:text-base px-4 lg:px-6">
-            {header.cta.secondary}
-          </NavigationButton>
+        {/* CTA Button - Only "Book a meeting" button, flush to right edge */}
+        <div className="hidden md:flex flex-shrink-0">
           <NavigationButton href="/meeting" variant="primary" className="text-sm lg:text-base px-4 lg:px-6">
             {header.cta.primary}
           </NavigationButton>
@@ -106,11 +103,8 @@ export const Header: React.FC = () => {
             Contact
           </NavigationButton>
           
-          {/* Mobile CTA Buttons */}
-          <div className="pt-4 space-y-3">
-            <NavigationButton href="/contact" variant="secondary" className="block w-full text-center">
-              {header.cta.secondary}
-            </NavigationButton>
+          {/* Mobile CTA Button - Only "Book a meeting" */}
+          <div className="pt-4">
             <NavigationButton href="/meeting" variant="primary" className="block w-full text-center">
               {header.cta.primary}
             </NavigationButton>

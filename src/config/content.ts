@@ -40,8 +40,8 @@ export const siteContent = {
       }
     ],
     cta: {
-      primary: 'Book a meeting',
-      secondary: 'Get in touch'
+      primary: 'Book a meeting'
+      // Removed secondary CTA (Get in touch)
     }
   },
 
