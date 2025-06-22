@@ -286,10 +286,6 @@ export const StatisticsSection: React.FC = () => {
       { threshold: 0.3 }
     );
 
-    if (headerRef.current) {
-      headerObserver.observe(headerRef.current);
-    }
-
     // Parallax scroll effect
     const handleScroll = () => {
       if (sectionRef.current) {
@@ -301,13 +297,17 @@ export const StatisticsSection: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
+    if (headerRef.current) {
+      headerObserver.observe(headerRef.current);
+    }
+
     return () => {
       headerObserver.disconnect();
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Financial statistics data
+  // Financial statistics data - ALL USING BLUE COLOR NOW
   const statistics = [
     {
       number: "68%",
@@ -315,7 +315,7 @@ export const StatisticsSection: React.FC = () => {
       description: "of Australians feel anxious about their personal finances",
       angle: -3,
       size: 'medium' as const,
-      color: '#EF4444'
+      color: '#66E8FA' // Changed to blue
     },
     {
       number: "1 in 3",
@@ -323,7 +323,7 @@ export const StatisticsSection: React.FC = () => {
       description: "small businesses fail in the first 2 years — mostly due to poor cash flow management",
       angle: 2,
       size: 'large' as const,
-      color: '#F59E0B'
+      color: '#66E8FA' // Changed to blue
     },
     {
       number: "80%",
@@ -331,7 +331,7 @@ export const StatisticsSection: React.FC = () => {
       description: "of people don't have a structured financial plan",
       angle: -2,
       size: 'medium' as const,
-      color: '#EF4444'
+      color: '#66E8FA' // Changed to blue
     },
     {
       number: "$4,000+",
@@ -339,7 +339,7 @@ export const StatisticsSection: React.FC = () => {
       description: "the average amount people could save yearly with better budgeting and loan structuring",
       angle: 4,
       size: 'large' as const,
-      color: '#10B981'
+      color: '#66E8FA' // Changed to blue
     },
     {
       number: "7 out of 10",
@@ -347,7 +347,7 @@ export const StatisticsSection: React.FC = () => {
       description: "Australians say they wish they'd started financial planning earlier",
       angle: -1,
       size: 'medium' as const,
-      color: '#8B5CF6'
+      color: '#66E8FA' // Changed to blue
     },
     {
       number: "$150 billion",
@@ -355,7 +355,7 @@ export const StatisticsSection: React.FC = () => {
       description: "lost annually by Australian SMEs due to preventable financial inefficiencies",
       angle: 3,
       size: 'large' as const,
-      color: '#DC2626'
+      color: '#66E8FA' // Changed to blue
     },
     {
       number: "Up to 40%",
@@ -363,7 +363,7 @@ export const StatisticsSection: React.FC = () => {
       description: "of income can be redirected toward long-term goals with expert strategy",
       angle: -4,
       size: 'medium' as const,
-      color: '#059669'
+      color: '#66E8FA' // Changed to blue
     },
     {
       number: "63%",
@@ -371,7 +371,7 @@ export const StatisticsSection: React.FC = () => {
       description: "of property investors don't regularly review their portfolio performance",
       angle: 1,
       size: 'medium' as const,
-      color: '#7C3AED'
+      color: '#66E8FA' // Changed to blue
     }
   ];
 
