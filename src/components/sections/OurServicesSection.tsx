@@ -133,6 +133,15 @@ export const OurServicesSection: React.FC = () => {
       className="w-full py-32 px-4 relative overflow-hidden"
       style={{ backgroundColor: colors.sections.ourServices }}
     >
+      {/* GRADIENT FADE FROM CAROUSEL BACKGROUND - POSITIONED AT TOP AND FADES HIGH */}
+      <div 
+        className="absolute top-0 left-0 right-0 pointer-events-none z-20"
+        style={{
+          height: '200px', // Fade out high in the section
+          background: `linear-gradient(to bottom, #22282A 0%, #22282A 20%, rgba(34, 40, 42, 0.8) 40%, rgba(34, 40, 42, 0.4) 70%, transparent 100%)`
+        }}
+      />
+
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 to-transparent" />
