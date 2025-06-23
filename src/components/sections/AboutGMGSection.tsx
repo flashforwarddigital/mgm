@@ -76,22 +76,25 @@ export const AboutGMGSection: React.FC = () => {
     <section 
       ref={sectionRef}
       id="about-gmg"
-      className="w-full pt-48 pb-32 px-4 overflow-hidden relative" // INCREASED TOP PADDING from py-32 to pt-48 pb-32
+      className="w-full pt-64 pb-32 px-4 overflow-hidden relative" // INCREASED TOP PADDING from pt-48 to pt-64
       style={{ backgroundColor: colors.sections.aboutGMG }}
     >
-      {/* EXTENDED GRADIENT FADE FROM CAROUSEL BACKGROUND - LONGER AND MORE GRADUAL FADE */}
+      {/* EXTENDED GRADIENT FADE WITH LONGER DARK SECTION */}
       <div 
         className="absolute top-0 left-0 right-0 pointer-events-none z-20"
         style={{
-          height: '400px', // INCREASED from 200px to 400px for longer fade
+          height: '500px', // INCREASED from 400px to 500px for even longer fade
           background: `linear-gradient(to bottom, 
             #22282A 0%, 
-            #22282A 15%, 
-            rgba(34, 40, 42, 0.9) 25%, 
-            rgba(34, 40, 42, 0.7) 40%, 
-            rgba(34, 40, 42, 0.5) 55%, 
-            rgba(34, 40, 42, 0.3) 70%, 
-            rgba(34, 40, 42, 0.1) 85%, 
+            #22282A 25%, 
+            #22282A 30%, 
+            rgba(34, 40, 42, 0.95) 35%, 
+            rgba(34, 40, 42, 0.85) 45%, 
+            rgba(34, 40, 42, 0.7) 55%, 
+            rgba(34, 40, 42, 0.5) 65%, 
+            rgba(34, 40, 42, 0.3) 75%, 
+            rgba(34, 40, 42, 0.15) 85%, 
+            rgba(34, 40, 42, 0.05) 95%, 
             transparent 100%)`
         }}
       />
