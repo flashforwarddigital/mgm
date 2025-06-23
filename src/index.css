@@ -152,21 +152,6 @@
   animation-play-state: paused;
 }
 
-/* ===== PARALLAX STYLES ===== */
-.parallax-fixed {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Fallback for mobile devices that don't support background-attachment: fixed */
-@media (max-width: 768px) {
-  .parallax-fixed {
-    background-attachment: scroll;
-  }
-}
-
 /* ===== COMPREHENSIVE ANIMATION SYSTEM ===== */
 
 /* Fade in animations with different directions */

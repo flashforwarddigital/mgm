@@ -2,7 +2,6 @@ import React from 'react';
 import { Header } from '../components/Header';
 import { HeroSection } from '../components/sections/HeroSection';
 import { LogoCarousel } from '../components/ui/LogoCarousel';
-import { ParallaxBreak } from '../components/ui/ParallaxBreak';
 import { AboutGMGSection } from '../components/sections/AboutGMGSection';
 import { OurServicesSection } from '../components/sections/OurServicesSection';
 import { FinancialHealthCheckSection } from '../components/sections/FinancialHealthCheckSection';
@@ -22,9 +21,6 @@ const Index: React.FC = () => {
 
       {/* Logo Carousel - Bridge between hero and next section - POSITIONED AT BOTTOM */}
       <LogoCarousel />
-
-      {/* Parallax Break Section with Melbourne night image */}
-      <ParallaxBreak />
 
       {/* Main Content Sections - GMG Financial Services */}
       <main className="w-full">
