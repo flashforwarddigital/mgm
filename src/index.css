@@ -105,7 +105,7 @@
 /* Import ultra-thin font */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&display=swap');
 
-/* FIXED CAROUSEL STYLES - CYAN COLOR AND NO LIGHT EFFECTS */
+/* FIXED CAROUSEL STYLES - WHITE COLOR AND NO LIGHT EFFECTS */
 .carousel-container {
   width: 100%;
   overflow: hidden;
@@ -129,7 +129,7 @@
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 1.25rem; /* Smaller - was 1.5rem */
   font-weight: 100;
-  color: #66E8FA; /* FIXED: Back to cyan color instead of white */
+  color: #ffffff; /* CHANGED: Now white instead of cyan */
   letter-spacing: 0.2em;
   text-transform: uppercase;
   flex-shrink: 0;
