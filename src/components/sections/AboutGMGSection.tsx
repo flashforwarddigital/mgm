@@ -76,29 +76,15 @@ export const AboutGMGSection: React.FC = () => {
     <section 
       ref={sectionRef}
       id="about-gmg"
-      className="w-full pt-64 pb-32 px-4 overflow-hidden relative" // INCREASED TOP PADDING from pt-48 to pt-64
-      style={{ backgroundColor: colors.sections.aboutGMG }}
+      className="w-full pt-80 pb-32 px-4 overflow-hidden relative" // INCREASED TOP PADDING from pt-64 to pt-80 (320px)
+      style={{ 
+        background: `linear-gradient(to bottom, 
+          #22282A 0%, 
+          #22282A 30%, 
+          ${colors.sections.aboutGMG} 70%, 
+          ${colors.sections.aboutGMG} 100%)`
+      }}
     >
-      {/* EXTENDED GRADIENT FADE WITH LONGER DARK SECTION */}
-      <div 
-        className="absolute top-0 left-0 right-0 pointer-events-none z-20"
-        style={{
-          height: '500px', // INCREASED from 400px to 500px for even longer fade
-          background: `linear-gradient(to bottom, 
-            #22282A 0%, 
-            #22282A 25%, 
-            #22282A 30%, 
-            rgba(34, 40, 42, 0.95) 35%, 
-            rgba(34, 40, 42, 0.85) 45%, 
-            rgba(34, 40, 42, 0.7) 55%, 
-            rgba(34, 40, 42, 0.5) 65%, 
-            rgba(34, 40, 42, 0.3) 75%, 
-            rgba(34, 40, 42, 0.15) 85%, 
-            rgba(34, 40, 42, 0.05) 95%, 
-            transparent 100%)`
-        }}
-      />
-
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 bg-[#66E8FA]/10 rounded-full blur-3xl animate-float-slow" />
