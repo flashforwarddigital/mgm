@@ -76,14 +76,8 @@ export const AboutGMGSection: React.FC = () => {
     <section 
       ref={sectionRef}
       id="about-gmg"
-      className="w-full pt-80 pb-32 px-4 overflow-hidden relative" // INCREASED TOP PADDING from pt-64 to pt-80 (320px)
-      style={{ 
-        background: `linear-gradient(to bottom, 
-          #22282A 0%, 
-          #22282A 30%, 
-          ${colors.sections.aboutGMG} 70%, 
-          ${colors.sections.aboutGMG} 100%)`
-      }}
+      className="w-full py-32 px-4 overflow-hidden relative"
+      style={{ backgroundColor: colors.sections.aboutGMG }}
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
