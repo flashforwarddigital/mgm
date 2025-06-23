@@ -79,6 +79,15 @@ export const AboutGMGSection: React.FC = () => {
       className="w-full py-32 px-4 overflow-hidden relative"
       style={{ backgroundColor: colors.sections.aboutGMG }}
     >
+      {/* GRADIENT FADE FROM CAROUSEL BACKGROUND - POSITIONED AT TOP AND FADES HIGH */}
+      <div 
+        className="absolute top-0 left-0 right-0 pointer-events-none z-20"
+        style={{
+          height: '200px', // Fade out high in the section
+          background: `linear-gradient(to bottom, #22282A 0%, #22282A 20%, rgba(34, 40, 42, 0.8) 40%, rgba(34, 40, 42, 0.4) 70%, transparent 100%)`
+        }}
+      />
+
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 bg-[#66E8FA]/10 rounded-full blur-3xl animate-float-slow" />
